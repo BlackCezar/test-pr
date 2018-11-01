@@ -1,0 +1,114 @@
+html{
+	font-family: Tahoma;
+}
+
+body{
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.form{
+	margin-top: 20vh;
+	margin-left: 40vh;
+}
+
+h1{
+	margin-left: -28vh;
+	margin-top: -14vh;
+	font-size: 5vh;
+}
+
+.title_username{
+	position: relative;
+	top: 4.6vh;
+	left: 51vh;	
+}
+
+#first_block{
+	margin-top: 11.5vh;
+	margin-left: -29vh;
+	width: 170vh;
+	height: 65vh;
+}
+
+.title_test{
+	text-align: center;
+	margin-top: 10vh;
+	padding-right: 8vh;
+	font-size: 2.7vh;
+}
+
+
+.title_test{
+	margin-left: 7vh;
+	margin-top: 6vh;
+	font-size: 2.7vh;
+}
+
+.first_block_titles{
+	display: flex;
+}
+
+.first_inf_title{
+	margin-top: 2vh;
+	margin-left: 7vh;
+	font-size: 2.7vh;
+	padding-left: 6vh;
+}
+
+.group_block{
+	z-index: 1;
+	padding-top: 1vh;
+	margin-top: 1vh;
+	border: 0.3vh solid gray;
+	display: flex;
+}
+
+.first_inf_title_1{
+	z-index: 1;
+	text-align: left;
+	margin-top: 2vh;
+	margin-left: 9vh;
+	font-size: 2.7vh;
+	padding-left: 8vh;
+	width: 20.7vh;
+}
+
+#first_inf{
+	position: relative;
+	top: -32vh;
+	margin-top: 4.9vh;
+	margin-left: 70vh;
+	font-size: 2.7vh;
+}
+
+#rignt_image{
+	position: relative;
+	left: 30vh;
+	margin-left:37vh;
+	opacity: 0.5;
+	z-index: -1;
+	width: 80vh;
+}
+
+#left_image{
+	margin-top: 14vh;
+	margin-left:-35vh;
+	opacity: 0.5;
+	z-index: -1;
+	width: 83vh;
+}
+
+#last_text{
+	position: relative;
+	opacity: 0.8;
+	font-size: 2vh;
+	left: 66vh;
+	top: -13vh;
+}
+
+#exit_link{
+	margin-top: -2.3vh;
+	margin-left: 121.1vh;
+	position: absolute;
+}
