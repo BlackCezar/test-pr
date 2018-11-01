@@ -1,0 +1,124 @@
+html{
+	font-family: Tahoma;
+}
+
+body{
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.form{
+	margin-top: 20vh;
+	margin-left: 40vh;
+}
+
+h1{
+	margin-left: 27vh;
+	margin-top: -10vh;
+	font-size: 5vh;
+}
+
+
+#first_block{
+	margin-top: 10vh;
+	margin-left: 25vh;
+	width: 60vh;
+	height: 56vh;
+	border: 0.3vh solid gray;
+}
+
+.title_test{
+	text-align: center;
+	margin-top: 10vh;
+	padding-right: 8vh;
+	font-size: 2.7vh;
+}
+
+.title_test{
+	margin-left: 7vh;
+	margin-top: 7vh;
+	font-size: 2.7vh;
+}
+
+#form{
+	margin-top: -8vh;
+	margin-left: 16.4vh;
+}
+
+#input_1{
+	width: 35vh;
+	height: 3vh;
+	margin-top: 9vh;
+	margin-left:-5vh;
+}
+
+#input_2{
+	position: absolute;
+	width: 35vh;
+	height: 3vh;
+	margin-top: 15vh;
+	margin-left:-35.9vh;
+}
+
+#input_3{
+	position: absolute;
+	width: 35vh;
+	height: 3vh;
+	margin-top: 21vh;
+	margin-left:-35.9vh;
+}
+
+#input_4{
+	position: absolute;
+	width: 35vh;
+	height: 3vh;
+	margin-top: 27vh;
+	margin-left:-35.9vh;
+}
+
+#input_5{
+	position: absolute;
+	width: 35vh;
+	height: 3vh;
+	margin-top: 33vh;
+	margin-left:-35.9vh;
+}
+
+#form_button{
+	position: absolute;
+	width: 22vh;
+	height: 3.3vh;
+	margin-top: 40.5vh;
+	margin-left: -29.1vh;
+}
+
+#input_text_button{
+	margin-top: -0.01vh;
+	font-size: 2vh;
+}
+
+#rignt_image{
+	opacity: 0.5;
+	z-index: -1;
+	position: absolute;
+	left: 130vh;
+	top: 61vh;
+	width: 80vh;
+}
+
+#left_image{
+	opacity: 0.5;
+	z-index: -1;
+	position: absolute;
+	right: 134vh;
+	top: 61vh;
+	width: 83vh;
+}
+
+#last_text{
+	position: absolute;
+	opacity: 0.8;
+	font-size: 2vh;
+	left: 80vh;
+	top: 89vh;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Антибиотики</title>
+	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/user.css">
+</head>
+<body>
+	<div class="form">
+		<h1 class="title">
+			Добро пожаловать
+		</h1>
+
+		<h1 class="title_username">
+			<%= user.fio %>
+		</h1>
+
+		<a href="/logout" id="exit_link">Выйти из профиля</a>
+
+		<div id="first_block">
+			<h3 class="title_test">
+				Ваша статистика
+			</h3>
+			<h3 class="title_no">
+				№1
+			</h3>
+			<h3 class="title_no">
+				№2
+			</h3>
+			
+			<h4 class="first_inf_title">
+				Количество правильных ответов:
+			</h4>
+
+			<h4 class="first_inf_title">
+				Процент правльных ответов:
+			</h4>
+
+			<h4 class="first_inf_title">
+				Средняя оценка:
+			</h4>
+
+			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].ball %> <%} else {%><%= 0 %><%}%></p>
+			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].ball %> <%} else {%><%= 0 %><%}%></p>
+		</form>
+
+		</div>
+
+		<div id="second_block">
+			<h3 class="title_test_2">
+				Нажмите для прохождения тестирования
+			</h3>
+
+			<form id="form_2" action="" onsubmit="return false">
+	<%if (tests.length == 2) { %> <p class="error"> Извините, попытки закончились </p> <% } else { %>
+			<button  id="form_button_2">
+				<p id="input_text_button_2">
+					<a href="/test">Начать</a>
+				</p>	
+			</button>
+			<%}%>
+		</form>
+
+		</div>
+	</div>
+
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	
+	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+
+</body>
+</html>

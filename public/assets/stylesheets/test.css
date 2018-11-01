@@ -1,0 +1,157 @@
+html{
+	font-family: Tahoma;
+}
+
+body{
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+.form{
+	margin-top: 23vh;
+	margin-left: 40vh;
+}
+
+h1{
+	margin-left: 4vh;
+	margin-top: 10vh;
+	font-size: 5vh;
+}
+
+h3{
+	margin-left: 4vh;
+	margin-top: 6vh;
+	font-size: 2.7vh;
+}
+
+#form{
+	margin-top: 0vh;
+	margin-left: 9.3vh;
+}
+
+#input_1{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_1{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#input_2{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_2{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#input_3{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_3{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#input_4{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_4{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#input_5{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_5{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#input_6{
+	margin-top: 5vh;
+	margin-left:-5vh;
+}
+
+#input_text_6{
+	font-size: 2.3vh;
+	margin-top: -2.9vh;
+}
+
+#form_button{
+	width: 10vh;
+	height: 3.3vh;
+	margin-top: 4.5vh;
+	margin-left: -5vh;
+}
+
+#form_button_2{
+	display: none;
+	width: 10vh;
+	height: 3.3vh;
+	margin-top: 4.5vh;
+	margin-left: -5vh;
+}
+
+#form_button_3{
+	display: none;
+	width: 10vh;
+	height: 3.3vh;
+	margin-top: 4.5vh;
+	margin-left: -5vh;
+}
+
+#form_button_4{
+	display: none;
+	width: 10vh;
+	height: 3.3vh;
+	margin-top: 4.5vh;
+	margin-left: -5vh;
+}
+
+#form_button_5{
+	display: none;
+	width: 10vh;
+	height: 3.3vh;
+	margin-top: 4.5vh;
+	margin-left: -5vh;
+}
+
+#input_text_button{
+	margin-top: -0.01vh;
+	font-size: 2vh;
+}
+
+#rignt_image{
+	position: absolute;
+	left: 130vh;
+	top: 61vh;
+	width: 80vh;
+}
+
+#left_image{
+	z-index: -1;
+	position: absolute;
+	right: 134vh;
+	top: 61vh;
+	width: 83vh;
+}
+
+#last_text{
+	position: absolute;
+	opacity: 0.8;
+	font-size: 2vh;
+	left: 80vh;
+	top: 89vh;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Антибиотики</title>
+	<link rel="stylesheet" href="../assets/stylesheets/reg.css">
+</head>
+<body>
+	<div class="form">
+		<h1 class="title">
+			Регистрация ученика
+		</h1>
+
+		<div id="first_block">
+			<h3 class="title_test">
+				Введите данные
+			</h3>
+
+			<form id="form" action="" method="POST">
+			<input type="text" id="input_1" name="fio" value="" placeholder="ФИО"></input>
+			<input type="text" id="input_2" name="login" value="" placeholder="Логин"></input>
+			<input type="password" id="input_3" name="password" value="" placeholder="Пароль"></input>
+			<input type="password" id="input_4" value="" placeholder="Повторите пароль"></input>
+			<input type="text" id="input_5" name="group" value="" placeholder="Группа"></input>
+				<div class="error"></div>
+			<button  id="form_button">
+				<p id="input_text_button">
+					Зарегестрироваться
+				</p>	
+			</button>
+		</form>
+		</div>
+	</div>
+
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	
+	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+	<script>
+		document.getElementById('form').onsubmit = event => {
+			if (document.getElementById('input_3').value != document.getElementById('input_4').value) {
+				document.querySelector('.error').innerText = 'Пароли не совпадают';
+				event.preventDefault();
+			}
+		}
+	</script>
+</body>
+</html>

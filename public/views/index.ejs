@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Антибиотики</title>
+	<link rel="stylesheet"  href="../assets/stylesheets/index.css">
+</head>
+<body>
+	<div class="form">
+		<h1 class="title">
+			Авторизация для тестирования
+		</h1>
+
+		<div id="first_block">
+			<h3 class="title_test">
+				Если вы ученик (прохождение)
+			</h3>
+
+			<form id="form" action="" method="POST">
+			<input type="textbox" id="input_1" name="login" value="" placeholder="Логин"></input>
+			<input type="textbox" id="input_2" name="password" value="" placeholder="Пароль"></input>
+
+			<button  id="form_button">
+				<p id="input_text_button">
+					Войти
+				</p>	
+			</button>
+
+			<a href="/reg" id="registration_link">Регистрация</a>
+		</form>
+		</div>
+
+		<div id="second_block">
+			<h3 class="title_test_2">
+				Если вы преподователь <br> (просмотр статистики группы)
+			</h3>
+
+			<form id="form_2" action="/auth_teach" method="POST">
+			<input type="textbox" id="input_1_2" name="login" value="" placeholder="Логин"></input>
+			<input type="textbox" id="input_2_2" name="password" value="" placeholder="Пароль"></input>
+
+			<button  id="form_button_2">
+				<p id="input_text_button_2">
+					Войти
+				</p>	
+			</button>
+			<a href="/reg_teach" id="registration_link">Регистрация</a>
+		</form>
+		</div>
+	</div>
+
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	
+	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+
+</body>
+</html>
