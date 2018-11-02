@@ -21,12 +21,16 @@
 			<input type="text" id="input_2" name="login" value="" placeholder="Логин"></input>
 			<input type="password" id="input_3" name="password" value="" placeholder="Пароль"></input>
 			<input type="password" id="input_4" value="" placeholder="Повторите пароль"></input>
-			<input type="text" id="input_5" name="group" value="" placeholder="Группа"></input>
+			<select name="group" id="input_5">
+				<%  for (gr of groups) { %>
+					<option value="<%= gr.name %>"><%= gr.name %></option>
+				<% } if (!groups) {%>Нет групп<% } %>
+			</select>
 				<div class="error"></div>
 			<button  id="form_button">
 				<p id="input_text_button">
 					Зарегестрироваться
-				</p>	
+				</p>
 			</button>
 		</form>
 		</div>
@@ -34,7 +38,7 @@
 
 	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
 	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
-	
+
 	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
 	<script>
 		document.getElementById('form').onsubmit = event => {

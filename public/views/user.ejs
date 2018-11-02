@@ -27,7 +27,7 @@
 			<h3 class="title_no">
 				№2
 			</h3>
-			
+
 			<h4 class="first_inf_title">
 				Количество правильных ответов:
 			</h4>
@@ -41,10 +41,10 @@
 			</h4>
 
 			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="first_inf"><%if (tests[0]) {%><%= Math.floor(tests[0].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
 			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].ball %> <%} else {%><%= 0 %><%}%></p>
 			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+			<p id="second_inf"><%if (tests[1]) {%><%= Math.floor(tests[1].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
 			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].ball %> <%} else {%><%= 0 %><%}%></p>
 		</form>
 
@@ -60,7 +60,7 @@
 			<button  id="form_button_2">
 				<p id="input_text_button_2">
 					<a href="/test">Начать</a>
-				</p>	
+				</p>
 			</button>
 			<%}%>
 		</form>
@@ -70,7 +70,7 @@
 
 	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
 	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
-	
+
 	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
 
 </body>
