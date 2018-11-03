@@ -139,7 +139,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(0);
-		
+
 		form_title.textContent = "2. Антибиотики являются сильными лекарственными средствами, которые убивают";
 
 		display_look();
@@ -168,7 +168,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(1);
-		
+
 		form_title.textContent = "3. Какой препарат является антибиотиком";
 
 		display_look();
@@ -191,7 +191,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(2);
-		
+
 		form_title.textContent = "4. Должны ли присутствовать антибиотики в домашней аптечке";
 
 		display_look();
@@ -220,7 +220,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(3);
-		
+
 		form_title.textContent = "5. В каком случае используют антибиотики";
 
 		display_look();
@@ -247,7 +247,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(4);
-		
+
 		form_title.textContent = "6. Антибиотики назначаются с целью установления точного бактериологического (паразитологического) диагноза";
 
 		display_look();
@@ -276,7 +276,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(5);
-		
+
 		form_title.textContent = "7. Эффективность антибиотикотерапии зависит от";
 
 		display_look();
@@ -305,7 +305,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(6);
-		
+
 		form_title.textContent = "8. Когда, по вашему мнению, стоит прекращать прием антибиотиков";
 
 		display_look();
@@ -336,7 +336,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(7);
-		
+
 		form_title.textContent = "9. Антибиотики отпускаются из аптеки";
 
 		display_look();
@@ -365,7 +365,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(8);
-		
+
 		form_title.textContent = "10. Необходимо ли изучение инструкции перед применением антибиотиков";
 
 		display_look();
@@ -396,7 +396,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(9);
-		
+
 		form_title.innerHTML = "11. Всегда ли Вы соблюдаете требования инструкции по применению антибиотиков <br> (связь с приёмом пищи, количество приёмов в сутки, продолжительность курса)";
 
 		display_look();
@@ -427,7 +427,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(10);
-		
+
 		form_title.textContent = "12. Антибиотикорезистентность";
 
 		display_look();
@@ -456,7 +456,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(11);
-		
+
 		form_title.textContent = "13. Антибиотикоустойчивые бактерии";
 
 		display_look();
@@ -485,7 +485,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(12);
-		
+
 		form_title.textContent = "14. Супербактерии";
 
 		display_look();
@@ -514,7 +514,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(13);
-		
+
 		form_title.textContent = "15. Устойчивые к антибиотикам бактерии могут распространяться среди людей в результате ";
 
 		display_look();
@@ -541,7 +541,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(14);
-		
+
 		form_title.textContent = "16. Что может случиться, если я заражусь устойчивой к антибиотикам инфекцией ";
 
 		display_look();
@@ -568,7 +568,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(15);
-		
+
 		form_title.innerHTML = "17. Устойчивость к антибиотикам уже вышла из-под контроля и только усиливается. <br> Я не могу ничего с этим поделать ";
 
 		display_look();
@@ -599,7 +599,7 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(16);
-		
+
 		form_title.textContent = "18. Я могу помочь преодолеть устойчивость к антибиотикам, если я";
 
 		display_look();
@@ -637,7 +637,7 @@ btn.onclick = function(){
 		inpute_1.style.display = "none";
 
 	  	inpute_2.style.display = "none";
-	  	
+
   		inpute_3.style.display = "none";
   		inpute_text_3.style.display = "none";
 
@@ -683,31 +683,34 @@ btn.onclick = function(){
   		btn_2.style.display = "block";
   		btn_2.innerText = "Мои ответы";
 		  btn_2.style.width = "13vh";
-		  
+
 	}
 	if (document.getElementById('form_button').dataset.end == 'end') {
+		let clicker = true;
 		this.onclick = () => {
-			json = {};
-			json.goodAnswers = q_1;
-			json.ball = for_o;
-			json.answers = mass;
-		
-			let xhr = new XMLHttpRequest();
-		
-			xhr.open('POST', '/save_test', true);
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.send(JSON.stringify(json));
-			xhr.onload = () => {
-				console.log(xhr.responseText);
-				if (xhr.responseText == 'OK') {
-					window.location.href = '/cabinet';
+			if(clicker) {
+				json = {};
+				json.goodAnswers = q_1;
+				json.ball = for_o;
+				json.answers = mass;
+				clicker = false;
+				let xhr = new XMLHttpRequest();
+
+				xhr.open('POST', '/save_test', true);
+				xhr.setRequestHeader('Content-Type', 'application/json');
+				xhr.send(JSON.stringify(json));
+				xhr.onload = () => {
+					console.log(xhr.responseText);
+					if (xhr.responseText == 'OK') {
+						window.location.href = '/cabinet';
+					}
 				}
 			}
 		}
-		
+
 	}
-	
-	
+
+
 }
 
 
@@ -1672,7 +1675,7 @@ btn_5.onclick = function(){
 		inpute_1.style.display = "none";
 
 	  	inpute_2.style.display = "none";
-	  	
+
   		inpute_3.style.display = "none";
   		inpute_text_3.style.display = "none";
 
@@ -1724,31 +1727,33 @@ btn_5.onclick = function(){
   		btn_2.style.display = "block";
   		btn_2.innerText = "Мои ответы";
 		  btn_2.style.width = "13vh";
-		  
+
 		  console.log(q_1);
 		  console.log(mass);
 		  console.log(for_o);
 }
 if (document.getElementById('form_button').dataset.end == 'end') {
+	let clicker = true;
 	this.onclick = () => {
-		json = {};
-		json.goodAnswers = q_1;
-		json.ball = for_o;
-		json.answers = mass;
-	
-		let xhr = new XMLHttpRequest();
-	
-		xhr.open('POST', '/save_test', true);
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.send(JSON.stringify(json));
-		xhr.onload = () => {
-			console.log(xhr.responseText);
-			if (xhr.responseText == 'OK') {
-				window.location.href = '/cabinet';
+		if (clicker) {
+			json = {};
+			json.goodAnswers = q_1;
+			json.ball = for_o;
+			json.answers = mass;
+			clicker = false;
+
+			let xhr = new XMLHttpRequest();
+
+			xhr.open('POST', '/save_test', true);
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(JSON.stringify(json));
+			xhr.onload = () => {
+				console.log(xhr.responseText);
+				if (xhr.responseText == 'OK') {
+					window.location.href = '/cabinet';
+				}
 			}
 		}
 	}
-	
-}
 
- 
+}

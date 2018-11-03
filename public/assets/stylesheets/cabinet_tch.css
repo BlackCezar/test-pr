@@ -112,28 +112,8 @@ h1{
 	margin-left: 121.1vh;
 	position: absolute;
 }
-.wrapper_col {
-	display: flex;
-	flex-direction: column;
-	padding: 20px;
-}
-.section h5 {
-	font-size: 2.7vh;
-}
-.group_statick section {
-		display: flex;
-		width: 20vw;
-		justify-content: space-between;
-		border-bottom: 1px solid gray;
-}
-.group_statick section span {
-	display: block;
-	font-size: 2.7vh;
-	padding-bottom: 5px;
-	line-height: 3.5vh;
-}
-.verict {
-	margin: 10px;
-	font-size: x-large;
-	font-weight: bold;
+#exit_link1{
+	margin-top: -2.3vh;
+	margin-right: 11.1vh;
+	position: absolute;
 }

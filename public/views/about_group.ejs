@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/about_group.css">
 </head>
 <body>
 	<div class="form">
@@ -12,62 +12,110 @@
 		</h1>
 
 		<h1 class="title_username">
-			user
+			<%= user.fio %>
 		</h1>
-
-		<a href="" id="exit_link">Выйти из профиля</a>
+		<a href="/cabinet_tch" id="exit_link1">Назад</a>
+		<a href="/logout" id="exit_link">Выйти из профиля</a>
 
 		<div id="first_block">
 			<h3 class="title_test">
-				Группы:
+				Группа <%= group.name %>:
 			</h3>
 
 			<div class="first_block_titles">
 				<h4 class="first_inf_title">
-					Наименование
-				</h4>
-				
-				<h4 class="first_inf_title">
-					Количество студентов
+					Студент
 				</h4>
 
 				<h4 class="first_inf_title">
-					Средняя оценка группы
+					Процентная оценка
+				</h4>
+
+				<h4 class="first_inf_title">
+					Средний балл
 				</h4>
 
 				<h4 class="first_inf_title">
 					Подробнее
 				</h4>
 			</div>
+			<% if (students) { for(student of students) { %>
+				<div class="group_block">
+					<h4 class="first_inf_title_1">
+						<%= student.fio %>
+					</h4>
 
-			<div class="group_block">
-				<h4 class="first_inf_title_1">
-					9ПКС-11
-				</h4>
-					
-				<h4 class="first_inf_title_1">
-					19
-				</h4>
+					<h4 class="percent first_inf_title_1">
+						<%= student.percent %>%
+					</h4>
 
-				<h4 style="padding-left: 18vh;" class="first_inf_title_1">
-					3.8
-				</h4>
+					<h4 style="padding-left: 18vh;" class="ball first_inf_title_1">
+						<%= student.ball %>
+					</h4>
 
-				<a href="" class="first_inf_title_1">
-					Просмотр
-				</a>
-			</div>
-
-
-			<img src="content/left.jpg" alt="" id="left_image">
-			<img src="content/right.jpg" alt="" id="rignt_image">
-			
-
-			<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
-						
+					<a href="/student:<%= student._id %>" class="first_inf_title_1">
+						Просмотр
+					</a>
+				</div>
+			<%} } else {%>
+				<div class="group_block">
+					<h4 class="first_inf_title_1">
+						Студентов нет
+					</h4>
+				</div>
+				<%}%>
+<div class="group_block">
+	<div class="wrapper_col">
+		<h4>Статистика группы</h4>
+		<div class="group_statick">
+			<section>
+				<span>Кол-во 5:</span>
+				<span>3</span>
+			</section>
+			<section>
+				<span>Кол-во 4:</span>
+				<span>2</span>
+			</section>
+			<section>
+				<span>Кол-во 3:</span>
+				<span>2</span>
+			</section>
+			<section>
+				<span>Средний балл группы:</span>
+				<span class="res_bal"></span>
+			</section>
+			<section>
+				<span>Верность ответов:</span>
+				<span class="res_percent"></span>
+			</section>
+			<div class="verict">Группа плохо подготовлена</div>
 		</div>
 	</div>
-	
-	<script src="script.js"></script>
+</div>
+
+			<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+			<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+
+
+			<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		let balls = document.querySelectorAll('.ball'),
+				ballSum = 0,
+				percentsSum = 0,
+		 		percents = document.querySelectorAll('.percent');
+		for (let ball of balls) {
+			ballSum += Number(ball.innerText);
+		}
+		for (let percent of percents) {
+			let pr = percent.innerText.slice(0,2);
+			console.log(pr);
+			percentsSum += 	Number(pr);
+		}
+		document.querySelector('.res_bal').innerText = ballSum / balls.length;
+		document.querySelector('.res_percent').innerText = percentsSum / percents.length + '%';
+	</script>
 </body>
 </html>

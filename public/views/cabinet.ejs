@@ -85,7 +85,7 @@
 								<% if (group.hasOwnProperty('middleBall')){ %><%= group.middleBall %> <%} else {%>0<%}%>
 							</h4>
 
-							<a href="<%= group._id %>" class="first_inf_title_1">
+							<a href="/getGroup:<%= group._id %>" class="first_inf_title_1">
 								Просмотр
 							</a>
 							<button type="button" class="delayGroup" data-id="<%= group._id %>" name="button">Удалить</button>

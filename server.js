@@ -9,7 +9,7 @@ const express = require('express'),
 let mongoUrl = 'mongodb://localhost:27017'
 const app = express()
 
-mongodb.connect(mongoUrl, function (err, db) {
+mongodb.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {
   if (!err) {
     http.createServer(app).listen(5000, () => console.log('Express server listening on ' + 5000))
   } else console.log('Sorry but Mongodb is not connected')
