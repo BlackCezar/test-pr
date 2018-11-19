@@ -3,76 +3,101 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/about_user.css">
 </head>
 <body>
-	<div class="form">
-		<h1 class="title">
-			Просмотр группы
-		</h1>
-
-		<a href="" id="exit_link">Выйти из профиля</a>
-
-		<a href="" id="back_link">Назад</a>
-
-		<div id="first_block">
-			<h3 class="title_test">
-				9ПКС-11
-			</h3>
-
-			<div class="first_block_titles">
-				<h4 class="first_inf_title">
-					ФИО
-				</h4>
-
-				<h4 class="first_inf_title">
-					Прохождений
-				</h4>
-				
-				<h4 class="first_inf_title">
-					Количество правильных ответов
-				</h4>
-
-				<h4 class="first_inf_title">
-					Средняя оценка
-				</h4>
-
-				<h4 class="first_inf_title">
-					Подробнее
-				</h4>
-			</div>
-
-			<div class="group_all">
-				<div class="group_block">
-					<h4  style="padding-left: 10vh" class="first_inf_title_1">
-						Вылков Д.М
-					</h4>
-
-					<h4  style="padding-left: 6vh" class="first_inf_title_1">
-						2
-					</h4>
-					
-					<h4  style="padding-left: 16vh" class="first_inf_title_1">
-						31
-					</h4>
-
-					<h4  style="padding-left: 19vh" class="first_inf_title_1">
-						5
-					</h4>
-
-					<a style="padding-left: 0vh" href="" class="first_inf_title_1">
-						Просмотр
-					</a>
+	<header>
+		<div class="logo">Добро пожаловать, <%= user.fio %></div><nav><a href="/admin">Назад</a><a href="/logout">Выйти</a></nav>
+	</header>
+	<main>
+		<div class="content">
+		<section class="student">
+			<h2 class="student-title"><%= student.fio %></h2>
+			<div class="student-body">
+				<div class="student-headers">
+					<div class="student-header">Кол-во правильных ответов за 1</div>
+					<div class="student-header">Кол-во правильных ответов за 2</div>
+					<div class="student-header">Балл первого прохождения</div>
+					<div class="student-header">Балл второго прохождения</div>
+					<div class="student-header">Процент правильных ответов за 1</div>
+					<div class="student-header">Процент правильных ответов за 2</div>
 				</div>
+				<div class="student-list">
+					<% if (tests) { console.log(tests[1]);%>
+					<div class="student-infdo"><% if (tests[0]) {%><%= tests[0].trueAnswers %><% }else {%>0<% }%></div>
+					<div class="student-infdo"><% if (tests[1]) {%><%= tests[1].trueAnswers %><% }else {%>0<% }%></div>
+					<div class="student-infdo"><% if (tests[0]) {%><%= tests[0].ball %><% } else {%>0<% }%></div>
+					<div class="student-infdo"><% if (tests[1]) {%><%= tests[0].ball %><% } else {%>0<% }%></div>
+					<div class="student-infdo"><% if (tests[0]) {%><%= Math.round(tests[0].trueAnswers / 18 * 100) %>%<% }else {%>0%<% }%></div>
+					<div class="student-infdo"><% if (tests[1]) {%><%= Math.round(tests[1].trueAnswers / 18 * 100) %>%<% }else {%>0%<% }%></div>
+					<%} else {%>Студент еще не прошел тесты<%}%>
+				</div>
+				
 			</div>
-			
-		</div>
-	</div>
 
-	<img src="content/right.jpg" alt="" id="rignt_image">
-	<img src="content/left.jpg" alt="" id="left_image">
-	
-	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
-	<script src="script.js"></script>
+			<% if (tests[0]) {%>
+				<button class="showTest">Показать 1 тест</button>
+				<%}%>
+				<% if (tests[1]) {%>
+				<button class="showTest2">Показать 2 тест</button>
+				
+				<%}%>
+		</section>
+		</div>
+	</main>
+	<% if (tests[0]) { %>
+	<div class="tetsOne">
+		<div class="close">X</div>
+		<div class="row"><div class="test-title">Номер вопроса</div><div class="test-value">Выбор студента</div></div>
+		<% for (let i = 0; i< 18; i++) {
+			if (tests[0].answers[i]) { %>
+				<div class="row"><div class="test-title">№<%=i+1%></div><div class="test-value"><%= tests[0].answers[i] %></div></div>
+			<%} else { %>
+			<div class="row"><div class="test-title">№<%=i+1%></div><div class="test-value">Не выбрал</div></div>
+			<% }
+		}%>
+	</div>
+	<%}%>
+	<% if (tests[1]) { %>
+	<div class="tetsOne testTwo">
+	<div class="close">X</div>
+	<div class="row"><div class="test-title">Номер вопроса</div><div class="test-value">Выбор студента</div></div>
+		<% for (let i = 0; i< 18; i++) {
+			if (tests[1].answers[i]) { %>
+				<div class="row"><div class="test-title">№<%=i+1%></div><div class="test-value"><%= tests[1].answers[i] %></div></div>
+			<%} else { %>
+			<div class="row"><div class="test-title">№<%=i+1%></div><div class="test-value">Не выбрал</div></div>
+			<% }
+		}%>
+	</div>
+	<%}%>
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<footer>	
+		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
+	</footer>
+	<div class="wrapper"></div>
+	<script>
+	if (document.querySelector('.showTest')) {
+		console.log(document.querySelector('.tetsOne'))
+		document.querySelector('.showTest').onclick = function() {
+			document.querySelector('.tetsOne').style.display = 'unset';
+			document.querySelector('.wrapper').style.display = 'unset';
+		}
+	}
+	if (document.querySelector('.showTest2')) { 
+		document.querySelector('.showTest2').onclick = function() {
+			document.querySelector('.testTwo').style.display = 'unset';
+			document.querySelector('.wrapper').style.display = 'unset';
+		}
+	}
+		for (el of document.querySelectorAll('.close')) {
+			console.log('el', el);
+			el.onclick = function() {
+				el.parentElement.style.display = 'none';
+				document.querySelector('.wrapper').style.display = 'none';
+			}
+		}
+	</script>
 </body>
 </html>

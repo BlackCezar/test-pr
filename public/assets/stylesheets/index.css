@@ -13,23 +13,23 @@ body{
 }
 
 h1{
-	margin-left: 17vh;
+	margin-left: 15vh;
 	margin-top: -10vh;
 	font-size: 5vh;
 }
 
 
 #first_block{
+	margin-left: 30vh;
 	margin-top: 10vh;
-	margin-left: -10vh;
 	width: 60vh;
 	height: 50vh;
 	border: 0.3vh solid gray;
 }
 
 #second_block{
-	margin-top: -50.6vh;
-	margin-left: 60vh;
+	margin-left: 30vh;
+	margin-top: 10vh;
 	width: 60vh;
 	height: 50vh;
 	border: 0.3vh solid gray;

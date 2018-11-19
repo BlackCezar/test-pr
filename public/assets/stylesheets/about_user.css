@@ -4,119 +4,169 @@ html{
 
 body{
 	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-.form{
-	margin-top: 20vh;
-	margin-left: 40vh;
-}
-
-h1{
-	margin-left: -28vh;
-	margin-top: -10vh;
-	font-size: 5vh;
-}
-
-.title_username{
-	position: relative;
-	top: 0.7vh;
-	left: 51vh;	
-}
-
-#first_block{
-	margin-top: -5vh;
-	margin-left: -29vh;
-	width: 170vh;
-	height: 50vh;
-}
-
-.title_test{
-	text-align: center;
-	margin-top: 10vh;
-	padding-right: 8vh;
-	font-size: 2.7vh;
-}
-
-
-.title_test{
-	margin-left: 7vh;
-	margin-top: 6vh;
-	font-size: 2.7vh;
-}
-
-.first_block_titles{
-	display: flex;
-}
-
-.first_inf_title{
-	margin-top: 2vh;
-	margin-left: 6vh;
-	font-size: 2.4vh;
-	padding-left: 6vh;
-}
-
-.group_all{
-	height: 53.2vh;
-	border: 0.3vh solid gray;
 	overflow-y: scroll;
-}
-
-.group_block{
-	padding-top: 2vh;
-	display: flex;
-}
-
-.first_inf_title_1{
-	text-align: left;
-	margin-top: 2vh;
-	margin-left: -2vh;
-	font-size: 2.4vh;
-	width: 25.7vh;
-}
-
-#first_inf{
+	width: 100%;
 	position: relative;
-	top: -32vh;
-	margin-top: 4.9vh;
-	margin-left: 70vh;
-	font-size: 2.7vh;
+	margin: 0;
+	padding: 0;
+	min-height: 88vh;
 }
-
-#rignt_image{
-	opacity: 0.5;
-	z-index: -1;
-	position: absolute;
-	left: 130vh;
-	top: 61vh;
-	width: 80vh;
+h2 {
+	font-weight: normal;
 }
-
-#left_image{
-	opacity: 0.5;
-	z-index: -1;
+header {
+	box-shadow: 0 0 5px 0 gray;
+	background-color: rgb(250, 248, 248);
+	padding: 1vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logo {
+	font-size: 4vh;
+	padding-left: 10vh;
+}
+nav {
+	padding-right: 2vh;
+}
+nav a {
+	color: rgb(87, 87, 87);
+	font-size: 3vh;
+	text-decoration-line: none;
+	padding-right: 1vh;
+}
+main {
+	width: 90vw;
+	margin: 0 auto;
+	margin-top: 3vh;
+	background-color: rgba(255, 255, 255, 0.815);
+	position: relative;
+	z-index: 1;
+	margin-bottom: 12vh;
+}
+#left_image {
 	position: absolute;
-	right: 134vh;
-	top: 61vh;
-	width: 83vh;
+	top: 80%;
+	z-index: 0;
+	width: 30vw;
+}
+#rignt_image {
+	position: absolute;
+	top:80%;
+	width: 30vw;
+	right: 0;
+	z-index: 0;
 }
 
 #last_text{
-	position: absolute;
+	position: relative;
 	opacity: 0.8;
 	font-size: 2vh;
-	left: 80vh;
-	top: 89vh;
+	left: 66vh;
+	top: -13vh;
 }
 
-#exit_link{
-	margin-top: -7.3vh;
-	margin-left:121.1vh;
-	position: absolute;
+.student {
+	border: .1vw rgb(43, 41, 41) solid;
+	padding: 0.8vw;
+	margin-bottom: 2vh;
+}
+.student-title {
+	font-weight: normal;
+	font-size: x-larger;
+}
+.student-headers {
+	display: flex;
+	flex-direction: column;
 }
 
-#back_link{
-	margin-top: -7.3vh;
-	margin-left:108vh;
+.student-header {
+	font-size: larger;
+	font-weight: 500;
+	margin-bottom: 1vh;
+	border-bottom: 1px dashed rgb(43, 41, 41);
+}
+.student-body {
+	padding: 0 1vh;
+	display: flex;
+}
+.student-list {
+	display: flex;
+	flex-direction: column;
+	margin-left: 4vh;
+}
+.student-infdo {
+	font-size: larger;
+	margin-bottom: 1vh;
+	border-bottom: 1px solid transparent;
+}
+.wrapper {
 	position: absolute;
+	width: 100%;
+	height: 112vh;
+	background-color: rgba(0, 0, 0, 0.548);
+	top: 0;
+	display: none;
+	left: 0;
+	z-index: 5;
+}
+.tetsOne {
+	position: absolute;
+	width: 50vw;
+	background-color: white;
+	box-shadow: 0px 0px 5px 1px gray;
+	display: flex;
+	flex-direction: column;
+	padding: 2vh;
+	display: none;
+	z-index: 7;
+	top: 5%;
+	left: 25%;
+	margin-bottom: 10vh;
+}
+
+.close {
+	position: absolute;
+	right: 0;
+	top: 0;
+	transition: background 0.2s linear;
+	text-align: center;
+	user-select: none;
+	cursor: pointer;
+	width: 30px;	
+	font-size: larger;
+	line-height: 30px;
+	height: 30px;
+	z-index: 20;
+}
+.close:hover {
+	background-color: brown;
+	color: whitesmoke;
+}
+.test-title {
+	padding-left: 2vw;
+	min-width: 10vw;
+}
+.test-value {
+	padding-left: 2vw;
+}
+.row {
+	display: flex;
+	padding-bottom: 1vh;
+	padding-top: 1vh;
+}
+.row:nth-child(2n -1) {
+	background-color: rgb(201, 221, 199);
+}
+
+footer {
+	width: 100%;
+	margin-top: 5vh;
+	position: absolute;
+	top: 100%;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 7vh;
 }

@@ -6,125 +6,129 @@
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/cabinet_tch.css">
 </head>
 <body>
-	<div class="form">
-		<h1 class="title">
-			Добро пожаловать
-		</h1>
-
-		<h1 class="title_username">
-			<%= user.fio %>
-		</h1>
-
-		<a href="/logout" id="exit_link">Выйти из профиля</a>
-
-		<div id="first_block">
-			<h3 class="title_test">
-				Группы:
-			</h3>
-
-			<div class="first_block_titles">
-				<h4 class="first_inf_title">
-					Наименование
-				</h4>
-
-				<h4 class="first_inf_title">
-					Количество студентов
-				</h4>
-
-				<h4 class="first_inf_title">
-					Средняя оценка группы
-				</h4>
-
-				<h4 class="first_inf_title">
-					Подробнее
-				</h4>
-			</div>
-			<div class="groups" id="groups">
-				<div class="group_block">
-					<h3>Создавть группу</h3>
-					<input type="text" name="name" placeholder="Название" id="createGroupInp"><button id="createGroupBtn" type="button" name="button">Создать</button>
-
-					<script type="text/javascript">
-					document.getElementById('createGroupBtn').onclick = function() {
-						let name = document.getElementById('createGroupInp').value;
-
-						let xhr = new XMLHttpRequest();
-						xhr.open('POST', '/createGroup', true);
-						xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-						xhr.send(`name=${name}`);
-						xhr.onload = function() {
-							name = "";
-							let div = document.createElement('div');
-							div.className = 'group_block';
-							resp = JSON.parse(xhr.responseText);
-							div.innerHTML = `
-							<h4 class="first_inf_title_1">${resp.name}<h4>
-							<h4 class="first_inf_title_1">0</h4>
-							<h4 style="padding-left: 18vh;" class="first_inf_title_1">0</h4>
-							<a href="${resp._id}" class="first_inf_title_1">Просмотр</a>
-							<button type="button" class="delayGroup" data-id="${resp._id}" name="button">Удалить</button>
-							`;
-							document.getElementById('groups').appendChild(div);
-							document.querySelectorAll('.delayGroup')[document.querySelectorAll('.delayGroup').length - 1].onclick = removeGr;
-						}
-					}
-					</script>
+	<header>
+		<div class="logo">Добро пожаловать, <%= user.fio %></div><nav><a href="/logout">Выйти</a></nav>
+	</header>
+	<main>
+		<section class="manager">
+			<div class="section">
+				<h2 class="section-title">Добавить учебное заведение</h2>
+				<div class="section-body">
+					<input type="text" name="name" placeholder="Название" id="createVuzInp">
+					<button id="createVuzBtn" type="button" name="button">Создать</button>
+					<img class="loader" src="../assets/imgs/spinner.gif">
 				</div>
-				<% if (groups) {
-					for (group of groups) { %>
-						<div class="group_block">
-							<h4 class="first_inf_title_1">
-								<%= group.name %>
-							</h4>
-
-							<h4 class="first_inf_title_1">
-								<% if (group.hasOwnProperty('students')){ %><%= group.students.length %> <%} else {%>0<%}%>
-							</h4>
-
-							<h4 style="padding-left: 18vh;" class="first_inf_title_1">
-								<% if (group.hasOwnProperty('middleBall')){ %><%= group.middleBall %> <%} else {%>0<%}%>
-							</h4>
-
-							<a href="/getGroup:<%= group._id %>" class="first_inf_title_1">
-								Просмотр
-							</a>
-							<button type="button" class="delayGroup" data-id="<%= group._id %>" name="button">Удалить</button>
-						</div>
-						<%	}
-					} else {%><div class="group_block">Группы еще не созданые<%}%>
-
+				<h2 class="section-label">Добавленные учебные заведения:</h2>
+				<ul class="section-list">
+					<%
+						if (vuzs) { 
+							for (vuz of vuzs) { %>
+								<li class="section-example"><a href="#<%= vuz.name %>"><%= vuz.name %></a><button data-id="<%= vuz._id %>" class="delayVuz">Удалить</button></li>
+							<%}
+						} else { %>
+							Пока ничего нет
+						<%}
+					%>
+					<!-- <li class="section-example">Кукуку <button class="delayVuz">Удалить</button></li> -->
+				</ul>
+				<img class="loader loader-remove" src="../assets/imgs/spinner.gif">
 			</div>
+			<div class="section">
+				<h2 class="section-title">Создать группу</h2>
+				<div class="section-body">
+					<input type="text" name="name" placeholder="Название" id="createGroupInp">
+					<select name="vuz" id="createGroupVuz" class="selectVuzForCreateBtn">
+						<%
+							if (vuzs) { 
+								for (vuz of vuzs) { %>
+									<option value="<%= vuz.name %>"><%= vuz.name %></option>
+								<%}
+							} else { %>
+							Учебные заведение еще не добавлены
+						<%	}
+						%>
+					</select>
+					<button id="createGroupBtn" type="button" name="button">Создать</button>
+					<img class="loader createGroupsSpinner" src="../assets/imgs/spinner.gif">
+				</div>
+				<h2 class="section-label">Список групп:</h2>
+				<ul class="section-list groups">
+						<% if (groups.length > 0) {
+							for (gr of groups) { %>
+							<li class="section-example" data-vuz="<%= gr.vuz %>" data-_id="<%= gr._id %>"><%= gr.name %></li>
+						<%} } else { %>
+							Групп нет
+						<%}%>
+				</ul>
+			</div>
+			<div class="section">
+				<h2 class="section-title">Сравнить статистику</h2>
+				<div class="section-body">
+					<div class="comparator">
+						<label>Выберите, что вы хотите сравнить:</label>
+						<select>
+							<option>Группу</option>
+							<option>Учебное заведение</option>
+						</select>
+						<label>Выберите группы:</label>
+						<div>
+							<select class="selectGrForCompare">
+								
+							</select>
+							<div class='addSelect'>+</div>
+						</div>
+						
+						<button>Сравнить</button>
+					</div>
+					<div class="results">
+					
+					</div>
+				</div>
+			</div>
+		</section>
 
-
-
-			<img src="../assets/imgs/left.jpg" alt="" id="left_image">
-			<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
-
-
-			<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
-
+		<div class="content">
+		<%
+			if (vuzs) { 
+				for (vuz of vuzs) { %>
+				<section class="vuz" data-id="<%= vuz._id %>">
+				<a name="<%= vuz.name %>"></a>
+				<h2 class="vuz-title"><%= vuz.name %></h2>
+				<div class="vuz-body">
+					<div class="vuz-headers">
+						<div class="vuz-header">Имя группы</div>
+						<div class="vuz-header">Кол-во студентов</div>
+						<div class="vuz-header">Средняя оценка группы за 1 прохождение</div>
+						<div class="vuz-header">Средняя оценка группы за 2 прохождение</div>
+					</div>
+					<div class="vuz-group-list">
+							<% for ( gr of groups) { 
+								if (gr.vuz == vuz.name) { %>
+								<div class="vuz-group">
+									<div class="vuz-group-title"><a href="/group:<%= gr._id %>" title="Подробнее о группе"><%= gr.name %></a></div>
+									<div class="vuz-group-students-length"><%= gr.students.length %></div>
+									<div class="vuz-group-ball"><%= gr.middleBall %></div>
+									<div class="vuz-group-ball"><%= gr.middleBall2 %></div>
+									<button class="vuz-group-delete" data-id="<%= gr._id%>">Удалить группу</button>
+								</div>
+							<%	}
+							} %>
+					</div>
+				</div>
+			</section>
+				<%}
+			} else { %>
+			Учебные заведение еще не добавлены
+		<%	}
+		%>
+			
 		</div>
-	</div>
-
-	<script type="text/javascript">
-		document.querySelectorAll('.delayGroup').forEach(el => {
-			el.onclick = removeGr;
-		})
-
-		function removeGr(el) {
-			if (!el.hasOwnProperty('dataset')) {
-				el = el.target;
-			}
-			console.log(el);
-			let xhr = new XMLHttpRequest();
-			xhr.open('GET', `/delayGroup:${el.dataset.id}`, true);
-			xhr.send();
-			xhr.onload = function() {
-				if (xhr.responseText == 'OK' ) {
-					el.parentElement.remove();
-				}
-			}
-		}
-	</script>
+	</main>
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<footer>	
+		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
+	</footer>
+	<script src="../assets/js/admin.js"></script>
 </body>
 </html>
