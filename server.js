@@ -7,12 +7,13 @@ const express = require('express'),
       ObjectId = require('mongodb').ObjectID
 
 // let mongoUrl = 'mongodb://127.0.0.1:27017'
-let mongoUrl = 'mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr'
+let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
 const app = express()
+var port = process.env.PORT || 0
 
 mongodb.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {
   if (!err) {
-    http.createServer(app).listen(5000, () => console.log('Express server listening on ' + 5000))
+    http.createServer(app).listen(port, () => console.log('Express server listening on ' + port))
   } else console.log('Sorry but Mongodb is not connected ', err)
 })
 
