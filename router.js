@@ -56,11 +56,12 @@ function router(app) {
         mongodb.connect(mongoUrl, { useNewUrlParser: true }, (err, client) => {
           client.db('test-pr').collection('users').findOne({_id: ObjectId(req.session.clientId)}).then((result) => {
             client.db('test-pr').collection('tests').find({'userId': req.session.clientId}).toArray().then(tests => {
-              if (!tests[0]) {
-                tests = []
-              }
-              res.render('user.ejs', {'user': result, 'tests': tests});
-              console.log(tests)
+              client.db('test-pr').collection('groups').findOne({name: result.group}).then(gr => {
+                if (!tests[0]) {
+                  tests = []
+                }
+                res.render('user.ejs', {'user': result, 'tests': tests, 'acc1': gr.acc1, 'acc2': gr.acc2});
+              })
             }).catch(err => {
               console.log(err)
               res.sendStatus(500)
@@ -129,7 +130,19 @@ function router(app) {
         })
       })
     })
+    app.get('/vuz:id', (req, res) => {
+      let id = String(req.params.id)
+      console.log('id', id)
+      let obj = new ObjectId(id.slice(1))
+      mongodb.connect(mongoUrl, { useNewUrlParser: true}, (err, client) => {
+        client.db('test-pr').collection('vuzs').findOne({_id: obj}).then(vuz => {
+          console.log(vuz);
 
+        }).catch(err => {
+          res.sendStatus(404)
+        })
+      })
+    })
     app.get('/group:id', (req, res) => {
       if (req.session.auth) {
       mongodb.connect(mongoUrl, { useNewUrlParser: true }, (err, client) => {
@@ -153,8 +166,11 @@ function router(app) {
                 }
 
                 pushSt().then(students => {
-                  console.log('students, ', students)
-                  res.render('about_group.ejs', {group: grr, user: result, students: students})
+                  if (req.query.onlygr) {
+                    res.send({group: grr, students: students})
+                  } else {
+                    res.render('about_group.ejs', {group: grr, user: result, students: students})
+                  }
                 });
               })
           })

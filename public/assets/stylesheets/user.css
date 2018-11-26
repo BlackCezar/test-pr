@@ -1,148 +1,312 @@
-html{
+@media(min-width: 551px){
+	html{
+		font-family: Tahoma;
+	}
+
+	body{
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+
+	.form{
+		margin-top: 20vh;
+		margin-left: 40vh;
+	}
+
+	h1{
+		margin-left: -28vh;
+		margin-top: -10vh;
+		font-size: 5vh;
+	}
+
+	.title_username{
+		position: relative;
+		top: 0.7vh;
+		left: 51vh;
+	}
+
+	.par_title_no{
+		display: flex;
+		padding-left: 60vh;
+	}
+
+	.title_no {
+		font-size: 2.7vh;
+		margin-right: 3vh;
+	}
+
+	#first_block{
+		margin-top: 10vh;
+		margin-left: -19vh;
+		width: 80vh;
+		height: 50vh;
+		border: 0.3vh solid gray;
+	}
+
+	#second_block{
+		margin-top: -50.6vh;
+		margin-left: 70vh;
+		width: 60vh;
+		height: 50vh;
+		border: 0.3vh solid gray;
+	}
+
+	.title_test{
+		text-align: center;
+		margin-top: 10vh;
+		padding-right: 8vh;
+		font-size: 2.7vh;
+	}
+
+
+	.title_test{
+		margin-left: 7vh;
+		margin-top: 6vh;
+		font-size: 2.7vh;
+	}
+
+	.first_inf_title{
+		margin-top: 2.9vh;
+		margin-left: 6vh;
+		padding-bottom: 2vh;
+		font-size: 2.7vh;
+	}
+
+	#first_inf{
+		position: relative;
+		top: -27vh;
+		margin-top: 4.9vh;
+		margin-left: 68vh;
+		font-size: 2.7vh;
+	}
+
+	#second_inf {
+		position: relative;
+		top: -51.2vh;
+		margin-top: 4.9vh;
+		margin-left: 61vh;
+		font-size: 2.7vh;
+	}
+
+	.title_test_2{
+		text-align: center;
+		margin-top: 10vh;
+		padding-right: 8vh;
+		font-size: 2.7vh;
+	}
+
+	.title_test_2{
+		margin-left: 7vh;
+		margin-top: 17vh;
+		font-size: 2.7vh;
+	}
+
+	#form_button_2{
+		position: absolute;
+		width: 10vh;
+		height: 3.3vh;
+		margin-top: 2.5vh;
+		margin-left: 24.1vh;
+	}
+
+	#input_text_button_2{
+		margin-top: -0.01vh;
+		font-size: 2vh;
+	}
+
+	#rignt_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		left: 130vh;
+		top: 61vh;
+		width: 80vh;
+	}
+
+	#left_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		right: 134vh;
+		top: 61vh;
+		width: 83vh;
+	}
+
+	#last_text{
+		position: absolute;
+		opacity: 0.8;
+		font-size: 2vh;
+		left: 80vh;
+		top: 89vh;
+	}
+
+	#exit_link{
+		margin-top: -7.3vh;
+		margin-left:121.1vh;
+		position: absolute;
+	}
+}
+
+@media(max-width: 550px){
+	html{
 	font-family: Tahoma;
+	}
+
+	body{
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+
+	.par_title_no{
+		display: flex;
+		padding-left: 35vh;
+	}
+
+	.title_no {
+		font-size: 1.9vh;
+		margin-right: 1vh;
+	}
+
+	.form{
+		margin-top: 20vh;
+		margin-left: 40vh;
+	}
+
+	h1{
+		margin-left: -36vh;
+		margin-top: -16vh;
+		font-size: 2.8vh;
+	}
+
+	.title_username{
+		position: relative;
+		top: 15vh;
+		left: 0vh;
+		width: 50vw;
+	}
+
+	#first_block{
+		margin-top: 20vh;
+		margin-left: -36vh;
+		width: 45vh;
+		height: 45vh;
+		border: 0.3vh solid gray;
+	}
+
+	#second_block{
+		margin-top: 3vh;
+		margin-left: -36vh;
+		width: 45vh;
+		height: 32vh;
+		border: 0.3vh solid gray;
+	}
+
+	.title_test{
+		text-align: center;
+		margin-top: 10vh;
+		padding-right: 8vh;
+		font-size: 2.7vh;
+	}
+
+
+	.title_test{
+		margin-left: 7vh;
+		margin-top: 6vh;
+		font-size: 2.3vh;
+	}
+
+	.first_inf_title{
+		margin-top: 1.9vh;
+		margin-left: 4vh;
+		padding-bottom: 2vh;
+		font-size: 1.9vh;
+	}
+
+	#first_inf{
+		display: flex;
+		position: relative;
+		top: -23vh;
+		margin-top: 5vh;
+		margin-left: 36vh;
+		font-size: 1.9vh;
+	}
+
+	#second_inf{
+		display: flex;
+		position: relative;
+		top: -44.7vh;
+		margin-top: 5vh;
+		margin-left: 40vh;
+		font-size: 1.9vh;
+	}
+
+	.title_test_2{
+		text-align: center;
+		margin-top: 10vh;
+		padding-right: 8vh;
+		font-size: 2.7vh;
+	}
+
+
+	.title_test_2{
+		margin-left: 7vh;
+		margin-top: 7vh;
+		font-size: 2.4vh;
+	}
+
+	#form_button_2{
+		position: absolute;
+		width: 10vh;
+		height: 3.3vh;
+		margin-top: 2.5vh;
+		margin-left: 16.8vh;
+	}
+
+	#input_text_button_2{
+		margin-top: -0.01vh;
+		font-size: 2vh;
+	}
+
+	#rignt_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		left: 35vh;
+		top: 98vh;
+		width: 30vh;
+	}
+
+	#left_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		left: -11vh;
+		top: 98vh;
+		width: 30vh;
+	}
+
+	#last_text{
+		position: absolute;
+		opacity: 0.8;
+		font-size: 1.6vh;
+		width: 16vh;
+		text-align: center;
+		left: 19vh;
+		top: 103vh;
+	}
+
+	#exit_link{
+		margin-top: 6.3vh;
+		margin-left:1.6vh;
+		position: absolute;
+		font-size: 2vh;
+	}
+
+	.error{
+		text-align: center;
+	}
 }
 
-body{
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-.form{
-	margin-top: 20vh;
-	margin-left: 40vh;
-}
-
-h1{
-	margin-left: -28vh;
-	margin-top: -10vh;
-	font-size: 5vh;
-}
-
-.title_username{
-	position: relative;
-	top: 0.7vh;
-	left: 51vh;
-}
-
-#first_block{
-	margin-top: 10vh;
-	margin-left: -19vh;
-	width: 80vh;
-	height: 50vh;
-	border: 0.3vh solid gray;
-}
-
-#second_block{
-	margin-top: -50.6vh;
-	margin-left: 70vh;
-	width: 60vh;
-	height: 50vh;
-	border: 0.3vh solid gray;
-}
-
-.title_test{
-	text-align: center;
-	margin-top: 10vh;
-	padding-right: 8vh;
-	font-size: 2.7vh;
-}
-
-
-.title_test{
-	margin-left: 7vh;
-	margin-top: 6vh;
-	font-size: 2.7vh;
-}
-
-.first_inf_title{
-	margin-top: 4.9vh;
-	margin-left: 6vh;
-	font-size: 2.7vh;
-}
-
-#first_inf{
-	position: relative;
-	top: -24.5vh;
-	margin-top: 4.9vh;
-	margin-left: 60vh;
-	font-size: 2.7vh;
-}
 .error {
 	text-align: center;
-	font-size: 2.7vh;
-}
-.title_no {
-	position: absolute;
-	top: 30vh;
-	left: 91vh;
-	font-size: 2.3vh;
-}
-.title_no:nth-child(2n) {
-	left: 80vh;
-}
-#second_inf {
-	position: relative;
-	top: -49vh;
-	margin-top: 4.9vh;
-	margin-left: 71vh;
-	font-size: 2.7vh;
-}
-.title_test_2{
-	text-align: center;
-	margin-top: 10vh;
-	padding-right: 8vh;
-	font-size: 2.7vh;
-}
-
-
-.title_test_2{
-	margin-left: 7vh;
-	margin-top: 17vh;
-	font-size: 2.7vh;
-}
-
-#form_button_2{
-	position: absolute;
-	width: 10vh;
-	height: 3.3vh;
-	margin-top: 2.5vh;
-	margin-left: 24.1vh;
-}
-
-#input_text_button_2{
-	margin-top: -0.01vh;
-	font-size: 2vh;
-}
-
-#rignt_image{
-	opacity: 0.5;
-	z-index: -1;
-	position: absolute;
-	left: 130vh;
-	top: 61vh;
-	width: 80vh;
-}
-
-#left_image{
-	opacity: 0.5;
-	z-index: -1;
-	position: absolute;
-	right: 134vh;
-	top: 61vh;
-	width: 83vh;
-}
-
-#last_text{
-	position: absolute;
-	opacity: 0.8;
-	font-size: 2vh;
-	left: 80vh;
-	top: 89vh;
-}
-
-#exit_link{
-	margin-top: -7.3vh;
-	margin-left:121.1vh;
-	position: absolute;
-	font-size: 2.7vh;
 }

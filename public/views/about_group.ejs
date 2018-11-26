@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/about_group.css">
 </head>
 <body>
@@ -125,9 +126,8 @@
 		for (let ball of balls2) {
 			ballSum2 += Number(ball.innerText);
 		}
-
-		document.querySelector('.res_bal').innerText = ballSum / balls.length;
-		document.querySelector('.res_bal2').innerText = ballSum2 / balls2.length;
+		document.querySelector('.res_bal').innerText = ballSum / balls.length || 0;
+		document.querySelector('.res_bal2').innerText = ballSum2 / balls2.length || 0;
 
 		insertStaticsBalls();
 		insertStaticsBalls(2);

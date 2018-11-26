@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Антибиотики</title>
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/cabinet_tch.css">
 </head>
@@ -66,19 +67,28 @@
 				<div class="section-body">
 					<div class="comparator">
 						<label>Выберите, что вы хотите сравнить:</label>
-						<select>
-							<option>Группу</option>
-							<option>Учебное заведение</option>
+						<select id="compareType">
+							<option value="gr">Группу</option>
+							<option value="vuz">Учебное заведение</option>
 						</select>
 						<label>Выберите группы:</label>
-						<div>
+						<div class="selects compare-one" >
 							<select class="selectGrForCompare">
 								
 							</select>
 							<div class='addSelect'>+</div>
 						</div>
+						<div class="selectsVuz compare-two" >
+							<select class="selectVuzForCompare">
+
+							</select>
+							<span>И</span>
+							<select class="selectVuzForCompare">
+
+							</select>
+						</div>
 						
-						<button>Сравнить</button>
+						<button class="compare">Сравнить</button>
 					</div>
 					<div class="results">
 					
@@ -121,9 +131,25 @@
 			Учебные заведение еще не добавлены
 		<%	}
 		%>
-			
+
 		</div>
-	</main>
+
+		</main>
+		<div class="wrapper" hidden>
+		<div class="inner">
+			<table class="inner-table">
+			<tr>
+				<th>Название</th>
+				<th>Средний балл за 1 прохождение</th>
+				<th>Средний балл за 2 прохождение</th>
+				<th>Успеваемость по 1 тесту</th>
+				<th>Успеваемость по 2 тесту</th>
+				<th>Соотношение сдавших за 1 тест</th>
+				<th>Соотношение сдавших за 2 тест</th>
+			</tr>
+			</table>
+		</div>	
+		</div>
 	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
 	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
 	<footer>	

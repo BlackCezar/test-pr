@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/user.css">
 </head>
 <body>
@@ -21,12 +22,14 @@
 			<h3 class="title_test">
 				Ваша статистика
 			</h3>
-			<h3 class="title_no">
-				№1
-			</h3>
-			<h3 class="title_no">
-				№2
-			</h3>
+			<div class="par_title_no">
+				<h3 class="title_no">
+					№1
+				</h3>
+				<h3 class="title_no">
+					№2
+				</h3>
+			</div>
 
 			<h4 class="first_inf_title">
 				Количество правильных ответов:
@@ -40,12 +43,14 @@
 				Средняя оценка:
 			</h4>
 
-			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-			<p id="first_inf"><%if (tests[0]) {%><%= Math.floor(tests[0].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
-			<p id="first_inf"><%if (tests[0]) {%><%= tests[0].ball %> <%} else {%><%= 0 %><%}%></p>
-			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-			<p id="second_inf"><%if (tests[1]) {%><%= Math.floor(tests[1].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
-			<p id="second_inf"><%if (tests[1]) {%><%= tests[1].ball %> <%} else {%><%= 0 %><%}%></p>
+			<div class="num">
+				<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+				<p id="first_inf"><%if (tests[0]) {%><%= Math.floor(tests[0].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
+				<p id="first_inf"><%if (tests[0]) {%><%= tests[0].ball %> <%} else {%><%= 0 %><%}%></p>
+				<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
+				<p id="second_inf"><%if (tests[1]) {%><%= Math.floor(tests[1].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
+				<p id="second_inf"><%if (tests[1]) {%><%= tests[1].ball %> <%} else {%><%= 0 %><%}%></p>
+			</div>
 		</form>
 
 		</div>
@@ -56,12 +61,19 @@
 			</h3>
 
 			<form id="form_2" action="" onsubmit="return false">
-	<%if (tests.length == 2) { %> <p class="error"> Извините, попытки закончились </p> <% } else { %>
-			<button  id="form_button_2">
-				<p id="input_text_button_2">
-					<a href="/test">Начать</a>
-				</p>
+	<%if (tests.length < 1 && acc1) { %> 
+		<button  id="form_button_2">
+		<p id="input_text_button_2">
+			<a href="/test">Начать</a>
+		</p>
+	<% } else if (tests.length < 2 && acc2) { %>
+		<button  id="form_button_2">
+			<p id="input_text_button_2">
+				<a href="/test">Начать</a>
+			</p>
 			</button>
+			<%} else {%>
+				<p class="error"> Извините, доступ к тесту временно ограничен </p>
 			<%}%>
 		</form>
 

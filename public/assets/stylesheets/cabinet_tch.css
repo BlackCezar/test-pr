@@ -124,7 +124,12 @@ a {
 }
 .addSelect {
 	display: inline;
+	background-color: rgb(201, 221, 199);
+	padding: 0px 4px;
+	margin-top: 1px;
+	cursor: pointer;
 }
+
 .vuz {
 	border: .1vw rgb(43, 41, 41) solid;
 	padding: 0.8vw;
@@ -172,4 +177,44 @@ footer {
 	justify-content: center;
 	align-items: center;
 	min-height: 7vh;
+}
+.wrapper {
+	width: 100vw;
+	position: absolute;
+	z-index: 39;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.432);
+}
+.inner {
+	width: 90vw;
+	background-color: white;
+	border: 1px solid rgb(43, 41, 41);
+	position: relative;
+	top: 4vh;
+	min-height: 40vh;
+	left: 5vw;
+	z-index: 40;
+}
+.inner table {
+	font-size: 2vh;
+	border-collapse: collapse;
+	padding: 1vh;
+}
+th {
+	border-bottom: 1px solid rgb(43, 41, 41);
+	padding: 5px;
+	padding-bottom: 1.3vh;
+}
+td {
+	padding: 1vh;
+}
+tr {
+	padding-bottom: 1vh;
+}
+tr:nth-child(2n -1) {
+	background-color: rgb(201, 221, 199);
+}
+
+.compare-two {
+	display: none;
 }

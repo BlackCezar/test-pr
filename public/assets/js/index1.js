@@ -17,7 +17,6 @@ var btn_2 = document.querySelector("#form_button_2");
 var btn_3 = document.querySelector("#form_button_3");
 var btn_4 = document.querySelector("#form_button_4");
 var btn_5 = document.querySelector("#form_button_5");
-var btn_6 = document.querySelector("#form_button_6");
 
 var form_title = document.querySelector(".title_test");
 
@@ -111,7 +110,10 @@ window.onload = function() {
 	display_look();
 	off_check();
 
-  	inpute_text_1.textContent = "Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению ";
+	all_form.style.marginTop = "23vh";
+	all_form.style.marginLeft = "40vh";
+
+  	inpute_text_1.textContent = "Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению";
   	inpute_text_2.textContent = "Продукты жизнедеятельности грибов, используемые для лечения инфекционных заболеваний";
   	inpute_text_3.textContent = "Вещества синтетического происхождения, используемые для лечения воспаления различных органов";
 
@@ -137,11 +139,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(0);
-		
+
 		form_title.textContent = "2. Антибиотики являются сильными лекарственными средствами, которые убивают";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "Вирусы";
 	  	inpute_text_2.textContent = "Бактерии";
@@ -163,11 +168,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(1);
-		
+
 		form_title.textContent = "3. Какой препарат является антибиотиком";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "15vh";
+		all_form.style.marginLeft = "68vh";
 
 		inpute_text_1.textContent = "Амоксициллин";
 	  	inpute_text_2.textContent = "Абактал";
@@ -183,11 +191,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(2);
-		
+
 		form_title.textContent = "4. Должны ли присутствовать антибиотики в домашней аптечке";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "48vh";
 
 		inpute_text_1.textContent = "Да";
 	  	inpute_text_2.textContent = "Нет";
@@ -209,11 +220,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(3);
-		
+
 		form_title.textContent = "5. В каком случае используют антибиотики";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "18vh";
+		all_form.style.marginLeft = "68vh";
 
 		inpute_text_1.textContent = "При простуде (ОРЗ)";
 	  	inpute_text_2.textContent = "При бактериальных инфекциях";
@@ -233,11 +247,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(4);
-		
+
 		form_title.textContent = "6. Антибиотики назначаются с целью установления точного бактериологического (паразитологического) диагноза";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "После клинического и лабораторного исследования больного";
 	  	inpute_text_2.textContent = "Только после лабораторного исследования больного";
@@ -259,11 +276,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(5);
-		
+
 		form_title.textContent = "7. Эффективность антибиотикотерапии зависит от";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "62vh";
 
 		inpute_text_1.textContent = "Состояния функции печени и почек";
 	  	inpute_text_2.textContent = "Оптимальных доз и кратности введения";
@@ -285,11 +305,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(6);
-		
+
 		form_title.textContent = "8. Когда, по вашему мнению, стоит прекращать прием антибиотиков";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "28vh";
+		all_form.style.marginLeft = "48vh";
 
 		inpute_text_1.textContent = "После улучшения самочувствия";
 	  	inpute_text_2.textContent = "По окончанию курса лечения";
@@ -313,11 +336,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(7);
-		
+
 		form_title.textContent = "9. Антибиотики отпускаются из аптеки";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "68vh";
 
 		inpute_text_1.textContent = "По рецепту врача";
 	  	inpute_text_2.textContent = "Без рецепта врача";
@@ -339,11 +365,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(8);
-		
+
 		form_title.textContent = "10. Необходимо ли изучение инструкции перед применением антибиотиков";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "28vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "Да";
 	  	inpute_text_2.textContent = "Нет";
@@ -367,11 +396,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(9);
-		
+
 		form_title.innerHTML = "11. Всегда ли Вы соблюдаете требования инструкции по применению антибиотиков <br> (связь с приёмом пищи, количество приёмов в сутки, продолжительность курса)";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "28vh";
+		all_form.style.marginLeft = "36vh";
 
 		inpute_text_1.textContent = "Да";
 	  	inpute_text_2.textContent = "Нет";
@@ -395,11 +427,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(10);
-		
+
 		form_title.textContent = "12. Антибиотикорезистентность";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "50vh";
 
 		inpute_text_1.textContent = "Устойчивость организма к действию антибиотиков";
 	  	inpute_text_2.textContent = "Устойчивость штамма возбудителя к действию антибактериальных препаратов";
@@ -421,11 +456,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(11);
-		
+
 		form_title.textContent = "13. Антибиотикоустойчивые бактерии";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "55vh";
 
 		inpute_text_1.textContent = "Бактерии устойчивые к действию антибактериальных препаратов";
 	  	inpute_text_2.textContent = "Бактерии, продуцирующие антибиотики";
@@ -447,11 +485,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(12);
-		
+
 		form_title.textContent = "14. Супербактерии";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "55vh";
 
 		inpute_text_1.textContent = "Бактерии носители гена, кодирующего синтез бета-лактамаз";
 	  	inpute_text_2.textContent = "Бактерии возбудители особо опасных инфекций";
@@ -473,11 +514,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(13);
-		
+
 		form_title.textContent = "15. Устойчивые к антибиотикам бактерии могут распространяться среди людей в результате ";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "18vh";
+		all_form.style.marginLeft = "13vh";
 
 		inpute_text_1.textContent = "Контакта с человеком, имеющим устойчивую к антибиотикам инфекцию";
 	  	inpute_text_2.textContent = "Контакта с чем-то, что касалось человека, имеющего устойчивую к антибиотикам инфекцию (например, с руками медработника или инструментами в медицинском учреждении с плохими санитарно-гигиеническими условиями)";
@@ -497,11 +541,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(14);
-		
+
 		form_title.textContent = "16. Что может случиться, если я заражусь устойчивой к антибиотикам инфекцией ";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "18vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "Я могу болеть дольше";
 	  	inpute_text_2.textContent = "Мне необходимо будет чаще посещать врача или даже лечиться в больнице";
@@ -521,11 +568,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(15);
-		
+
 		form_title.innerHTML = "17. Устойчивость к антибиотикам уже вышла из-под контроля и только усиливается. <br> Я не могу ничего с этим поделать ";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "28vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "Верно";
 	  	inpute_text_2.textContent = "Неверно";
@@ -549,11 +599,14 @@ btn.onclick = function(){
 		}
 
 		check_box_checked(16);
-		
+
 		form_title.textContent = "18. Я могу помочь преодолеть устойчивость к антибиотикам, если я";
 
 		display_look();
 		off_check();
+
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "40vh";
 
 		inpute_text_1.textContent = "Не буду прекращать принимать антибиотики, когда стану чувствовать себя лучше";
 	  	inpute_text_2.textContent = "Не буду принимать антибиотики, как только заболею, либо купив их в аптеке, либо по совету друзей ";
@@ -576,12 +629,15 @@ btn.onclick = function(){
 
 		check_box_checked(17);
 
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "74vh";
+
 		form_title.textContent = "Результаты:";
 
 		inpute_1.style.display = "none";
 
 	  	inpute_2.style.display = "none";
-	  	
+
   		inpute_3.style.display = "none";
   		inpute_text_3.style.display = "none";
 
@@ -595,9 +651,11 @@ btn.onclick = function(){
   		inpute_text_6.style.display = "none";
 
   		inpute_text_1.style.marginTop = "6vh";
+		inpute_text_1.style.marginLeft = "-5.1vh";
   		inpute_text_1.textContent = "Количество правльных ответов: " + q_1;
 
   		inpute_text_2.style.marginTop = "7vh";
+		inpute_text_2.style.marginLeft = "-5.1vh";
 
 		var for_o = 0;
 
@@ -620,16 +678,17 @@ btn.onclick = function(){
 
   		btn.innerText = "Завершить";
 		  btn.style.width = "13vh";
-		  btn.dataset.end = "end";
+		  btn.dataset.end = 'end';
 
   		btn_2.style.display = "block";
   		btn_2.innerText = "Мои ответы";
-  		btn_2.style.width = "13vh";
+		  btn_2.style.width = "13vh";
+
 	}
 	if (document.getElementById('form_button').dataset.end == 'end') {
 		let clicker = true;
 		this.onclick = () => {
-			if (clicker) {
+			if(clicker) {
 				json = {};
 				json.goodAnswers = q_1;
 				json.ball = for_o;
@@ -650,7 +709,11 @@ btn.onclick = function(){
 		}
 
 	}
+
+
 }
+
+
 
 int_for_button_2 = 0;
 
@@ -663,22 +726,27 @@ int_for_button_2 = 0;
 		inpute_5.disabled = "true";
 		inpute_6.disabled = "true";
 
+		inpute_text_1.style.marginLeft = "1vh";
 		inpute_text_1.style.marginTop = "-2.9vh";
 
+		inpute_text_2.style.marginLeft = "1vh";
 		inpute_text_2.style.marginTop = "-2.9vh";
 
 		btn.style.display = "none";
 		btn_2.style.display = "none";
-		btn_6.style.display = "none";
 
 		btn_3.style.display = "block";
 		btn_4.style.display = "block";
 		btn_5.style.display = "block";
 
-		btn_4.innerText = "Далее";
+		btn_5.style.width = "13vh";
+		btn_5.style.marginTop = "-3.3vh";
+		btn_5.style.marginLeft = "21vh";
+
+		btn_4.style.marginTop = "-3.3vh";
+		btn_4.style.marginLeft = "8vh";
+		btn_4.innerText = "Вперед";
 		btn_3.innerText = "Назад";
-		btn_5.innerText = "Вернуться";
-		btn_5.style.width = "12vh";
 
 
 		if (int_for_button_2 == 0){
@@ -686,6 +754,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
 
 	  		inpute_text_1.textContent = "Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению";
 	  		inpute_text_2.textContent = "Продукты жизнедеятельности грибов, используемые для лечения инфекционных заболеваний";
@@ -721,6 +792,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
+
 			inpute_text_1.textContent = "Вирусы";
 		  	inpute_text_2.textContent = "Бактерии";
 		  	inpute_text_3.textContent = "Все микробы";
@@ -743,6 +817,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "15vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "Амоксициллин";
 		  	inpute_text_2.textContent = "Абактал";
 		  	inpute_text_3.textContent = "Арбидол";
@@ -758,6 +835,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "48vh";
 
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
@@ -781,6 +861,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "При простуде (ОРЗ)";
 		  	inpute_text_2.textContent = "При бактериальных инфекциях";
 		  	inpute_text_3.textContent = "При любом воспалительном процессе";
@@ -800,6 +883,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "После клинического и лабораторного исследования больного";
 		  	inpute_text_2.textContent = "Только после лабораторного исследования больного";
@@ -823,6 +909,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "62vh";
+
 			inpute_text_1.textContent = "Состояния функции печени и почек";
 		  	inpute_text_2.textContent = "Оптимальных доз и кратности введения";
 		  	inpute_text_3.textContent = "Выбора антибиотика";
@@ -844,6 +933,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "48vh";
 
 			inpute_text_1.textContent = "После улучшения самочувствия";
 		  	inpute_text_2.textContent = "По окончанию курса лечения";
@@ -869,6 +961,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "По рецепту врача";
 		  	inpute_text_2.textContent = "Без рецепта врача";
 		  	inpute_text_3.textContent = "Зависит от аптеки";
@@ -890,6 +985,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
@@ -915,6 +1013,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "36vh";
+
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
 
@@ -939,6 +1040,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "50vh";
+
 			inpute_text_1.textContent = "Устойчивость организма к действию антибиотиков";
 		  	inpute_text_2.textContent = "Устойчивость штамма возбудителя к действию антибактериальных препаратов";
 		  	inpute_text_3.textContent = "Способность бактерий продуцировать токсины";
@@ -960,6 +1064,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "55vh";
 
 			inpute_text_1.textContent = "Бактерии устойчивые к действию антибактериальных препаратов";
 		  	inpute_text_2.textContent = "Бактерии, продуцирующие антибиотики";
@@ -983,6 +1090,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "55vh";
+
 			inpute_text_1.textContent = "Бактерии носители гена, кодирующего синтез бета-лактамаз";
 		  	inpute_text_2.textContent = "Бактерии возбудители особо опасных инфекций";
 		  	inpute_text_3.textContent = "Бактерии широко распространенные в мире";
@@ -1005,6 +1115,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "13vh";
+
 			inpute_text_1.textContent = "Контакта с человеком, имеющим устойчивую к антибиотикам инфекцию";
 		  	inpute_text_2.textContent = "Контакта с чем-то, что касалось человека, имеющего устойчивую к антибиотикам инфекцию (например, с руками медработника или инструментами в медицинском учреждении с плохими санитарно-гигиеническими условиями)";
 		  	inpute_text_3.textContent = "Контакта с живым животным, пищевыми продуктами или водой, которые переносят бактерии, устойчивые к антибиотикам ";
@@ -1025,6 +1138,9 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "40vh";
+
 			inpute_text_1.textContent = "Я могу болеть дольше";
 		  	inpute_text_2.textContent = "Мне необходимо будет чаще посещать врача или даже лечиться в больнице";
 		  	inpute_text_3.textContent = "Мне могут потребоваться более дорогие лекарства, которые могут вызывать побочные эффекты ";
@@ -1044,6 +1160,9 @@ int_for_button_2 = 0;
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "Верно";
 		  	inpute_text_2.textContent = "Неверно";
@@ -1129,6 +1248,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
+
 			inpute_text_1.textContent = "Вирусы";
 		  	inpute_text_2.textContent = "Бактерии";
 		  	inpute_text_3.textContent = "Все микробы";
@@ -1151,6 +1273,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "15vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "Амоксициллин";
 		  	inpute_text_2.textContent = "Абактал";
 		  	inpute_text_3.textContent = "Арбидол";
@@ -1166,6 +1291,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "48vh";
 
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
@@ -1189,6 +1317,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "При простуде (ОРЗ)";
 		  	inpute_text_2.textContent = "При бактериальных инфекциях";
 		  	inpute_text_3.textContent = "При любом воспалительном процессе";
@@ -1208,6 +1339,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "После клинического и лабораторного исследования больного";
 		  	inpute_text_2.textContent = "Только после лабораторного исследования больного";
@@ -1231,6 +1365,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "62vh";
+
 			inpute_text_1.textContent = "Состояния функции печени и почек";
 		  	inpute_text_2.textContent = "Оптимальных доз и кратности введения";
 		  	inpute_text_3.textContent = "Выбора антибиотика";
@@ -1252,6 +1389,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "48vh";
 
 			inpute_text_1.textContent = "После улучшения самочувствия";
 		  	inpute_text_2.textContent = "По окончанию курса лечения";
@@ -1277,6 +1417,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "68vh";
+
 			inpute_text_1.textContent = "По рецепту врача";
 		  	inpute_text_2.textContent = "Без рецепта врача";
 		  	inpute_text_3.textContent = "Зависит от аптеки";
@@ -1298,6 +1441,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
@@ -1323,6 +1469,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "36vh";
+
 			inpute_text_1.textContent = "Да";
 		  	inpute_text_2.textContent = "Нет";
 
@@ -1347,6 +1496,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "50vh";
+
 			inpute_text_1.textContent = "Устойчивость организма к действию антибиотиков";
 		  	inpute_text_2.textContent = "Устойчивость штамма возбудителя к действию антибактериальных препаратов";
 		  	inpute_text_3.textContent = "Способность бактерий продуцировать токсины";
@@ -1368,6 +1520,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "55vh";
 
 			inpute_text_1.textContent = "Бактерии устойчивые к действию антибактериальных препаратов";
 		  	inpute_text_2.textContent = "Бактерии, продуцирующие антибиотики";
@@ -1391,6 +1546,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "55vh";
+
 			inpute_text_1.textContent = "Бактерии носители гена, кодирующего синтез бета-лактамаз";
 		  	inpute_text_2.textContent = "Бактерии возбудители особо опасных инфекций";
 		  	inpute_text_3.textContent = "Бактерии широко распространенные в мире";
@@ -1413,6 +1571,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "13vh";
+
 			inpute_text_1.textContent = "Контакта с человеком, имеющим устойчивую к антибиотикам инфекцию";
 		  	inpute_text_2.textContent = "Контакта с чем-то, что касалось человека, имеющего устойчивую к антибиотикам инфекцию (например, с руками медработника или инструментами в медицинском учреждении с плохими санитарно-гигиеническими условиями)";
 		  	inpute_text_3.textContent = "Контакта с живым животным, пищевыми продуктами или водой, которые переносят бактерии, устойчивые к антибиотикам ";
@@ -1433,6 +1594,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "18vh";
+			all_form.style.marginLeft = "40vh";
+
 			inpute_text_1.textContent = "Я могу болеть дольше";
 		  	inpute_text_2.textContent = "Мне необходимо будет чаще посещать врача или даже лечиться в больнице";
 		  	inpute_text_3.textContent = "Мне могут потребоваться более дорогие лекарства, которые могут вызывать побочные эффекты ";
@@ -1452,6 +1616,9 @@ btn_3.onclick = function(){
 
 			display_look();
 			off_check();
+
+			all_form.style.marginTop = "28vh";
+			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "Верно";
 		  	inpute_text_2.textContent = "Неверно";
@@ -1477,6 +1644,9 @@ btn_3.onclick = function(){
 			display_look();
 			off_check();
 
+			all_form.style.marginTop = "23vh";
+			all_form.style.marginLeft = "40vh";
+
 			inpute_text_1.textContent = "Не буду прекращать принимать антибиотики, когда стану чувствовать себя лучше";
 		  	inpute_text_2.textContent = "Не буду принимать антибиотики, как только заболею, либо купив их в аптеке, либо по совету друзей ";
 		  	inpute_text_3.textContent = "Буду соблюдать сроки вакцинации";
@@ -1497,12 +1667,15 @@ btn_3.onclick = function(){
 }
 
 btn_5.onclick = function(){
+		all_form.style.marginTop = "23vh";
+		all_form.style.marginLeft = "74vh";
+
 		form_title.textContent = "Результаты:";
 
 		inpute_1.style.display = "none";
 
 	  	inpute_2.style.display = "none";
-	  	
+
   		inpute_3.style.display = "none";
   		inpute_text_3.style.display = "none";
 
@@ -1516,9 +1689,11 @@ btn_5.onclick = function(){
   		inpute_text_6.style.display = "none";
 
   		inpute_text_1.style.marginTop = "6vh";
+		inpute_text_1.style.marginLeft = "-5.1vh";
   		inpute_text_1.textContent = "Количество правльных ответов: " + q_1;
 
   		inpute_text_2.style.marginTop = "7vh";
+		inpute_text_2.style.marginLeft = "-5.1vh";
 
 		var for_o = 0;
 
@@ -1543,18 +1718,20 @@ btn_5.onclick = function(){
   		btn_4.style.display = "none";
   		btn_5.style.display = "none";
 
-		btn.style.display = "block";
-		  
-		btn_6.style.display = "block";
+  		btn.style.display = "block";
 
-  		btn.innerText = "Завершить";
+		  btn.innerText = "Завершить";
+		  btn.dataset.end = 'end';
   		btn.style.width = "13vh";
 
   		btn_2.style.display = "block";
   		btn_2.innerText = "Мои ответы";
-  		btn_2.style.width = "13vh";
-}
+		  btn_2.style.width = "13vh";
 
+		  console.log(q_1);
+		  console.log(mass);
+		  console.log(for_o);
+}
 if (document.getElementById('form_button').dataset.end == 'end') {
 	let clicker = true;
 	this.onclick = () => {
@@ -1564,6 +1741,7 @@ if (document.getElementById('form_button').dataset.end == 'end') {
 			json.ball = for_o;
 			json.answers = mass;
 			clicker = false;
+
 			let xhr = new XMLHttpRequest();
 
 			xhr.open('POST', '/save_test', true);
@@ -1578,8 +1756,4 @@ if (document.getElementById('form_button').dataset.end == 'end') {
 		}
 	}
 
-}
-
-btn_6.onclick = function(){
-	alert("Оценка: \n 16-18 правильных ответов - 5 \n 12-15 правильных ответов - 4 \n 9-11 правильных ответов - 3 \n 0-8 правильных ответов - 2");
 }
