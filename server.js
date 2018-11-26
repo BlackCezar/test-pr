@@ -6,7 +6,8 @@ const express = require('express'),
       ejs = require('ejs'),
       ObjectId = require('mongodb').ObjectID
 
-let mongoUrl = 'mongodb://127.0.0.1:27017'
+// let mongoUrl = 'mongodb://127.0.0.1:27017'
+let mongoUrl = 'mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr'
 const app = express()
 
 mongodb.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {

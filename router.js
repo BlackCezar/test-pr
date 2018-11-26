@@ -1,7 +1,8 @@
 const mongodb = require('mongodb'),
       ObjectId = require('mongodb').ObjectID
 
-let mongoUrl = 'mongodb://localhost:27017'
+// let mongoUrl = 'mongodb://localhost:27017'
+let mongoUrl = 'mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr'
 
 function router(app) {
 
@@ -132,12 +133,32 @@ function router(app) {
     })
     app.get('/vuz:id', (req, res) => {
       let id = String(req.params.id)
-      console.log('id', id)
       let obj = new ObjectId(id.slice(1))
       mongodb.connect(mongoUrl, { useNewUrlParser: true}, (err, client) => {
         client.db('test-pr').collection('vuzs').findOne({_id: obj}).then(vuz => {
-          console.log(vuz);
-
+          client.db('test-pr').collection('groups').find({vuz: vuz.name}).toArray().then(groups => {
+            vuz.midbal = 0, vuz.midbal2 = 0, vuz.grps = 0, vuz.students = 0, vuz.per1 = 0, vuz.per2 = 0
+            for (gr of groups) {
+              vuz.midbal += Number(gr.balls || 0)
+              vuz.midbal2 += Number(gr.balls2 || 0)
+              vuz.per1 += Number(gr.midBalls || 0)
+              vuz.per2 += Number(gr.midBalls2 || 0)
+              vuz.students += Number(gr.students.length || 0)
+              vuz.grps++
+              vuz.midbal /= gr.balls.length 
+              vuz.midbal2 /= gr.balls2.length
+              vuz.per1 /= gr.midBalls.length
+              vuz.per2 /= gr.midBalls2.length
+              console.log('vuzs ', vuz.per1, vuz.per2)
+            }
+            console.log(groups)
+            let len = groups.length
+            vuz.midbal /= len || 0
+            vuz.midbal2 /= len || 0
+            vuz.per1 /= len || 0
+            vuz.per2 /= len || 0
+            res.send(vuz)
+          })
         }).catch(err => {
           res.sendStatus(404)
         })
