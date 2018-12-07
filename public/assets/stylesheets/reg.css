@@ -23,7 +23,7 @@ h1{
 	margin-top: 10vh;
 	margin-left: 25vh;
 	width: 60vh;
-	height: 56vh;
+	height: 56vh;	
 	border: 0.3vh solid gray;
 }
 
@@ -85,11 +85,10 @@ h1{
 }
 
 #form_button{
-	position: absolute;
 	width: 22vh;
 	height: 3.3vh;
-	margin-top: 40.5vh;
-	margin-left: -29.1vh;
+	margin-top: 28.5vh;
+	margin-left: 1vh;
 }
 
 #input_text_button{
@@ -187,11 +186,10 @@ h1{
 	}
 
 	#form_button{
-		position: absolute;
 		width: 22vh;
 		height: 3.3vh;
-		margin-top: 39.8vh;
-		margin-left: -28.1vh;
+		margin-top: 26.6vh;
+		margin-left: 2vh;
 	}
 
 	#input_text_button{

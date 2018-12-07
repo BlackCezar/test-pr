@@ -307,6 +307,13 @@ h3{
 		margin-left: -41vh;
 	}
 
+	#form_button_6 {
+		width: 13vh;
+		height: 3vh;
+		margin-top: 4vh;
+		margin-left: -41vh;
+	}
+
 	#input_text_button{
 		margin-top: -0.01vh;
 		font-size: 1.6vh;
@@ -336,7 +343,7 @@ h3{
 		width: 16vh;
 		text-align: center;
 		position: relative;
-		left: 18vh;
+		left: -22vh;
 		top: -23.5vh;
 	}
 }

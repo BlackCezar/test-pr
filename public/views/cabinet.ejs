@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,3 +150,166 @@
 	<script src="../assets/js/admin.js"></script>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Антибиотики</title>
+	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/cabinet_tch.css">
+</head>
+<body>
+	<header>
+		<div class="logo">Добро пожаловать, <%= user.fio %></div><nav><a href="/logout">Выйти</a></nav>
+	</header>
+	<main>
+		<section class="manager">
+			<div class="section">
+				<h2 class="section-title">Добавить учебное заведение</h2>
+				<div class="section-body">
+					<input type="text" name="name" placeholder="Название" id="createVuzInp">
+					<button id="createVuzBtn" type="button" name="button">Создать</button>
+					<img class="loader" src="../assets/imgs/spinner.gif">
+				</div>
+				<h2 class="section-label">Добавленные учебные заведения:</h2>
+				<ul class="section-list">
+					<%
+						if (vuzs) { 
+							for (vuz of vuzs) { %>
+								<li class="section-example"><a href="#<%= vuz.name %>"><%= vuz.name %></a><button data-id="<%= vuz._id %>" class="delayVuz">Удалить</button></li>
+							<%}
+						} else { %>
+							Пока ничего нет
+						<%}
+					%>
+					<!-- <li class="section-example">Кукуку <button class="delayVuz">Удалить</button></li> -->
+				</ul>
+				<img class="loader loader-remove" src="../assets/imgs/spinner.gif">
+			</div>
+			<div class="section">
+				<h2 class="section-title">Создать группу</h2>
+				<div class="section-body">
+					<input type="text" name="name" placeholder="Название" id="createGroupInp">
+					<select name="vuz" id="createGroupVuz" class="selectVuzForCreateBtn">
+						<%
+							if (vuzs) { 
+								for (vuz of vuzs) { %>
+									<option value="<%= vuz.name %>"><%= vuz.name %></option>
+								<%}
+							} else { %>
+							Учебные заведение еще не добавлены
+						<%	}
+						%>
+					</select>
+					<button id="createGroupBtn" type="button" name="button">Создать</button>
+					<img class="loader createGroupsSpinner" src="../assets/imgs/spinner.gif">
+				</div>
+				<h2 class="section-label">Список групп:</h2>
+				<ul class="section-list groups">
+						<% if (groups.length > 0) {
+							for (gr of groups) { %>
+							<li class="section-example" data-vuz="<%= gr.vuz %>" data-_id="<%= gr._id %>"><%= gr.name %></li>
+						<%} } else { %>
+							Групп нет
+						<%}%>
+				</ul>
+			</div>
+			<div class="section">
+				<h2 class="section-title">Сравнить статистику</h2>
+				<div class="section-body">
+					<div class="comparator">
+						<label>Выберите, что вы хотите сравнить:</label>
+						<select id="compareType">
+							<option value="gr">Группу</option>
+							<option value="vuz">Учебное заведение</option>
+						</select>
+						<label>Выберите группы:</label>
+						<div class="selects compare-one" >
+							<select class="selectGrForCompare">
+								
+							</select>
+							<div class='addSelect'>+</div>
+						</div>
+						<div class="selectsVuz compare-two" >
+							<select class="selectVuzForCompare">
+
+							</select>
+							<span>И</span>
+							<select class="selectVuzForCompare">
+
+							</select>
+						</div>
+						
+						<button class="compare">Сравнить</button>
+					</div>
+					<div class="results">
+					
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="content">
+		<%
+			if (vuzs) { 
+				for (vuz of vuzs) { %>
+				<section class="vuz" data-id="<%= vuz._id %>">
+				<a name="<%= vuz.name %>"></a>
+				<h2 class="vuz-title"><%= vuz.name %></h2>
+				<div class="vuz-body">
+					<div class="vuz-headers">
+						<div class="vuz-header">Имя группы</div>
+						<div class="vuz-header">Кол-во студентов</div>
+						<div class="vuz-header">Средняя оценка группы за 1 прохождение</div>
+						<div class="vuz-header">Средняя оценка группы за 2 прохождение</div>
+					</div>
+					<div class="vuz-group-list">
+							<% for ( gr of groups) { 
+								if (gr.vuz == vuz.name) { %>
+								<div class="vuz-group">
+									<div class="vuz-group-title"><a href="/group:<%= gr._id %>" title="Подробнее о группе"><%= gr.name %></a></div>
+									<div class="vuz-group-students-length"><%= gr.students.length %></div>
+									<div class="vuz-group-ball"><%= gr.middleBall %></div>
+									<div class="vuz-group-ball"><%= gr.middleBall2 %></div>
+									<button class="vuz-group-delete" data-id="<%= gr._id%>">Удалить группу</button>
+								</div>
+							<%	}
+							} %>
+					</div>
+				</div>
+			</section>
+				<%}
+			} else { %>
+			Учебные заведение еще не добавлены
+		<%	}
+		%>
+
+		</div>
+
+		</main>
+		<div class="wrapper" hidden>
+		<div class="inner">
+			<div class="close">X</div>
+			<table class="inner-table">
+			<tr>
+				<th>Название</th>
+				<th>Средний балл за 1 прохождение</th>
+				<th>Средний балл за 2 прохождение</th>
+				<th>Успеваемость по 1 тесту</th>
+				<th>Успеваемость по 2 тесту</th>
+				<th>Соотношение сдавших за 1 тест</th>
+				<th>Соотношение сдавших за 2 тест</th>
+			</tr>
+			</table>
+		</div>	
+		</div>
+	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
+	<footer>	
+		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
+	</footer>
+	<script src="../assets/js/admin.js"></script>
+</body>
+</html>
+>>>>>>> f3d932f99ec823c7d3bb701a6e6e93e6ec6486c5

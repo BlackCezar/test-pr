@@ -214,3 +214,25 @@ tr {
 tr:nth-child(2n -1) {
 	background-color: rgb(201, 221, 199);
 }
+
+.compare-two {
+	display: none;
+}
+.close {
+	position: absolute;
+	right: 0;
+	background-color: indianred;
+	color: white;
+	padding: 5px 8px;
+	user-select: none;
+	cursor: pointer;
+	transition: background 0.3s linear;
+}
+
+.close:hover {
+	background-color: rgb(119, 56, 56);
+}
+
+th:last-child {
+	padding-right: 3vh;
+}
