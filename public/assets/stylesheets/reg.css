@@ -122,3 +122,109 @@ h1{
 	left: 80vh;
 	top: 89vh;
 }
+
+@media(max-width: 550px){
+	html{
+	font-family: Tahoma;
+	}
+
+	body{
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+
+	.form{
+		margin-top: 20vh;
+		margin-left: 40vh;
+	}
+
+	h1{
+		width: 40vh;
+		margin-left: -33vh;
+		margin-top: -15vh;
+		font-size: 2.8vh;
+		text-align: center;
+	}
+
+	#first_block{
+		margin-top: 5vh;
+		margin-left: -35.5vh;
+		width: 45vh;
+		height: 48vh;
+		border: 0.3vh solid gray;
+	}
+
+	.title_test{
+		margin-left: 8vh;
+		margin-top: 3vh;
+		font-size: 2.7vh;
+	}
+
+	#registration_link{
+		margin-top: 29.3vh;
+		margin-left: -25.1vh;
+		position: absolute;
+	}
+
+	#form{
+		margin-top: -8vh;
+		margin-left: 9vh;
+	}
+
+	#input_1{
+		width: 35vh;
+		height: 3vh;
+		margin-top: 9vh;
+		margin-left:-5vh;
+	}
+
+	#input_2{
+		position: absolute;
+		width: 35vh;
+		height: 3vh;
+		margin-top: 15vh;
+		margin-left:-35.9vh;
+	}
+
+	#form_button{
+		position: absolute;
+		width: 22vh;
+		height: 3.3vh;
+		margin-top: 39.8vh;
+		margin-left: -28.1vh;
+	}
+
+	#input_text_button{
+		margin-top: -0.01vh;
+		font-size: 2vh;
+	}
+
+	#rignt_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		left: 35vh;
+		top: 63vh;
+		width: 30vh;
+	}
+
+	#left_image{
+		opacity: 0.5;
+		z-index: -1;
+		position: absolute;
+		left: -11vh;
+		top: 63vh;
+		width: 30vh;
+	}
+
+	#last_text{
+		position: absolute;
+		opacity: 0.8;
+		font-size: 1.6vh;
+		width: 16vh;
+		text-align: center;
+		left: 19vh;
+		top: 68vh;
+	}
+
+}

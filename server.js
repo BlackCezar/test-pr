@@ -6,13 +6,13 @@ const express = require('express'),
       ejs = require('ejs'),
       ObjectId = require('mongodb').ObjectID
 
-let mongoUrl = 'mongodb://localhost:27017'
+let mongoUrl = 'mongodb://127.0.0.1:27017'
 const app = express()
 
 mongodb.connect(mongoUrl, { useNewUrlParser: true }, function (err, db) {
   if (!err) {
     http.createServer(app).listen(5000, () => console.log('Express server listening on ' + 5000))
-  } else console.log('Sorry but Mongodb is not connected')
+  } else console.log('Sorry but Mongodb is not connected ', err)
 })
 
 app.set('views', 'public/views')

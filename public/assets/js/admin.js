@@ -54,14 +54,16 @@ function refreshSelect() {
         opt.value = vuz.name;
         select.appendChild(opt);
     };
-    select = document.querySelector('.selectGrForCompare');
-    select.innerHTML = '';
-    for (gr of data.groups) {
-        let opt = document.createElement('option');
-        opt.innerText = gr.name;
-        opt.value = gr.name;
-        select.appendChild(opt);
-    };
+    selects = document.querySelectorAll('.selectGrForCompare');
+    for (select of selects) {
+        select.innerHTML = '';
+        for (gr of data.groups) {
+            let opt = document.createElement('option');
+            opt.innerText = gr.name;
+            opt.value = gr._id;
+            select.appendChild(opt);
+        };
+    }
 }   
 function rebuildVuzs() {
         insertedVuzs = document.querySelectorAll('.vuz-title');
@@ -215,5 +217,68 @@ function createGroup () {
             }
         }
         data.reload('vuz', {'name': resp.name, '_id': resp._id});
+    }
+}
+
+document.querySelector('.addSelect').onclick = function() {
+    let parent = this.parentElement;
+    this.remove();
+    let select = document.createElement('select');
+    select.className = "selectGrForCompare";
+    parent.appendChild(select);
+    data.reload();
+    parent.appendChild(this);
+}
+document.querySelector('.compare').onclick = function() {
+    let answ = document.querySelectorAll('.selectGrForCompare');
+    document.querySelector('.wrapper').hidden = false;
+    for (let an of answ) {
+        let xhr2 = new XMLHttpRequest();
+        xhr2.open('GET', `/group:${an.value}?onlygr=true`, 'true');
+        xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr2.send();
+        xhr2.onload = function() {
+            let resp = JSON.parse(xhr2.responseText);
+            console.log(xhr2.responseText);
+            let midBal = 0, midBal2 = 0,  percent1 = 0, percent2 = 0, otn1 = 0, otn2 = 0;
+            for (bal of resp.group.balls) {
+                midBal += bal;
+                if (bal >2) {
+                    otn1++;
+                }
+            }
+            for (bal of resp.group.balls2) {
+                midBal2 += bal;
+                if (bal >2) {
+                    otn2++;
+                }
+            }
+            for (bal of resp.group.midBalls) {
+                percent1 += bal;
+            }
+            for (bal of resp.group.midBalls2) {
+                percent2 += bal;
+            }
+            midBal = midBal / resp.group.balls.length || 0;
+            midBal2 = midBal2 / resp.group.balls2.length || 0;
+            percent1 = percent1 / resp.group.midBalls.length || 0;
+            percent2 = percent2 / resp.group.midBalls2.length || 0;
+            otn1 = `${otn1}/${resp.group.balls.length}`;
+            otn2 = `${otn2}/${resp.group.balls2.length}`;
+            el.innerHTML = `<td>${resp.group.name}</td><td>${midBal}</td><td>${midBal2}</td><td>${percent1}%</td><td>${percent2}%</td><td>${otn1}</td><td>${otn2}</td>`;
+            document.querySelector('.inner-table').children[0].appendChild(el);
+        }
+        let el = document.createElement('tr');
+    }
+}
+
+document.querySelector('.wrapper').style.minHeight = document.documentElement.offsetHeight + 'px';
+document.querySelector('.wrapper').onclick = function (ev) {
+    console.log(ev.target);
+    if (ev.target.className != 'inner') {
+        this.hidden = true;
+        let buf = this.children[0].children[0].children[0].children[0];
+        this.children[0].children[0].children[0].innerHTML = '';
+        this.children[0].children[0].children[0].appendChild(buf);
     }
 }
