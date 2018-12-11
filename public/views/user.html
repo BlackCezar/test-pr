@@ -13,7 +13,7 @@
 		</h1>
 
 		<h1 class="title_username">
-			<%= user.fio %>
+			{{ name }}
 		</h1>
 
 		<a href="/logout" id="exit_link">Выйти из профиля</a>
@@ -41,18 +41,18 @@
 					</h4>
 		
 					<h4 class="first_inf_title">
-						Средняя оценка:
+						Оценка:
 					</h4>
 				</div>
 				<div class="col">
-					<p id="first_inf"><%if (tests[0]) {%><%= tests[0].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-					<p id="first_inf"><%if (tests[0]) {%><%= Math.floor(tests[0].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
-					<p id="first_inf"><%if (tests[0]) {%><%= tests[0].ball %> <%} else {%><%= 0 %><%}%></p>
+					<p id="first_inf">{{ test1.trueAnswers }}</p>
+					<p id="first_inf">{{ getProcent() }}</p>
+					<p id="first_inf">{{ test1.ball }}</p>
 				</div>
 				<div class="col">
-					<p id="second_inf"><%if (tests[1]) {%><%= tests[1].trueAnswers %> <%} else {%><%= 0 %><%}%></p>
-					<p id="second_inf"><%if (tests[1]) {%><%= Math.floor(tests[1].trueAnswers / 18 *100) %>% <%} else {%><%= 0 %><%}%></p>
-					<p id="second_inf"><%if (tests[1]) {%><%= tests[1].ball %> <%} else {%><%= 0 %><%}%></p>
+					<p id="second_inf">{{ test2.trueAnswers }}</p>
+					<p id="second_inf">{{ getProcent(true) }}</p>
+					<p id="second_inf">{{ test2.ball }}</p>
 				</div>
 			</div>
 		</form>
@@ -65,21 +65,13 @@
 			</h3>
 
 			<form id="form_2" action="" onsubmit="return false">
-	<%if (tests.length < 1 && acc1) { %> 
-		<button  id="form_button_2">
-		<p id="input_text_button_2">
-			<a href="/test">Начать</a>
-		</p>
-	<% } else if (tests.length < 2 && acc2) { %>
-		<button  id="form_button_2">
-			<p id="input_text_button_2">
-				<a href="/test">Начать</a>
-			</p>
-			</button>
-			<%} else {%>
-				<p class="error"> Извините, доступ к тесту временно ограничен </p>
-			<%}%>
-		</form>
+				<button  id="form_button_2" v-if="tests == 0 && group.acc1 || tests == 1 && group.acc2" >
+				<p id="input_text_button_2">
+					<a href="/test" >Начать</a>
+				</p>
+				</button>
+					<p class="error" v-else> Извините, доступ к тесту временно ограничен </p>
+			</form>
 
 		</div>
 	</div>
@@ -89,5 +81,7 @@
 
 	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
 
+	<script src="../assets/js/vue.js"></script>
+	<script src="../assets/js/user.js"></script>
 </body>
 </html>

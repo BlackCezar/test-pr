@@ -20,6 +20,9 @@ var btn_5 = document.querySelector("#form_button_5");
 var btn_6 = document.querySelector("#form_button_6");
 
 var form_title = document.querySelector(".title_test");
+var clicker = true;
+let sended = true;
+var for_o = 0;
 
 var all_form = document.querySelector(".form");
 
@@ -599,7 +602,7 @@ btn.onclick = function(){
 
   		inpute_text_2.style.marginTop = "7vh";
 
-		var for_o = 0;
+		for_o = 0;
 
 		if(q_1<=8){
   			inpute_text_2.textContent = "Ваша оценка: 2";
@@ -624,38 +627,23 @@ btn.onclick = function(){
 
   		btn_2.style.display = "block";
   		btn_2.innerText = "Мои ответы";
-  		btn_2.style.width = "13vh";
+		btn_2.style.width = "13vh";
+		clicker = true;
 	}
 	if (document.getElementById('form_button').dataset.end == 'end') {
-		let clicker = true;
+		clicker = true;
 		this.onclick = () => {
-			if (clicker) {
-				json = {};
-				json.goodAnswers = q_1;
-				json.ball = for_o;
-				json.answers = mass;
-				clicker = false;
-				let xhr = new XMLHttpRequest();
-
-				xhr.open('POST', '/save_test', true);
-				xhr.setRequestHeader('Content-Type', 'application/json');
-				xhr.send(JSON.stringify(json));
-				xhr.onload = () => {
-					console.log(xhr.responseText);
-					if (xhr.responseText == 'OK') {
-						window.location.href = '/cabinet';
-					}
-				}
-			}
+			sendData(true);
 		}
 
 	}
 }
 
 int_for_button_2 = 0;
-
+	
 	btn_2.onclick = function(){
-
+		
+		sendData(false);
 		inpute_1.disabled = "true";
 		inpute_2.disabled = "true";
 		inpute_3.disabled = "true";
@@ -1520,7 +1508,7 @@ btn_5.onclick = function(){
 
   		inpute_text_2.style.marginTop = "7vh";
 
-		var for_o = 0;
+		
 
 		if(q_1<=8){
   			inpute_text_2.textContent = "Ваша оценка: 2";
@@ -1556,30 +1544,39 @@ btn_5.onclick = function(){
 }
 
 if (document.getElementById('form_button').dataset.end == 'end') {
-	let clicker = true;
+	clicker = true;
 	this.onclick = () => {
-		if (clicker) {
-			json = {};
-			json.goodAnswers = q_1;
-			json.ball = for_o;
-			json.answers = mass;
-			clicker = false;
-			let xhr = new XMLHttpRequest();
-
-			xhr.open('POST', '/save_test', true);
-			xhr.setRequestHeader('Content-Type', 'application/json');
-			xhr.send(JSON.stringify(json));
-			xhr.onload = () => {
-				console.log(xhr.responseText);
-				if (xhr.responseText == 'OK') {
-					window.location.href = '/cabinet';
-				}
-			}
-		}
+		sendData(true);
 	}
 
 }
 
 btn_6.onclick = function(){
 	alert("Оценка: \n 16-18 правильных ответов - 5 \n 12-15 правильных ответов - 4 \n 9-11 правильных ответов - 3 \n 0-8 правильных ответов - 2");
+}
+
+window.onbeforeunload = function() {
+	clicker = true;
+	sendData(false);
+}
+
+function sendData(redirect) {
+	if (clicker && sended) {
+		json = {};
+		json.goodAnswers = q_1;
+		json.ball = for_o;
+		json.answers = mass;
+		clicker = false;
+		let xhr = new XMLHttpRequest();
+		sended = false;
+		xhr.open('POST', '/save_test', true);
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.send(JSON.stringify(json));
+		xhr.onload = () => {
+			console.log(xhr.responseText);
+			if (xhr.responseText == 'OK') {
+				if (redirect) window.location.href = '/cabinet';
+			}
+		}
+	}
 }
