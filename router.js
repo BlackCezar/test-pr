@@ -1,8 +1,8 @@
 const mongodb = require('mongodb'),
       ObjectId = require('mongodb').ObjectID
 
-let mongoUrl = 'mongodb://localhost:27017'
-// let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
+// let mongoUrl = 'mongodb://localhost:27017'
+let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
 
 function router(app) {
     let views = __dirname + '/public/views/';

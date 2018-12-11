@@ -6,8 +6,8 @@ const express = require('express'),
   ejs = require('ejs'),
   ObjectId = require('mongodb').ObjectID
 
-let mongoUrl = 'mongodb://127.0.0.1:27017'
-// let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
+// let mongoUrl = 'mongodb://127.0.0.1:27017'
+let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
 
 const app = express()
 var port = process.env.PORT || 5000
