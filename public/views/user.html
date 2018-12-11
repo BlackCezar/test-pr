@@ -3,83 +3,83 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/user.css">
 </head>
 <body>
+		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
-		<h1 class="title">
-			Добро пожаловать
-		</h1>
-
-		<h1 class="title_username">
-			{{ name }}
-		</h1>
-
-		<a href="/logout" id="exit_link">Выйти из профиля</a>
-
-		<div id="first_block">
-			<div class="first_block-header">
-				<h3 class="title_test">
-					Ваша статистика
-				</h3>
-				<h3 class="title_no">
-					№1
-				</h3>
-				<h3 class="title_no">
-					№2
-				</h3>
+		<header>
+			<h1 class="title title_username">
+				Добро пожаловать, {{ name }}
+			</h1>
+			<nav>
+				<a href="/">Главная</a>
+				<a href="/logout" id="exit_link">Выйти из профиля</a>
+			</nav>
+		</header>
+		<div class="line"></div>
+		<div class="container">
+			<div id="first_block">
+				<div class="first_block-header">
+					<h3 class="title_test">
+						Ваша статистика
+					</h3>
+					<h3 class="title_no">
+						№1
+					</h3>
+					<h3 class="title_no">
+						№2
+					</h3>
+				</div>
+				<div class="first_block_body">
+					<div class="row">
+						<h4 class="first_inf_title">
+							Количество правильных ответов:
+						</h4>
+						<p id="first_inf">{{ test1.trueAnswers }}</p>
+						<p id="second_inf">{{ test2.trueAnswers }}</p>
+					</div>
+					<div class="row">
+						<h4 class="first_inf_title">
+							Процент правльных ответов:
+						</h4>
+						<p id="first_inf">{{ getProcent() }}</p>
+						<p id="second_inf">{{ getProcent(true) }}</p>
+					</div>
+					<div class="row">
+						<h4 class="first_inf_title">
+							Оценка:
+						</h4>
+						<p id="first_inf">{{ test1.ball }}</p>
+						<p id="second_inf">{{ test2.ball }}</p>
+					</div>
+				</div>
 			</div>
-			<div class="first_block_body">
-				<div class="col">
-					<h4 class="first_inf_title">
-						Количество правильных ответов:
-					</h4>
-		
-					<h4 class="first_inf_title">
-						Процент правльных ответов:
-					</h4>
-		
-					<h4 class="first_inf_title">
-						Оценка:
-					</h4>
-				</div>
-				<div class="col">
-					<p id="first_inf">{{ test1.trueAnswers }}</p>
-					<p id="first_inf">{{ getProcent() }}</p>
-					<p id="first_inf">{{ test1.ball }}</p>
-				</div>
-				<div class="col">
-					<p id="second_inf">{{ test2.trueAnswers }}</p>
-					<p id="second_inf">{{ getProcent(true) }}</p>
-					<p id="second_inf">{{ test2.ball }}</p>
-				</div>
+			
+			<div id="second_block">
+				<h3 class="title_test_2">
+					Нажмите для прохождения тестирования
+				</h3>
+				<a href="/test" v-if="tests == 0 && group.acc1 || tests == 1 && group.acc2" >
+					<button  id="form_button"  >Начать</button>
+				</a>
+				<p class="error" v-else> Извините, доступ к тесту временно ограничен </p>
 			</div>
-		</form>
-
 		</div>
-
-		<div id="second_block">
-			<h3 class="title_test_2">
-				Нажмите для прохождения тестирования
-			</h3>
-
-			<form id="form_2" action="" onsubmit="return false">
-				<button  id="form_button_2" v-if="tests == 0 && group.acc1 || tests == 1 && group.acc2" >
-				<p id="input_text_button_2">
-					<a href="/test" >Начать</a>
-				</p>
-				</button>
-					<p class="error" v-else> Извините, доступ к тесту временно ограничен </p>
-			</form>
-
-		</div>
+		
 	</div>
 
-	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
-	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
+	<img src="../assets/imgs/bg.jpg" alt="" id="rignt_image">
 
-	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+	
+	<p id="last_text"><a id="registration_link" href="/">Тест по антибиотикорецидентности</a><br>Powered by Vylkov Dmitriy and Doctor Maxin</p>
+<script>
+
+	
+</script>
 
 	<script src="../assets/js/vue.js"></script>
 	<script src="../assets/js/user.js"></script>

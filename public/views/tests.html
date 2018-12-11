@@ -3,14 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/test.css">
 </head>
 <body>
+		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
 		<h1 class="title">
 			Тестирование
 		</h1>
+		<div class="line"></div>
 
 		<h3 class="title_test">
 			1. Антибиотики – это
@@ -36,48 +40,30 @@
 			<input type="radio" id="input_6" name="option1" value="a1" ><p id="input_text_6">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
 			</label>	
 
-			<button  id="form_button">
-					<p id="input_text_button">
-						Далее
-					</p>	
-				</button>
+			<button  id="form_button" class="btn">Далее</button>
 	
-				<button  id="form_button_2">
-					<p id="input_text_button">
-						Далее
-					</p>	
-				</button>
+				<button  id="form_button_2" class="btn">Далее</button>
 	
-				<button  id="form_button_3">
-					<p id="input_text_button">
-						Далее
-					</p>	
-				</button>
+				<button  id="form_button_3" class="btn">Далее</button>
 	
-				<button  id="form_button_4">
-					<p id="input_text_button">
-						Далее
-					</p>	
-				</button>
+				<button  id="form_button_4" class="btn">Далее</button>
 	
-				<button  id="form_button_5">
-					<p id="input_text_button">
-						Вернуться
-					</p>	
-				</button>
+				<button  id="form_button_5" class="btn">Вернуться</button>
 
-				<button id="form_button_6">
-					<p id="input_text_button">
-						Критерии
-					</p>
-				</button>
+				<button id="form_button_6" class="btn">Критерии</button>
 		</form>
 
+</div>
+		<img src="../assets/imgs/bg.jpg" alt="" id="rignt_image">
 
-		<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
-		<img src="../assets/imgs/left.jpg" alt="" id="left_image">
 		
-		<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+		<p id="last_text"><a id="registration_link" href="/">Тест по антибиотикорецидентности</a><br>Powered by Vylkov Dmitriy and Doctor Maxin</p>
 		<script src="../assets/js/index.js"></script>
+		<script>
+			function ready() {
+		document.querySelector('.loader').style.visibility = 'hidden';
+	}
+	window.addEventListener("load", ready);
+		</script>
 </body>
 </html>

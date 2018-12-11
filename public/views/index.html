@@ -4,28 +4,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Антибиотики</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<link rel="stylesheet"  href="../assets/stylesheets/index.css">
-
 </head>
 <body>
+		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
 		<h1 class="title">
 			Тест по антибиотикорецидентности
 		</h1>
-
+		<div class="line"></div>
 		<div id="first_block">
 			<h3 class="title_test">
-				Введите ваши данные или зарегистрируйтесь
+				<i class="fas fa-address-book"></i> Введите ваши данные
 			</h3>
 
 			<form id="form" action="" method="POST">
-			<input type="textbox" id="input_1" name="login" value="" placeholder="Логин"></input>
-			<input type="textbox" id="input_2" name="password" value="" placeholder="Пароль"></input>
+				<div>
+						<i class="fas fa-user"></i>
+						<input type="textbox" id="input_1" name="login" value="" placeholder="Логин"></input>
+				</div>
+				<div>
+						<i class="fas fa-lock"></i>
+						<input type="textbox" id="input_2" name="password" value="" placeholder="Пароль"></input>
+				</div>
+			
 
 			<button  id="form_button">
-				<p id="input_text_button">
-					Войти
-				</p>	
+					Войти	
 			</button>
 
 			<a href="/reg" id="registration_link">Регистрация</a>
@@ -35,10 +42,16 @@
 		
 	</div>
 
-	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
-	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
-	
-	<p id="last_text">by Vylkov Dmitriy and Doctor Maxin</p>
+	<img src="../assets/imgs/bg.jpg" alt="" id="rignt_image">
 
+	
+	<p id="last_text"><a id="registration_link" href="/">Тест по антибиотикорецидентности</a><br>Powered by Vylkov Dmitriy and Doctor Maxin. 1.0.1</p>
+<script>
+	function ready() {
+		document.querySelector('.loader').style.visibility = 'hidden';
+	}
+	window.addEventListener("load", ready);
+	
+</script>
 </body>
 </html>

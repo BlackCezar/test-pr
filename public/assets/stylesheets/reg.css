@@ -1,228 +1,203 @@
 html{
-	font-family: Tahoma;
+	font-family: 'Didact Gothic', sans-serif;
+	/* font-family: 'Poiret One', cursive; */
 }
 
 body{
 	overflow-x: hidden;
 	overflow-y: hidden;
+	margin: 0;
+	padding: 0;
+}
+*::selection {
+	color: whitesmoke;
+	background-color: #6c926c;
 }
 
-.form{
-	margin-top: 20vh;
-	margin-left: 40vh;
+.form {
+	width: 80vw;
+	margin: 0 auto;
+	background-color: rgba(252, 252, 252, 0.849);
+	height: 100vh;
+	position: relative;
+	box-shadow: 0px 0px 8px 0px #c1c1c1;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.loader {
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	visibility: visible;
+	background-color: #6c926c;
+	color: aliceblue;
+	z-index: 4;
+	transition: visibility 0.3s linear;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 3vw;
+}
+.spinner {
+	margin-top: 2vh;
+	width: 10vw;
+	height: 10vw;
+	border-top: 1px solid whitesmoke;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	animation: rotate .7s ease-in-out infinite;
+}
+@keyframes rotate {
+	0% {
+		transform: rotate(0)
+	} 
+	100% {
+		transform: rotate(360deg)
+	}
 }
 
-h1{
-	margin-left: 27vh;
-	margin-top: -10vh;
-	font-size: 5vh;
+#rignt_image {
+	position: absolute;
+    width: 100vw;
+    height: 100vh;
+    transform: rotate(180deg);
+    top: 0;
+    filter: blur(6px);
+    opacity: 0.9;
+    z-index: 0;
 }
 
-
-#first_block{
-	margin-top: 10vh;
-	margin-left: 25vh;
-	width: 60vh;
-	height: 56vh;	
-	border: 0.3vh solid gray;
+.title {
+	font-size: 3vw;
 }
 
-.title_test{
+#first_block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #403f3f;
+}
+#form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.line {
+	width: 10vw;
+	height: .3vh;
+	background-color: #6c926c;
+}
+.error {
+	margin-bottom: 2vh;
+    color: #d83232;
+    font-size: 2vw;
+}
+.title_test {
+	font-size: 2.3vw;
+}
+input, select {
+
+    font-size: 1.8vw;
+    padding: 7px;
+    border: 1px solid #6c926c;
+	margin-bottom: 2vh;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	outline-width: 0;
+	color: #403f3f;
+	margin-left: -1px;
+}
+select {
+	width: calc(100% - 7px);
+}
+#form_button {
+	border: 0;
+	background-color: #6c926c;
+	color: #ece7e7;
+	font-size: 2.3vw;
+	padding: 2vh;
+	cursor: pointer;
+	margin-bottom: 1vh;
+}
+#registration_link {
 	text-align: center;
-	margin-top: 10vh;
-	padding-right: 8vh;
-	font-size: 2.7vh;
+	color: #403f3f;
+	font-size: 2vw;
+}
+#form div {
+	position: relative;
+
+	display: flex;
 }
 
-.title_test{
-	margin-left: 7vh;
-	margin-top: 7vh;
-	font-size: 2.7vh;
+.fa-user, .fa-lock {
+	content: "\f007";
+	display: block;
+	font-size: 1.8vw;
+	padding: 9.5px;
+	height: 1em;
+    background-color: #bcd8bf;
+    border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+    color: white;
 }
-
-#form{
-	margin-top: -8vh;
-	margin-left: 16.4vh;
-}
-
-#input_1{
-	width: 35vh;
-	height: 3vh;
-	margin-top: 9vh;
-	margin-left:-5vh;
-}
-
-#input_2{
+/* .fa-user {
+	padding: 1.28vh;
+} */
+#last_text {
 	position: absolute;
-	width: 35vh;
-	height: 3vh;
-	margin-top: 15vh;
-	margin-left:-35.9vh;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+	z-index: 5;
+	background-color: #ffffff6b;
+    margin: 0;
+    border-top: 1px solid gray;
+    padding: 2vh;
+}#last_text a {
+	font-size: large;
+	text-decoration-line: none;
 }
-
-#input_3{
-	position: absolute;
-	width: 35vh;
-	height: 3vh;
-	margin-top: 21vh;
-	margin-left:-35.9vh;
-}
-
-#input_4{
-	position: absolute;
-	width: 35vh;
-	height: 3vh;
-	margin-top: 27vh;
-	margin-left:-35.9vh;
-}
-
-#input_5{
-	position: absolute;
-	width: 35vh;
-	height: 3vh;
-	margin-top: 33vh;
-	margin-left:-35.9vh;
-}
-
-#form_button{
-	width: 22vh;
-	height: 3.3vh;
-	margin-top: 28.5vh;
-	margin-left: 1vh;
-}
-
-#input_text_button{
-	margin-top: -0.01vh;
-	font-size: 2vh;
-}
-
-#rignt_image{
-	opacity: 0.5;
-	z-index: -1;
-	position: absolute;
-	left: 130vh;
-	top: 61vh;
-	width: 80vh;
-}
-
-#left_image{
-	opacity: 0.5;
-	z-index: -1;
-	position: absolute;
-	right: 134vh;
-	top: 61vh;
-	width: 83vh;
-}
-
-#last_text{
-	position: absolute;
-	opacity: 0.8;
-	font-size: 2vh;
-	left: 80vh;
-	top: 89vh;
-}
-
-@media(max-width: 550px){
-	html{
-	font-family: Tahoma;
+@media (max-width: 680px) {
+	.title {
+		font-size: 4vw;
 	}
-
-	body{
-		overflow-x: hidden;
-		overflow-y: hidden;
+	.title_test {
+		font-size: 3.3vw;
 	}
-
-	.form{
-		margin-top: 20vh;
-		margin-left: 40vh;
+	.fas {
+		display: none;
 	}
-
-	h1{
-		width: 40vh;
-		margin-left: -33vh;
-		margin-top: -15vh;
-		font-size: 2.8vh;
-		text-align: center;
+	#form div {
+		margin: unset;
 	}
-
-	#first_block{
-		margin-top: 5vh;
-		margin-left: -35.5vh;
-		width: 45vh;
-		height: 48vh;
-		border: 0.3vh solid gray;
+	.error {
+		margin: 2vw;
+		font-size: 3vw;
 	}
-
-	.title_test{
-		margin-left: 8vh;
-		margin-top: 3vh;
-		font-size: 2.7vh;
+	input, select {
+		width: 50vw;
+		margin-left: unset;
+		font-size: 2.6vw;
 	}
-
-	#registration_link{
-		margin-top: 29.3vh;
-		margin-left: -25.1vh;
-		position: absolute;
+	.loader {
+		justify-content: flex-start;
 	}
-
-	#form{
-		margin-top: -8vh;
-		margin-left: 9vh;
+	.loader .title {
+		margin-top: 20vh;		
 	}
-
-	#input_1{
-		width: 35vh;
-		height: 3vh;
-		margin-top: 9vh;
-		margin-left:-5vh;
+	#form_button {
+		font-size: 3vw;
+		width: 100%;
 	}
-
-	#input_2{
-		position: absolute;
-		width: 35vh;
-		height: 3vh;
-		margin-top: 15vh;
-		margin-left:-35.9vh;
+	select {
+		width: 100%;
 	}
-
-	#form_button{
-		width: 22vh;
-		height: 3.3vh;
-		margin-top: 26.6vh;
-		margin-left: 2vh;
+	#registration_link {
+		font-size: 2.5vw;
 	}
-
-	#input_text_button{
-		margin-top: -0.01vh;
-		font-size: 2vh;
-	}
-
-	#rignt_image{
-		opacity: 0.5;
-		z-index: -1;
-		position: absolute;
-		left: 35vh;
-		top: 63vh;
-		width: 30vh;
-	}
-
-	#left_image{
-		opacity: 0.5;
-		z-index: -1;
-		position: absolute;
-		left: -11vh;
-		top: 63vh;
-		width: 30vh;
-	}
-
-	#last_text{
-		position: absolute;
-		opacity: 0.8;
-		font-size: 1.6vh;
-		width: 16vh;
-		text-align: center;
-		left: 19vh;
-		top: 68vh;
-	}
-
+	
 }

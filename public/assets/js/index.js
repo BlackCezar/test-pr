@@ -666,7 +666,6 @@ int_for_button_2 = 0;
 		btn_4.innerText = "Далее";
 		btn_3.innerText = "Назад";
 		btn_5.innerText = "Вернуться";
-		btn_5.style.width = "12vh";
 
 
 		if (int_for_button_2 == 0){
@@ -1057,8 +1056,6 @@ int_for_button_2 = 0;
 			display_look();
 			off_check();
 
-			all_form.style.marginTop = "23vh";
-			all_form.style.marginLeft = "40vh";
 
 			inpute_text_1.textContent = "Не буду прекращать принимать антибиотики, когда стану чувствовать себя лучше";
 		  	inpute_text_2.textContent = "Не буду принимать антибиотики, как только заболею, либо купив их в аптеке, либо по совету друзей ";

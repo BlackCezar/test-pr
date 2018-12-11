@@ -221,7 +221,9 @@ function router(app) {
     app.get('/auth_teach', (req, res) => {
       res.render('admin_auth.ejs')
     })
-
+    app.get('/t', (req, res) => {
+      res.sendFile(views + 'tests.html')
+    })
     app.get('/test', (req, res) => {
       if (req.session.auth) {
         mongodb.connect(mongoUrl, { useNewUrlParser: true }, { useNewUrlParser: true }, (err, client) => {
@@ -229,7 +231,7 @@ function router(app) {
             if (tests.length < 2) {
               res.render('test.ejs')
             } else {
-              redirect('/')
+              res.redirect('/')
             }
           })
         })
