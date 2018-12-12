@@ -90,6 +90,7 @@ let main = new Vue({
             for (ball of this.group.balls2) {
                 counter +=Number(ball.balls);
             }
+            console.log(counter)
             counter /= this.group.balls2.length;
             if (!counter > 0) counter = 0 
             return counter
