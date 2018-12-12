@@ -1575,5 +1575,6 @@ function sendData(redirect) {
 				if (redirect) window.location.href = '/cabinet';
 			}
 		}
+		if (redirect) window.location.href = '/cabinet';
 	}
 }
