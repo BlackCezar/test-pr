@@ -143,7 +143,7 @@ let main = new Vue({
             }
             for (ball of this.group.balls2) {
                 if (ball.id == stId) {
-                    st.ball2 = ball.balls2
+                    st.ball2 = ball.balls
                 }
             }
             for (ball of this.group.percents) {
@@ -153,7 +153,7 @@ let main = new Vue({
             }
             for (ball of this.group.percents2) {
                 if (ball.id == stId) {
-                    st.percent2 = ball.procents2
+                    st.percent2 = ball.procents
                 }
             }
             for (ball of this.group.trueAnsw) {
@@ -161,6 +161,7 @@ let main = new Vue({
                     st.trueAnsw = ball.trueAnsw
                 }
             }
+            console.log(st)
             return st
         }
     }
