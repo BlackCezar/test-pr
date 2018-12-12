@@ -62,7 +62,7 @@ function createVuz (ev) {
     })
 }
 
-document.querySelector('.compare').onclick = function() {
+function compare() {
     if (document.getElementById('compareType').value == 'gr') {
         let answ = document.querySelectorAll('.selectGrForCompare');
         document.querySelector('.wrapper').hidden = false;
@@ -163,10 +163,8 @@ let main = new Vue({
         getAjax('/groups').then(groups => {this.groups = groups;});
         
     },
-    computed: {
-        
-    },
     methods: {
+        compare: compare,
         addGrSelect: function (ev) {
             let select = document.createElement('select');
             select.className = 'selectGrForCompare';
@@ -202,7 +200,7 @@ let main = new Vue({
                 midPercent = 0
             }
             console.log(el);
-            return midPercent + '%'
+            return midPercent.toFixed(2) + '%'
         }
     }
 })

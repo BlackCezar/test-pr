@@ -101,7 +101,7 @@ let main = new Vue({
             }
             counter /= this.group.percents.length;
             if (!counter > 0) counter = 0 
-            return counter + '%'
+            return counter.toFixed(2) + '%'
         },
         middlePercent2: function() {
             let counter = 0;
@@ -111,7 +111,7 @@ let main = new Vue({
             console.log(counter)
             counter /= this.group.percents2.length;
             if (!counter > 0) counter = 0 
-            return counter + '%'
+            return counter.toFixed(2) + '%'
         },
     },
     methods: {
