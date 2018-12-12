@@ -229,7 +229,7 @@ function router(app) {
         mongodb.connect(mongoUrl, { useNewUrlParser: true }, { useNewUrlParser: true }, (err, client) => {
           client.db('test-pr').collection('tests').find({userId: req.session.clientId}).toArray().then(tests => {
             if (tests.length < 2) {
-              res.render('test.ejs')
+              res.sendFile(views+"tests.html");
             } else {
               res.redirect('/')
             }

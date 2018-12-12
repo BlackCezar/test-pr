@@ -33,7 +33,7 @@ body{
 	visibility: visible;
 	background-color: #6c926c;
 	color: aliceblue;
-	z-index: 4;
+	z-index: 6;
 	transition: visibility 0.3s linear;
 	display: flex;
 	flex-direction: column;

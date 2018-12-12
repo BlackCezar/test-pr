@@ -33,7 +33,7 @@ body{
 	visibility: visible;
 	background-color: #6c926c;
 	color: aliceblue;
-	z-index: 4;
+	z-index: 6;
 	transition: visibility 0.3s linear;
 	display: flex;
 	flex-direction: column;
@@ -127,15 +127,14 @@ body{
 	margin: 1.33em;
 }
 #last_text {
-	position: absolute;
     bottom: 0;
+    position: absolute;
     width: 100%;
     text-align: center;
 	z-index: 5;
 	background-color: #ffffff6b;
     margin: 0;
     border-top: 1px solid gray;
-    padding: 2vh;
 }#last_text a {
 	font-size: large;
 	text-decoration-line: none;
@@ -177,6 +176,7 @@ a:hover {
 .container {
 	width: 100%;
 	display: flex;
+	margin-bottom: 15vh;
 	justify-content: space-around;
 } 
 @media (max-width: 680px) {
@@ -227,7 +227,7 @@ a:hover {
 	}
 	#form_button {
 		font-size: 3vw;
-		width: 100%;
+		width: 90%;
 	}
 	select {
 		width: 100%;
