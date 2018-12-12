@@ -99,6 +99,7 @@ body{
 	align-self: flex-start;
 	margin-left: 10%;
 	min-width: 300px;
+	margin-bottom: 25vh;
 }
 .line {
 	width: 10vw;
@@ -143,7 +144,6 @@ p {
 	background-color: #ffffff6b;
     margin: 0;
     border-top: 1px solid gray;
-    padding: 2vh;
 }#last_text a {
 	font-size: large;
 	text-decoration-line: none;
@@ -217,6 +217,7 @@ a:hover {
 	}
 	#form div {
 		margin: unset;
+		margin-bottom: 25vh;
 	}
 	.error {
 		margin: 2vw;
@@ -231,7 +232,7 @@ a:hover {
 	}
 	.btn {
 		font-size: 3vw;
-		width: 100%;
+		width: 82%;
 	}
 	select {
 		width: 100%;

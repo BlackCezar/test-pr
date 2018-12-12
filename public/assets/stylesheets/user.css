@@ -176,7 +176,7 @@ a:hover {
 .container {
 	width: 100%;
 	display: flex;
-	margin-bottom: 15vh;
+	margin-bottom: 25vh;
 	justify-content: space-around;
 } 
 @media (max-width: 680px) {
