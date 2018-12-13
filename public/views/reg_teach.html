@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="../assets/stylesheets/reg_teach.css">
 </head>
 <body>
+		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
 		<h1 class="title">
 			Регистрация преподователя
@@ -22,12 +23,6 @@
 					<input type="text" id="input_2" name="login" value="" placeholder="Логин"></input>
 					<input type="password" id="input_3" name="password" value="" placeholder="Пароль"></input>
 					<input type="password" id="input_4" value="" placeholder="Повторите пароль"></input>
-					<input type="text" id="input_5" name="spo" value="" placeholder="Учебное заведение"></input>
-					<select name="group" id="input_6">
-						<%  for (gr of users) { %>
-							<option value="<%= gr %>"><%= gr %></option>
-						<% } if (!users) {%>Нет групп<% } %>
-					</select>
 
 			<button  id="form_button">
 				<p id="input_text_button">

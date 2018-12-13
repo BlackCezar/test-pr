@@ -147,17 +147,22 @@ function router(app) {
           client.db('test-pr').collection('groups').find({vuz: vuz.name}).toArray().then(groups => {
             vuz.midbal = 0, vuz.midbal2 = 0, vuz.grps = 0, vuz.students = 0, vuz.per1 = 0, vuz.per2 = 0
             for (gr of groups) {
-              vuz.midbal += Number(gr.balls || 0)
-              vuz.midbal2 += Number(gr.balls2 || 0)
-              vuz.per1 += Number(gr.midBalls || 0)
-              vuz.per2 += Number(gr.midBalls2 || 0)
+              vuz.midbal += getMiddler('balls', gr, 'balls')
+              vuz.midbal2 += getMiddler('balls2', gr, 'balls')
+              vuz.per1 += getMiddler('percents', gr, 'procents') 
+              vuz.per2 += getMiddler('percents2', gr, 'procents') 
               vuz.students += Number(gr.students.length || 0)
               vuz.grps++
-              vuz.midbal /= gr.balls.length 
-              vuz.midbal2 /= gr.balls2.length
-              vuz.per1 /= gr.midBalls.length
-              vuz.per2 /= gr.midBalls2.length
-              console.log('vuzs ', vuz.per1, vuz.per2)
+            }
+            function getMiddler(prop, gr, data) {
+              let mdlbal = 0
+              for (pr of gr[prop]) {
+                mdlbal += Number(pr[data])
+              }
+              if (mdlbal > 0) {
+                mdlbal /= gr[prop].length
+              } 
+              return mdlbal
             }
             console.log(groups)
             let len = groups.length
@@ -168,7 +173,7 @@ function router(app) {
             res.send(vuz)
           })
         }).catch(err => {
-          res.sendStatus(404)
+          res.send({status: 404})
         })
       })
     })
@@ -211,7 +216,7 @@ function router(app) {
     })
 
     app.get('/admin', (req, res) => {
-      if (req.session.auth) {
+      if (req.session.admin) {
         res.sendFile(views + 'admin.html');
       } else {
         res.redirect('/auth_teach')
@@ -219,8 +224,9 @@ function router(app) {
     })
 
     app.get('/auth_teach', (req, res) => {
-      res.render('admin_auth.ejs')
+      res.sendFile(views + 'admin_auth.html')
     })
+
     app.get('/t', (req, res) => {
       res.sendFile(views + 'tests.html')
     })
@@ -240,7 +246,7 @@ function router(app) {
       }
     })
     app.post('/changeAccess:id', (req, res) => {
-      if (req.session.auth) {
+      if (req.session.admin) {
         mongodb.connect(mongoUrl, { useNewUrlParser: true }, (err, client) => {
           client.db('test-pr').collection('groups').findOne({_id: ObjectId(req.params.id.slice(1))}).then(gr => {
             if (req.body.access == 'one') {
@@ -282,24 +288,33 @@ function router(app) {
             })
           })
         })
-      } else res.redirect('/auth_teach')
+      } else res.redirect('/teach')
     })
-
     app.post('/', (req, res) => {
-        mongodb.connect(mongoUrl, { useNewUrlParser: true }, { useNewUrlParser: true }, (err, client) => {
-            client.db('test-pr').collection('users').findOne(req.body).then(result => {
-              if (result) {
-                req.session.auth = true
-                req.session.clientId = result._id
-                console.log('id is ' + req.session.clientId);
-                req.session.group = result.group
-                res.redirect('/cabinet')
-              } else throw err
-            }).catch(err => {
-                console.log(err)
-                res.sendFile(views + 'index.html');
-            })
-        })
+      let result = {
+        login: false,
+        password: false
+      }
+      mongodb.connect(mongoUrl, { useNewUrlParser: true }, (err, client) => {
+        client.db('test-pr').collection('users').find().toArray().then(users => {
+          if (users) {
+            for (user of users) {
+              console.log(user, req.body)
+              if (user.login == req.body.login) {
+                result.login = true
+                if (user.password == req.body.password) {
+                  result.password = true
+                  req.session.auth = true
+                  req.session.clientId = user._id
+                  req.session.group = user.group
+                  console.log(req.session.clientId);
+                }
+              }
+            }
+          }
+            res.send(result)
+        }).catch(err => res.send(result))
+      })
     })
     
     app.post('/auth_teach', (req, res) => {
@@ -383,50 +398,5 @@ function router(app) {
 
 }
 
-function sortGroups(groups) {
-  groups.forEach(group => {
-    group.middlePerCent = 0
-    group.middlePerCent2 = 0
-    group.middleBall = 0
-    group.middleBall2 = 0
-    let len = 0
-    if (group.hasOwnProperty('students')) {
-      len = group.students.length
-    } 
-    if (group.hasOwnProperty('balls')) {
-      for (let i = 0; i < group.balls.length; i++) {
-        group.middleBall += group.balls[i]
-      }
-      if (group.middleBall != 0) {
-        group.middleBall = group.middleBall / len 
-      }
-    }
-    if (group.hasOwnProperty('balls2')) {
-      for (let i = 0; i < group.balls2.length; i++) {
-        group.middleBall2 += group.balls2[i]
-      }
-      if (group.middleBall2 != 0) {
-        group.middleBall2 = group.middleBall2 / len 
-      }
-    }
-    if (group.hasOwnProperty('middlePerCent')) {
-      for (let i = 0; i < group.midBalls.length; i++) {
-        group.middlePerCent += group.midBalls[i]
-      }
-      if (group.middlePerCent != 0) {
-        group.middlePerCent = group.middlePerCent / len 
-      }
-    }
-    if (group.hasOwnProperty('middlePerCent2')) {
-      for (let i = 0; i < group.midBalls.length; i++) {
-        group.middlePerCent2 += group.midBalls[i]
-      }
-      if (group.middlePerCent2 != 0) {
-        group.middlePerCent2 = group.middlePerCent2 / len 
-      }
-    }
-  })
-  return groups
-}
 
 module.exports.router = router

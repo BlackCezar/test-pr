@@ -32,10 +32,12 @@
 			
 
 			<button  id="form_button">
-					Войти	
+				<span>Войти</span> <div id="spin" style="display: none" class="spinner smal"></div>
 			</button>
 
 			<a href="/reg" id="registration_link">Регистрация</a>
+
+			<div class="error"></div>
 		</form>
 		</div>
 
@@ -45,13 +47,6 @@
 	<img src="../assets/imgs/bg.jpg" alt="" id="rignt_image">
 
 	
-	
-<script>
-	function ready() {
-		document.querySelector('.loader').style.visibility = 'hidden';
-	}
-	window.addEventListener("load", ready);
-	
-</script>
+	<script src="../assets/js/auth.js"></script>
 </body>
 </html>

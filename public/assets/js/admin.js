@@ -1,9 +1,14 @@
-document.getElementById('compareType').onchange = changeSelect;
+document.getElementById('compareType').onchange = function () {
+    
+}
 function changeSelect() {
-    if (this.value == 'gr') {
+    let select = document.getElementById('compareType');
+    console.log(select)
+    if (select.value == 'gr') {
         document.querySelector('.compare-two').style.display = 'none';
         document.querySelector('.compare-one').style.display = 'block';
-    } else {
+    } 
+    if (select.value == 'vuz') {
         document.querySelector('.compare-two').style.display = 'inline';
         document.querySelector('.compare-one').style.display = 'none';
 
@@ -75,29 +80,30 @@ function compare() {
             xhr2.send();
             xhr2.onload = function() {
                 let resp = JSON.parse(xhr2.responseText);
+                console.log(resp)
                 let midBal = 0, midBal2 = 0,  percent1 = 0, percent2 = 0, otn1 = 0, otn2 = 0;
                 for (bal of resp.group.balls) {
-                    midBal += bal;
-                    if (bal >2) {
+                    midBal += bal.balls;
+                    if (bal.balls >2) {
                         otn1++;
                     }
                 }
                 for (bal of resp.group.balls2) {
-                    midBal2 += bal;
-                    if (bal >2) {
+                    midBal2 += bal.balls;
+                    if (bal.balls > 2) {
                         otn2++;
                     }
                 }
-                for (bal of resp.group.midBalls) {
-                    percent1 += bal;
+                for (bal of resp.group.percents) {
+                    percent1 += bal.procents;
                 }
-                for (bal of resp.group.midBalls2) {
-                    percent2 += bal;
+                for (bal of resp.group.percents2) {
+                    percent2 += bal.procents;
                 }
                 midBal = midBal / resp.group.balls.length || 0;
                 midBal2 = midBal2 / resp.group.balls2.length || 0;
-                percent1 = percent1 / resp.group.midBalls.length || 0;
-                percent2 = percent2 / resp.group.midBalls2.length || 0;
+                percent1 = percent1 / resp.group.percents.length || 0;
+                percent2 = percent2 / resp.group.percents2.length || 0;
                 otn1 = `${otn1}/${resp.group.balls.length}`;
                 otn2 = `${otn2}/${resp.group.balls2.length}`;
                 el.innerHTML = `<td>${resp.group.name}</td><td>${midBal}</td><td>${midBal2}</td><td>${percent1}%</td><td>${percent2}%</td><td>${otn1}</td><td>${otn2}</td>`;
@@ -164,13 +170,14 @@ let main = new Vue({
         
     },
     methods: {
+        changeSelect: changeSelect,
         compare: compare,
         addGrSelect: function (ev) {
             let select = document.createElement('select');
             select.className = 'selectGrForCompare';
             for (gr of this.groups) {
                 let option = document.createElement('option');
-                option.value = gr.name;
+                option.value = gr._id;
                 option.innerText = gr.name;
                 select.appendChild(option);
             }
