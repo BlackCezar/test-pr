@@ -6,19 +6,13 @@ const express = require('express'),
   ejs = require('ejs'),
   ObjectId = require('mongodb').ObjectID
 
-// let mongoUrl = 'mongodb://127.0.0.1:27017'
-let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
+let mongoUrl = 'mongodb://127.0.0.1:27017'
+// let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
 
 const app = express()
 var port = process.env.PORT || 5000
 
-mongodb.connect(mongoUrl, {
-  useNewUrlParser: true
-}, function (err, db) {
-  if (!err) {
-    http.createServer(app).listen(port, () => console.log('Express server listening on ' + port))
-  } else console.log('Sorry but Mongodb is not connected ', err)
-})
+http.createServer(app).listen(port, () => console.log('Express server listening on ' + port))
 
 app.set('views', 'public/views')
 app.use(session({

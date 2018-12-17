@@ -51,6 +51,7 @@ let tests = new Vue({
         getProcent: function(two) {
             let res = 0;
             if (this.test2.trueAnswers && two) {
+                console.log('haha')
                 res = this.test2.trueAnswers / 18 * 100;
             } else if (this.test1.trueAnswers) {
                 res = this.test1.trueAnswers / 18 * 100;

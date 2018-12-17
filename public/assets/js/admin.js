@@ -33,11 +33,13 @@ function removeVuz(el) {
     if (!el.hasOwnProperty('dataset')) {
         el = el.target;
     }
+    let vue = this;
     getAjax(`/delayVuz:${el.dataset.id}`).then(res => {
         for (vuz of vue.vuzs) {
             if (vuz._id == el.dataset.id) {
-                let i = vue.vuzs.indexOf(gr);
+                let i = vue.vuzs.indexOf(vuz);
                 vue.vuzs.splice(i, 1);
+                console.log('removed vuz is ', vuz);
                 document.querySelector('.loader-remove').style.opacity = 0;
             }
         }
@@ -162,7 +164,8 @@ let main = new Vue({
     el: 'main', 
     data: {
         vuzs: [],
-        groups: []
+        groups: [],
+        tests: []
     },
     created: function () {
         getAjax('/vuzs').then(vuzs => this.vuzs = vuzs);

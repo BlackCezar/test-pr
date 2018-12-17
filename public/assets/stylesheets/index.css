@@ -5,7 +5,6 @@ html{
 
 body{
 	overflow-x: hidden;
-	overflow-y: hidden;
 	margin: 0;
 	padding: 0;
 }
@@ -15,7 +14,7 @@ body{
 }
 .error {
 	max-width: 22vw;
-	font-size: 1.8vw;
+	font-size: 1.3em;
     color: #dc5e5e;
 	align-self: center;
 	text-align: center;
@@ -26,7 +25,7 @@ body{
 	width: 80vw;
 	margin: 0 auto;
 	background-color: rgba(252, 252, 252, 0.849);
-	height: 100vh;
+	min-height: 100vh;
 	position: relative;
 	box-shadow: 0px 0px 8px 0px #c1c1c1;
 	z-index: 1;
@@ -47,7 +46,7 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-size: 3vw;
+	font-size: 1em;
 }
 .spinner {
 	margin-top: 2vh;
@@ -66,20 +65,7 @@ body{
 		transform: rotate(360deg)
 	}
 }
-#last_text {
-	position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-	z-index: 5;
-	background-color: #ffffff6b;
-    margin: 0;
-    border-top: 1px solid gray;
-    padding: 2vh;
-}#last_text a {
-	font-size: large;
-	text-decoration-line: none;
-}
+
 
 #rignt_image {
 	position: absolute;
@@ -93,7 +79,8 @@ body{
 }
 
 .title {
-	font-size: 3vw;
+	font-size: 2.3em;
+	text-align: center;
 }
 
 #first_block {
@@ -108,19 +95,18 @@ body{
 	
 }
 .line {
-	width: 10vw;
-	height: .3vh;
+	width: 15vw;
+	height: 1px;
 	background-color: #6c926c;
 }
 .title_test {
 	font-size: 2.3vw;
 }
 input {
-	width: 21vw;
-    font-size: 1.8vw;
+	width: 22vw;
+    font-size: 1.3em;
     padding: 7px;
     border: 1px solid #6c926c;
-	margin-bottom: 2vh;
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
 	outline-width: 0;
@@ -134,57 +120,72 @@ input {
 	border: 0;
 	background-color: #6c926c;
 	color: #ece7e7;
-	font-size: 2.3vw;
-	padding: 1vh;
-	margin: .1vh;
+	font-size: 1.3em;
+	padding: 10px;
 	cursor: pointer;
-	margin-bottom: 1vh;
+	transition: background 0.3s;
+	margin-bottom: 20px;
 	display: flex;
     justify-content: center;
     align-items: center;
 }
+#form_button:hover {
+	background-color: #79ac79;
+}
 #registration_link {
 	text-align: center;
 	color: #403f3f;
-	font-size: 2vw;
+	font-size: 1.5em;
 }
 #form > div {
 	position: relative;
 	display: flex;
+	margin-bottom: 20px;
 }
 
 .fa-user, .fa-lock {
 	content: "\f007";
 	display: block;
-	font-size: 1.8vw;
-	padding: 9.5px;
-	height: 1em;
-    background-color: #bcd8bf;
-    border-top-left-radius: 5px;
+	font-size: 1.3em;
+	background-color: #bcd8bf;
+	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;
-    color: white;
+	color: white;
+	width: 40px;
+	text-align: center;
+	line-height: -moz-block-height;
 }
 /* .fa-user {
 	padding: 1.28vh;
 } */
-
-@media (max-width: 680px) {
+@media (max-width: 900px) {
 	.title {
-		font-size: 4vw;
+		font-size: 1.8em;
+	}
+}
+@media (max-width: 680px) {
+	.form {
+		padding-left: 10px;
+		width: 100%;
+		padding-right: 10px;
+	}
+	.title {
+		font-size: 1.3em;
 	}
 	.title_test {
-		font-size: 3.3vw;
+		font-size: 1.2em;
 	}
 	.fas {
 		display: none;
 	}
 	#form div {
 		margin: unset;
+		margin-bottom: 10px;
 	}
 	input {
 		width: 50vw;
 		margin-left: unset;
-		font-size: 2.6vw;
+		font-size: 1em;
 	}
 	.loader {
 		justify-content: flex-start;
@@ -193,11 +194,12 @@ input {
 		margin-top: 20vh;		
 	}
 	#form_button {
-		font-size: 2.5vw;
+		font-size: 1em;
 	}
 	#registration_link {
-		font-size: 2.5vw;
+		font-size: 1.5em;
 	}
+
 }
 .smal {
 	display: block;

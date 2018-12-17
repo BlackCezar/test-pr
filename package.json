@@ -1,10 +1,11 @@
 {
   "name": "test-pr",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Tiny and simple service for testing a students",
   "main": "server.js",
+  "repository": "https://github.com/BlackCezar/test-pr",
   "scripts": {
-    "dev": "nodemon server.js --ignore public/",
+    "dev": "nodemon server.js --ignore public/ --ignore db/",
     "start": "node server.js"
   },
   "author": "Doctor Maxin & Dimka",
@@ -15,6 +16,8 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongodb": "^3.1.8",
+    "nedb": "^1.8.0",
+    "nedb-promises": "^3.0.2",
     "session": "^0.1.0"
   },
   "devDependencies": {

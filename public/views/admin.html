@@ -74,9 +74,18 @@
 						
 						<button class="compare" v-on:click="compare">Сравнить</button>
 					</div>
-					<div class="results">
 					
-					</div>
+				</div>
+				<div class="results">
+					<div class="section-label">Тесты</div>
+					<button class="createTest">Создать тест</button>
+					<ul class="section-list tests">
+						<template v-for="test of tests">
+							<li class="section-example" v-bind:data-_id="test._id" ><span>{{ test.name }}</span>
+								<button @click="viewTest">Посмотреть</button><button @click="removeTest">Удалить</button>
+							</li>
+						</template>
+					</ul>
 				</div>
 			</div>
 		</section>
