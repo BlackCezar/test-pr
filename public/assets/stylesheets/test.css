@@ -5,7 +5,6 @@ html{
 
 body{
 	overflow-x: hidden;
-	overflow-y: hidden;
 	margin: 0;
 	padding: 0;
 }
@@ -39,7 +38,7 @@ body{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-size: 3vw;
+	font-size: 1.6em;
 }
 .spinner {
 	margin-top: 2vh;
@@ -56,10 +55,18 @@ body{
 	color: #ece7e7;
 	font-size: 2vw;
 	padding: 10px;
-	width: 40%;
+	outline: #403f3f;
+	width: 300px;
+	transition: background 0.3s linear;
 	min-width: 150px;
 	cursor: pointer;
 	margin-bottom: 20px;
+}
+.btn:hover {
+	background-color: #7cad7c;
+}
+.btn:disabled {
+	background-color: #465f46;
 }
 @keyframes rotate {
 	0% {
@@ -82,24 +89,16 @@ body{
 }
 
 .title {
-	font-size: 3vw;
+	font-size: 2em;
 }
 
-#first_block {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	color: #403f3f;
-	width: 40%;
-}
-#form {
-	display: flex;
+.slide {
+	display: none;
 	flex-direction: column;
 	align-items: flex-start;
 	align-self: flex-start;
 	margin-left: 10%;
 	min-width: 300px;
-	margin-bottom: 25vh;
 }
 .line {
 	width: 10vw;
@@ -110,10 +109,10 @@ body{
 .error {
 	margin-bottom: 2vh;
     color: #d83232;
-    font-size: 2vw;
+    font-size: 1em;
 }
 .title_test {
-	font-size: 2.3vw;
+	font-size: 1.6em;
 	width: 80%;
 }
 .title_no {
@@ -135,19 +134,7 @@ label p {
 p {
 	margin: 0;
 }
-#last_text {
-	position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-	z-index: 5;
-	background-color: #ffffff6b;
-    margin: 0;
-    border-top: 1px solid gray;
-}#last_text a {
-	font-size: large;
-	text-decoration-line: none;
-}
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -163,46 +150,47 @@ a {
 a:hover {
 	border-bottom: 1px solid #403f3f;
 }
-#second_block {
-	width: 40%;
+.trueAnsw {
+	color: #6c926c;
 }
-#first_block, #second_block {
-	border-left: 2px solid #6c926c;
-	padding-left: 10px;
-	background-color: rgba(244, 245, 244, 0.349)
-}
-#first_block , .col{
+.show {
 	display: flex;
-	flex-direction: column;
 }
-.first_block-header, .first_block_body {
+label {
 	display: flex;
-	width: 100%;
+	width: 80%;
+	margin-bottom: 20px;
 }
-.first_block_body {
-	flex-direction: column;
+label input {
+	margin-top: 10px;
 }
-.container {
-	width: 100%;
+
+.col {
 	display: flex;
-	justify-content: space-around;
-} 
+	align-items: center;
+}
+.col p {
+	padding-left: 20px;
+}
+
 @media (max-width: 680px) {
+	.form {
+		width: 90%;
+	}
 	.container {
 		flex-direction: column;
 		align-items: center;
 	}
-	#first_block {
-		width: 90%;
-	}
-	#second_block {
-		width: 90%;
+	.slide {
+		margin-left: 0;
+		width: 100%;
 	}
 	.title {
-		font-size: 4vw;
+		font-size: 1.6em;
 	}
 	.title_test {
-		font-size: 5.3vw;
+		font-size: 1.3em;
+		padding-left: 10px;
 	}
 	.title_no {
 		margin-top: 2.7vh;
@@ -215,13 +203,9 @@ a:hover {
 	.fas {
 		display: none;
 	}
-	#form div {
-		margin: unset;
-		margin-bottom: 25vh;
-	}
 	.error {
 		margin: 2vw;
-		font-size: 3vw;
+		font-size: 1em;
 	}
 
 	.loader {
@@ -231,24 +215,22 @@ a:hover {
 		margin-top: 20vh;		
 	}
 	.btn {
-		font-size: 3vw;
+		font-size: 1.2em;
 		width: 82%;
+		margin: 0 auto;
+		margin-bottom: 15px;
 	}
 	select {
 		width: 100%;
 	}
 	#registration_link {
-		font-size: 2.5vw;
+		font-size: 1.1em;
+	}
+	.slide label {
+		padding-left: 15px;
+	}
+	.slide label p {
+		padding-left: 10px;
 	}
 }
-#form_button_5, #form_button_4, #form_button_3, #form_button_2 {
-	display: none;
-}
-label {
-	display: flex;
-	width: 80%;
-	margin-bottom: 20px;
-}
-label input {
-	margin-top: 10px;
-}
+

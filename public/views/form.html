@@ -1,0 +1,84 @@
+<style>
+    .form_inner {
+        width: 80vw;
+        position: relative;
+        box-shadow: 0 0 4px 0 gray;
+        visibility: visible;
+        top: 20%;
+        margin: 0 auto;
+        background-color: rgb(245, 245, 245);
+    }
+        .form_inner_header {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .form_inner_close {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            background-color: rgb(195, 54, 54);
+            cursor: pointer;
+            transition: background 0.3s linear;
+        }
+        .form_inner_close:single-button {
+            background-color: #fff;
+        }
+        .form_inner_close:hover {
+            background-color: rgb(211, 41, 41);
+        }
+        .form_inner_body {
+            padding: 10px;
+            width: calc(100% - 20px);
+        }
+        .line {
+            width: 90%;
+            top: calc(50% - 1px);
+            height: 1px;
+            left: 4%;
+            position: absolute;
+            background-color: #fff;
+        }
+        .line:nth-child(1) {
+            transform: rotate(45deg);
+        }
+        .line:nth-child(2) {
+            transform: rotate(-45deg);
+        }
+        .form_inner_title {
+            padding-left: 20px;
+            font-size: larger;
+            color: rgb(34, 34, 34);
+        }
+        .closes .line {
+            transition: transform 0.2s linear;
+            transform: rotate(0);
+        }
+        @keyframes closes {
+            0% {
+                height: unset;
+            }
+            100% {
+                height: 0px;
+            }
+        }
+        h4 {
+            margin: 10px 0;
+        }
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+    <div class="form_inner">
+        <div class="form_inner_header">
+            <div class="form_inner_title">qwdqwdqwd</div>
+            <div class="form_inner_close" onclick="cloose()"><div class="line"></div><div class="line"></div></div>
+        </div>
+        <div class="form_inner_body">
+
+
+            
+        </div>
+    </div>
+    

@@ -16,13 +16,11 @@ let header = new Vue({
 let main = new Vue({
     el: 'main', 
     data: {
-        group: { 
-            balls: [],
-            balls2: [],
-            percents: [],
-            percents2: []
-        },
-        students: null
+        group: {},
+        students: [],
+        tests: [],
+        userTests: [],
+        selectedTest: ''
     },
     created: function () {
         console.log(window.location.pathname);
@@ -31,138 +29,111 @@ let main = new Vue({
             this.group = res.group;
             this.students = res.students;
         });
+        getAjax('/forms').then(tests => {this.tests = tests; this.selectedTest = tests[0]._id}).catch(err => console.log(err));
+        getAjax('/tests').then(userTests => this.userTests = userTests).catch(err => console.log(err));
         // getAjax('/groups').then(groups => {this.groups = groups;});
     },
     computed: {
         five: function() {
             let counter = 0;
-            for (ball of this.group.balls) {
-                if (ball.balls == 5) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 5 && test.group == this.group.name) counter++;
             }
             return counter
         },
         fore: function() {
             let counter = 0;
-            for (ball of this.group.balls) {
-                if (ball.balls == 4) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 4 && test.group == this.group.name) counter++;
             }
             return counter
         }, 
         three: function() {
             let counter = 0;
-            for (ball of this.group.balls) {
-                if (ball.balls == 3) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 3 && test.group == this.group.name) counter++;
             }
             return counter
         }, 
         five2: function() {
             let counter = 0;
-            for (ball of this.group.balls2) {
-                if (ball.balls == 5) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 5 && test.try == 2 && test.group == this.group.name) counter++;
             }
             return counter
         }, 
         three2: function() {
             let counter = 0;
-            for (ball of this.group.balls2) {
-                if (ball.balls == 3) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 3 && test.try == 2 && test.group == this.group.name) counter++;
             }
             return counter
         },
         fore2: function() {
             let counter = 0;
-            for (ball of this.group.balls2) {
-                if (ball.balls == 4) counter++;
+            for (test of this.userTests) {
+                if (test.ball == 3 && test.try == 2 && test.group == this.group.name) counter++;
             }
             return counter
         },
         middleBall: function() {
             let counter = 0;
-            for (ball of this.group.balls) {
-                counter +=Number(ball.balls);
+            for (test of this.userTests) {
+                if (test.group == this.group.name && test.try == 1) counter +=test.ball;
             }
-            counter /= this.group.balls.length;
+            console.log(counter, this.students.length)
+            counter /= this.students.length;
             if (!counter > 0) counter = 0 
-            return counter
+            return counter.toFixed(1)
         },
         middleBall2: function() {
             let counter = 0;
-            for (ball of this.group.balls2) {
-                counter +=Number(ball.balls);
+            for (test of this.userTests) {
+                if (test.try == 2 && test.group == this.group.name) counter +=test.ball;
             }
-            console.log(counter)
-            counter /= this.group.balls2.length;
+            counter /= this.students.length;
             if (!counter > 0) counter = 0 
-            return counter
+            return counter.toFixed(1)
         },
         middlePercent: function() {
             let counter = 0;
-            for (ball of this.group.percents) {
-                counter +=Number(ball.procents);
+            for (test of this.userTests) {
+                if (test.group == this.group.name && test.try == 1) counter += test.procents;
             }
-            counter /= this.group.percents.length;
+            counter /= this.students.length;
             if (!counter > 0) counter = 0 
             return counter.toFixed(2) + '%'
         },
         middlePercent2: function() {
             let counter = 0;
-            for (ball of this.group.percents2) {
-                counter +=Number(ball.procents);
+            for (test of this.userTests) {
+                if (test.try == 2 && test.group == this.group.name) counter += test.procents;
             }
-            console.log(counter)
-            counter /= this.group.percents2.length;
+            counter /= this.students.length;
             if (!counter > 0) counter = 0 
             return counter.toFixed(2) + '%'
         },
     },
     methods: {
-        getMidPercent: function(el, chooser) {
-            let midPercent = 0;
-            if (chooser == 2) {
-                for (percent of el.percents2) {
-                    midPercent += Number(percent.procents);
-                }
-            } else {
-                for (percent of el.percents) {
-                    midPercent += Number(percent.procents);
-                }
-                
-            }
-            console.log(midPercent)
-            midPercent /= el.students.length || 0;
-
-            console.log(el);
-            return midPercent + '%'
-        },
-        getInfOfSt: function(stId) {
-            let st = {}
-            for (ball of this.group.balls) {
-                if (ball.id == stId) {
-                    st.ball = ball.balls
+        getInfOfSt: function(stId, twoTest) {
+            let st = {};
+            for (test of this.userTests) {
+                if ((test.test == this.selectedTest) && (this.group.name == test.group) && (test.userId == stId)) {
+                    if (twoTest) { 
+                        if (test.try == 2) {
+                            st.ball = test.ball || 0;
+                            st.percent = test.procents || 0;
+                            st.trueAnswers = test.trueAnswers || 0;
+                            return st
+                        }
+                    } else {
+                        st.ball = test.ball || 0;
+                        st.percent = test.procents || 0;
+                        st.trueAnswers = test.trueAnswers || 0;
+                        return st
+                    }
                 }
             }
-            for (ball of this.group.balls2) {
-                if (ball.id == stId) {
-                    st.ball2 = ball.balls
-                }
-            }
-            for (ball of this.group.percents) {
-                if (ball.id == stId) {
-                    st.percent = ball.procents
-                }
-            }
-            for (ball of this.group.percents2) {
-                if (ball.id == stId) {
-                    st.percent2 = ball.procents
-                }
-            }
-            for (ball of this.group.trueAnsw) {
-                if (ball.id == stId) {
-                    st.trueAnsw = ball.trueAnsw
-                }
-            }
-            console.log(st)
-            return st
         }
     }
 })

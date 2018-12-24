@@ -7,7 +7,7 @@ const mongodb = require('mongodb'),
   groupdb = Datastore.create({filename: './db/groups.json', inMemoryOnly: false, autoload: true})
   vuzdb = Datastore.create({filename: './db/vuzs.json', inMemoryOnly: false, autoload: true})
   teacherdb = Datastore.create({filename: './db/teachers.json', inMemoryOnly: false, autoload: true})
-
+  formdb = Datastore.create({filename: './db/forms.json', autoload: true})
 
 // let mongoUrl = process.env.MONGOURL || "mongodb://doctor-maxin:Hollywood75@ds261078.mlab.com:61078/test-pr"
 
@@ -16,6 +16,10 @@ function router(app) {
 
     app.get('/', (req, res) => {
         res.sendFile(views + 'index.html')
+    })
+
+    app.get('/form.html', (req,res) => {
+      res.sendFile(views + 'form.html');
     })
 
     app.get('/logout', (req, res) => {
@@ -28,6 +32,7 @@ function router(app) {
     app.get('/reg', (req, res) => {
         groupdb.find()
               .then(grps => {
+                console.log(grps)
                 res.render('reg.ejs', {error: null, groups: grps})
               })
     })
@@ -42,11 +47,11 @@ function router(app) {
     app.get('/users/me', (req, res) => {
       if (req.session.auth) {
           if (req.session.admin) {
-            teacherdb.findOne({_id: req.session.clientId})
-              .then(teacher => res.send(teacher))
+            teacherdb.find({_id: req.session.clientId})
+              .then(teacher => { if (teacher.length) {res.send(teacher)} else throw err })
               .catch(err => res.send({status: 404}))
           } else {
-            userdb.findOne({_id: req.session.clientId})
+            userdb.find({_id: req.session.clientId})
               .then(user => res.send(user))
               .catch(err => res.send({status: 404}))
           }
@@ -174,6 +179,7 @@ function router(app) {
     })
 
     app.get('/admin', (req, res) => {
+      console.log(req.session.admin)
       if (req.session.admin) {
         res.sendFile(views + 'admin.html');
       } else {
@@ -230,6 +236,12 @@ function router(app) {
           .then(tests => res.send(tests))
       } else res.send({status: 401})
     })
+    
+    app.get('/tests', (req, res) => {
+      if (req.session.auth) {
+        testdb.find().then(tests => res.send(tests))
+      }
+    })
 
     app.get('/student:id', (req, res) => {
       if (req.session.auth) {
@@ -270,15 +282,15 @@ function router(app) {
     })
     
     app.post('/auth_teach', (req, res) => {
-      teacherdb.findOne(req.body).then(result => {
-        if (result) {
+      teacherdb.find(req.body).then(result => {
+        if (result[0]) {
             req.session.auth = true
             req.session.clientId = result._id
             req.session.group = result.group
             req.session.admin = true
             res.redirect('/admin')
         } else throw 'Not fined'
-      }).catch(err => res.render('admin_auth.ejs'))
+      }).catch(err => res.sendFile(views + 'admin_auth.html'))
     })
 
     app.post('/reg', (req, res) => {
@@ -300,24 +312,24 @@ function router(app) {
           }).catch(err => res.sendStatus(500))
     })
 
-    app.post('/save_test', (req, res) => {
-      obj = {}
-      obj.userId = req.session.clientId
-      obj.group = req.session.group
-      obj.answers = req.body.answers
-      obj.ball = req.body.ball
-      obj.trueAnswers = req.body.goodAnswers
+    app.post('/forms/:id', (req, res) => {
+      if (req.session.auth) {
+        req.body.userId = req.session.clientId
+        req.body.group = req.session.group
+        req.body.procents = Math.round(req.body.goodAnswers / 18 * 100) || 0
+        testdb.insert(req.body).then(isr => res.send({status: 200}))
+      } else res.send({status: 401})
+    })
 
-      let procents = Math.round(req.body.goodAnswers / 18 * 100)
-      testdb.insert(obj)
-      testdb.find({userId: req.session.clientId}).then(tests => {
-        if (tests.length == 1) {
-          groupdb.update({name: req.session.group}, { $push: {percents: {procents: procents, id: obj.userId}, balls: {balls: obj.ball, id: obj.userId}, trueAnsw: {trueAnsw: obj.trueAnswers, id: obj.userId}}})
-        } else {
-          groupdb.update({name: req.session.group}, { $push: {percents2: {procents: procents, id: obj.userId}, balls2: {balls: obj.ball, id: obj.userId}, trueAnsw2: {trueAnsw: obj.trueAnswers, id: obj.userId}}})
-        }
-        res.sendStatus(200)
-      })
+    app.get('/forms', (req, res) => {
+      formdb.find().then(forms => res.send(forms)).catch(err => res.send({status: 404}))
+    })
+    app.post('/forms', (req, res) => {
+      console.log(res.body)
+      
+    })
+    app.get('/forms/:id', (req, res) => {
+      formdb.findOne({_id: req.params.id}).then(test => res.send(test)).catch(err => res.send({status: 404}))
     })
 }
 

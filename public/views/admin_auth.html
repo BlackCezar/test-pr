@@ -6,27 +6,36 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../assets/stylesheets/common.css">
 	<link rel="stylesheet"  href="../assets/stylesheets/index.css">
 </head>
 <body>
 		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
-		<h1 class="title">
-			Вход в административную панель
-		</h1>
-
-		<div id="second_block">
-			<h3 class="title_test_2">
-				Введите данные учетной записи
+		<div id="first_block">
+			<h3 class="title_test">
+				<i class="fas fa-address-book"></i> Введите ваши данные
 			</h3>
 
-			<form id="form_2" action="/auth_teach" method="POST">
-                <input type="text" id="input_1_2" name="login" placeholder="Логин"></input>
-                <input type="text" id="input_2_2" name="password" placeholder="Пароль"></input>
+			<form id="form" action="/auth_teach" method="POST">
+				<div>
+						<i class="fas fa-user"></i>
+						<input type="textbox" id="input_1" name="login" value="" placeholder="Логин"></input>
+				</div>
+				<div>
+						<i class="fas fa-lock"></i>
+						<input type="password" id="input_2" name="password" value="" placeholder="Пароль"></input>
+				</div>
+			
 
-                <button class="btn" id="form_button">Войти</button>
-                <a href="/reg_teach" id="registration_link">Регистрация</a>
-		    </form>
+			<button  id="form_button">
+				<span>Войти</span> <div id="spin" style="display: none" class="spinner smal"></div>
+			</button>
+
+			<a href="/reg" id="registration_link">Регистрация</a>
+
+			<div class="error"></div>
+		</form>
 		</div>
 
 		

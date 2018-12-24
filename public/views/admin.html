@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Антибиотики</title>
+	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/cabinet_tch.css">
 </head>
 <body>
+	<div class="wrapper" hidden="true"></div>
 	<header>
 		<div class="logo">Добро пожаловать, {{ name }}</div><nav><a href="/logout">Выйти</a></nav>
 	</header>
@@ -16,7 +19,7 @@
 				<h2 class="section-title">Добавить учебное заведение</h2>
 				<div class="section-body">
 					<input type="text" name="name" placeholder="Название" id="createVuzInp">
-					<button id="createVuzBtn" type="button"  v-on:click="createVuz" name="button">Создать</button>
+					<button id="createVuzBtn" type="button"  @click="createVuz" name="button">Создать</button>
 					<img class="loader" src="../assets/imgs/spinner.gif">
 				</div>
 				<h2 class="section-label">Добавленные учебные заведения:</h2>
@@ -32,7 +35,7 @@
 			<div class="section">
 				<h2 class="section-title">Создать группу</h2>
 				<div class="section-body">
-					<input type="text" name="name" placeholder="Название" id="createGroupInp">
+					<input type="text" name="name" placeholder="Название" id="createGroupInp" >
 					<select name="vuz" id="createGroupVuz" class="selectVuzForCreateBtn">
 						<option v-for="vuz of vuzs" v-bind:value="vuz.name">{{vuz.name}}</option>
 					</select>
@@ -72,16 +75,16 @@
 							</select>
 						</div>
 						
-						<button class="compare" v-on:click="compare">Сравнить</button>
+						<button class="compare" >Сравнить</button>
 					</div>
 					
 				</div>
 				<div class="results">
 					<div class="section-label">Тесты</div>
-					<button class="createTest">Создать тест</button>
+					<button class="createTest" @click="createForm">Создать тест</button>
 					<ul class="section-list tests">
 						<template v-for="test of tests">
-							<li class="section-example" v-bind:data-_id="test._id" ><span>{{ test.name }}</span>
+							<li class="" v-bind:data-_id="test._id" ><span>{{ test.title }}</span>
 								<button @click="viewTest">Посмотреть</button><button @click="removeTest">Удалить</button>
 							</li>
 						</template>
@@ -98,6 +101,7 @@
 						<div class="vuz-body">
 							<div class="vuz-headers">
 								<div class="vuz-header">Имя группы</div>
+								<div class="vuz-header">Тест</div>
 								<div class="vuz-header">Кол-во студентов</div>
 								<div class="vuz-header">Средняя оценка группы за 1 прохождение</div>
 								<div class="vuz-header">Средняя оценка группы за 2 прохождение</div>
@@ -106,6 +110,7 @@
 								<template v-for="gr of groups" v-if="gr.vuz == vuz.name">
 										<div class="vuz-group">
 												<div class="vuz-group-title"><a v-bind:href="'/group:' + gr._id" title="Подробнее о группе">{{ gr.name }}</a></div>
+												<div class="vuz-group-test"><select v-model="selectedTest"> <option v-for="test of tests" :value="test._id">{{ test.title }}</option> </select></div>
 												<div class="vuz-group-students-length">{{ gr.students.length }}</div>
 												<div class="vuz-group-ball">{{ getMidPercent(gr) }}</div>
 												<div class="vuz-group-ball">{{ getMidPercent(gr, 2) }}</div>
@@ -122,28 +127,13 @@
 		</div>
 
 		</main>
-		<div class="wrapper" hidden>
-		<div class="inner">
-			<div class="close">X</div>
-			<table class="inner-table">
-			<tr>
-				<th>Название</th>
-				<th>Средний балл за 1 прохождение</th>
-				<th>Средний балл за 2 прохождение</th>
-				<th>Успеваемость по 1 тесту</th>
-				<th>Успеваемость по 2 тесту</th>
-				<th>Соотношение сдавших за 1 тест</th>
-				<th>Соотношение сдавших за 2 тест</th>
-			</tr>
-			</table>
-		</div>	
-		</div>
+		
 	<img src="../assets/imgs/left.jpg" alt="" id="left_image">
 	<img src="../assets/imgs/right.jpg" alt="" id="rignt_image">
 	<footer>	
 		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
 	</footer>
-	<script src="../assets/js/vue.js"></script>
+	<script src="../assets/js/vue.min.js"></script>
 	<script src="../assets/js/admin.js"></script>
 </body>
 </html>

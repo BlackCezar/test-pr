@@ -1,3 +1,6 @@
+* {
+	filter: brightness(1);
+}
 html{
 	font-family: Tahoma;
 }

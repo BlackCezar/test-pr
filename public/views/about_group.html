@@ -19,25 +19,27 @@
 			<div class="access">
 				<div>Доступ к 1 попытке <span v-if="group.acc1" class="spanOne">разрешен</span><span v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptOneTest">Переключить доступ</button></div>
 				<div>Доступ к 2 попытке <span class="spanTwo" v-if="group.acc2">разрешен</span><span v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptTwoTest">Переключить доступ</button></div>
+				<div><select v-model="selectedTest"><option v-for="test of tests" :value="test._id" >{{ test.title }}</option></select></div>
 			</div>
 			<div class="group-headers">
 				<div class="group-header">Имя студента</div>
-				<div class="group-header">Кол-во правильных ответов</div>
+				<div class="group-header">Кол-во правильных ответов за 1</div>
+				<div class="group-header">Кол-во правильных ответов за 2</div>
 				<div class="group-header">Балл первого прохождения</div>
 				<div class="group-header">Балл второго прохождения</div>
 				<div class="group-header">Процент правильных ответов за 1</div>
 				<div class="group-header">Процент правильных ответов за 2</div>
 			</div>
 			<div class="group-list">
-				
-						<div class="student" v-for="student of students">
-							<div class="student-title"><a v-bind:href="'/student:' + student._id" title="Подробнее о студенте">{{student.fio}}</a></div>
-							<div class="student-balls">{{ getInfOfSt(student._id).trueAnsw || 0 }}</div>
-							<div class="student-ball">{{ getInfOfSt(student._id).ball || 0 }}</div>
-							<div class="student-ball2">{{ getInfOfSt(student._id).ball2 || 0 }}</div>
-							<div class="student-percent">{{ getInfOfSt(student._id).percent || 0 }}</div>
-							<div class="student-percent2">{{ getInfOfSt(student._id).percent2 || 0 }}</div>
-						</div>
+				<div class="student" v-for="student of students">
+					<div class="student-title"><a v-bind:href="'/student:' + student._id" title="Подробнее о студенте">{{student.fio}}</a></div>
+					<div class="student-balls">{{ getInfOfSt(student._id).trueAnswers || 0 }}</div>
+					<div class="student-balls2">{{ getInfOfSt(student._id, 1).trueAnswers || 0 }}</div>
+					<div class="student-ball">{{ getInfOfSt(student._id).ball || 0 }}</div>
+					<div class="student-ball2">{{ getInfOfSt(student._id, 1).ball || 0 }}</div>
+					<div class="student-percent">{{ getInfOfSt(student._id).percent || 0 }}</div>
+					<div class="student-percent2">{{ getInfOfSt(student._id, 1).percent || 0 }}</div>
+				</div>
 				
 			</div>
 			<div class="group_block">
@@ -103,7 +105,7 @@
 	<footer>	
 		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
 	</footer>
-	<script src="../assets/js/vue.js"></script>
+	<script src="../assets/js/vue.min.js"></script>
 	<script src="../assets/js/about_gr.js"></script>
 	<script type="text/javascript">
 		// let balls = document.querySelectorAll('.student-ball'),

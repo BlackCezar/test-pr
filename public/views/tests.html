@@ -3,67 +3,54 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
+	<script>window.scrollY(0)</script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/test.css">
+	<link rel="stylesheet" type="text/css" href="../assets/stylesheets/common.css">
 </head>
 <body>
 		<div class="loader"><div class="title">Идет загрузка</div><div class="spinner"></div></div>
 	<div class="form">
 		<h1 class="title">
-			Тестирование
+			{{ test.title }}
 		</h1>
 		<div class="line"></div>
-
-		<h3 class="title_test">
-			1. Антибиотики – это
-		</h3>
-
-		<form id="form" action="" onsubmit="return false">
-			<label for="input_1">
-			<input type="radio" id="input_1" name="option1" value="a1" ><p id="input_text_1">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>
-			<label for="input_2">
-			<input type="radio" id="input_2" name="option1" value="a1" ><p id="input_text_2">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>
-			<label for="input_3">
-			<input type="radio" id="input_3" name="option1" value="a1" ><p id="input_text_3">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>
-			<label for="input_4">
-			<input type="radio" id="input_4" name="option1" value="a1" ><p id="input_text_4">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>	
-			<label for="input_5">
-			<input type="radio" id="input_5" name="option1" value="a1" ><p id="input_text_5">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>	
-			<label for="input_6">
-			<input type="radio" id="input_6" name="option1" value="a1" ><p id="input_text_6">Вещества, вызывающие гибель бактерий, либо препятствующие их росту и размножению</p>
-			</label>	
-
-			<button  id="form_button" class="btn">Далее</button>
+		<template v-for="quest of test.queastions">
+			<div class="slide" :id="'slide-'+quest.number" :data-number="quest.number" :class="{ show: (quest.number == 1)}" >
+				<h3 class="title_test">
+					{{ quest.number }}. {{ quest.question }}
+				</h3>
 	
-				<button  id="form_button_2" class="btn">Далее</button>
-	
-				<button  id="form_button_3" class="btn">Далее</button>
-	
-				<button  id="form_button_4" class="btn">Далее</button>
-	
-				<button  id="form_button_5" class="btn">Вернуться</button>
-
-				<button id="form_button_6" class="btn">Критерии</button>
-		</form>
-
-</div>
+				<template v-for="answ of quest.answers">
+					<label :for="'qust-'+quest.answers.indexOf(answ)+'-'+quest.number" :class="{trueAnsw: (quest.answers.indexOf(answ) == quest.trueAnsw && showAnsw) }">
+						<input @change="enableBtn" class="input" v-if="Array.isArray(quest.trueAnsw)" :name="quest.number" :id="'qust-'+quest.answers.indexOf(answ)+'-'+qust.number" :value="quest.answers.indexOf(answ)" type="checkbox">
+						<input v-else @change="enableBtn" class="input" :name="quest.number" type="radio" :id="'qust-'+quest.answers.indexOf(answ)+'-'+quest.number" :value="quest.answers.indexOf(answ)">
+						<p>{{ answ }}</p>
+					</label>
+				</template>
+				<button class="btn" :data-number="quest.number" :disabled='!showAnsw' @click="nextSlide">Далее</button>
+				<button class="btn" @click="alert">Критерии</button>
+			</div>
+		</template>
+		<div class="slide lastSlide">
+			<div class="col">
+				<h3>Ваш балл</h3><p>{{ userTest.ball }}</p>
+			</div>
+			<div class="col">
+				<h3>Количество правильных ответов</h3><p>{{ userTest.trueAnswers }}</p>
+			</div>
+			<button class="btn" @click="goHome">Завершить</button>
+			<button class="btn" @click="viewAnsw">Мои ответы</button>
+			<button class="btn" @click="alert">Критерии</button>
+		</div>
+	</div>
 		<img src="../assets/imgs/bg.jpg" alt="" id="rignt_image">
 
 		
-	
-		<script src="../assets/js/index.js"></script>
-		<script>
-			function ready() {
-		document.querySelector('.loader').style.visibility = 'hidden';
-	}
-	window.addEventListener("load", ready);
-		</script>
+		<script src="../assets/js/vue.js"></script>
+		<script src="../assets/js/test.js"></script>
 </body>
 </html>
+ 
