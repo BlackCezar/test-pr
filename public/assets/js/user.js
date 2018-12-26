@@ -16,36 +16,43 @@ let header = new Vue({
 let tests = new Vue({
     el: "#first_block",
     data: {
-        test1: { 
-            answers: [],
-            ball: 0,
-            trueAnswers: 0,
-            userId: '',
-            _id: '',
-            group: ''
-        },
-        test2: {
-            answers: [],
-            ball: 0,
-            trueAnswers: 0,
-            userId: '',
-            _id: '',
-            group: ''
-        }
+        usrTests: [],
+        tests: [],
+        selectedTest: "",
+        test2: {}
     }, 
     created: function () {
         let vue = this;
+        getAjax('/forms').then(tests => {
+            this.tests = tests;
+            this.selectedTest = tests[0]._id;
+            this.$nextTick(function() {
+                goToTest.selectedTest = this.selectedTest;
+            })
+        })
         getAjax('/tests/me')
             .then(loadedTests => {
-                if (loadedTests.length) {
-                    if (loadedTests.length == 2) {
-                        vue.test1 = loadedTests[0];
-                        vue.test2 = loadedTests[1];
-                    } else vue.test1 = loadedTests[0];
-                    goToTest.tests = loadedTests.length
+                this.usrTests = loadedTests;
+                for (test of this.usrTests) {
+                    if (test.test == this.selectedTest && test.try == 2) {
+                        this.test2 = test
+                    } 
                 }
                 document.querySelector('.loader').style.visibility = 'hidden';
             }).catch(err => console.log(err));
+    },
+    watch: {
+        selectedTest: function(val, oldVal) {
+            if (document.querySelector('.golink')) {
+                document.querySelector('.golink').setAttribute('href', '/test/' + val);
+            }
+            for (test of this.usrTests) {
+                if (test.test == val && test.try == 2) {
+                    this.test2 = test
+                } 
+            }
+        },
+        
     },
     methods: {
         getProcent: function(two) {
@@ -66,12 +73,14 @@ let goToTest = new Vue({
     el: '#second_block',
     data: {
         group: {},
-        tests: 0
+        tests: 0,
+        selectedTest: '',
     },
     created: function () {
         getAjax('/groups/my')
             .then(gr => goToTest.group = gr)
-    }
+    },
+
 })
 
 function getAjax(url) {

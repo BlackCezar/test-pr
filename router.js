@@ -191,19 +191,19 @@ function router(app) {
       res.sendFile(views + 'admin_auth.html')
     })
 
-    app.get('/t', (req, res) => {
-      res.sendFile(views + 'tests.html')
-    })
-
-    app.get('/test', (req, res) => {
+    app.get('/test/:id', (req, res) => {
       if (req.session.auth) {
         groupdb.findOne({name: req.session.group}).then(group => {
           testdb.find({userId: req.session.clientId}).then(tests => {
-            if (tests.length == 0) {
-              group.acc1 ? res.sendFile(views + "tests.html") : res.redirect('/')
-            } else if (tests.length == 2) 
-              group.acc2 ? res.sendFile(views + 'tests.html') : res.redirect('/')
-              else res.redirect('/')
+            let acc = true;
+            for (test of tests) {
+              if (req.url.slice(6) == test.test) {
+                if (!group.acc2 && test.try == 1) acc = false;
+                if (test.try == 2) acc = false;   
+              }
+              if (!group.acc1) acc = false;
+            }
+            acc ? res.sendFile(views + 'tests.html') : res.redirect('/cabinet')
           })
         })
       } else {
@@ -224,8 +224,8 @@ function router(app) {
             } else gr.acc2 = true
           }
           groupdb.update({_id: req.params.id.slice(1)}, {$set: {'acc1': gr.acc1, 'acc2': gr.acc2}})
-            .then(() => res.sendStatus(200))
-            .catch(() => res.sendStatus(401))
+            .then(() => res.send({status: 200}))
+            .catch(() => res.send({status: 401}))
         })
       } else res.redirect('/auth_teach')
     })
@@ -264,7 +264,6 @@ function router(app) {
         userdb.find().then(users => {
           if (users) {
             for (user of users) {
-              console.log(user, req.body)
               if (user.login == req.body.login) {
                 result.login = true
                 if (user.password == req.body.password) {
@@ -272,7 +271,6 @@ function router(app) {
                   req.session.auth = true
                   req.session.clientId = user._id
                   req.session.group = user.group
-                  console.log(req.session.clientId);
                 }
               }
             }
@@ -316,21 +314,33 @@ function router(app) {
       if (req.session.auth) {
         req.body.userId = req.session.clientId
         req.body.group = req.session.group
-        req.body.procents = Math.round(req.body.goodAnswers / 18 * 100) || 0
-        testdb.insert(req.body).then(isr => res.send({status: 200}))
+        testdb.find({userId: req.session.clientId, test: req.body.test, group: req.body.group}).then(tests => {
+          if (tests.length == 1) req.body.try = 2;
+          if (tests.length == 0) req.body.try = 1;
+          testdb.insert(req.body).then(isr => res.send({status: 200}))
+        })
       } else res.send({status: 401})
     })
-
+    app.post('/remove/form', (req, res) => {
+      console.log('id', req.body)
+      if (req.session.admin) {
+        formdb.remove(req.body).then(test => res.send({status: test})).catch(err => res.send({status: 500,err: err}));
+      } else res.send({status: 401})
+    })
     app.get('/forms', (req, res) => {
       formdb.find().then(forms => res.send(forms)).catch(err => res.send({status: 404}))
     })
     app.post('/forms', (req, res) => {
-      console.log(res.body)
-      
+      if (req.session.admin) {      
+        formdb.insert(req.body).then(form => {res.send(form); console.log(form)}).catch(err => res.send({status: 500, err: err}))
+      } else res.send({status: 401})
     })
     app.get('/forms/:id', (req, res) => {
       formdb.findOne({_id: req.params.id}).then(test => res.send(test)).catch(err => res.send({status: 404}))
     })
+
+
+
 }
 
 

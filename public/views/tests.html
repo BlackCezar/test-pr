@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Антибиотики</title>
-	<script>window.scrollY(0)</script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic|Noto+Sans|Poiret+One" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +24,7 @@
 	
 				<template v-for="answ of quest.answers">
 					<label :for="'qust-'+quest.answers.indexOf(answ)+'-'+quest.number" :class="{trueAnsw: (quest.answers.indexOf(answ) == quest.trueAnsw && showAnsw) }">
-						<input @change="enableBtn" class="input" v-if="Array.isArray(quest.trueAnsw)" :name="quest.number" :id="'qust-'+quest.answers.indexOf(answ)+'-'+qust.number" :value="quest.answers.indexOf(answ)" type="checkbox">
+						<input @change="enableBtn" class="input" v-if="quest.trueAnsw.length > 1" :name="quest.number" :id="'qust-'+quest.answers.indexOf(answ)+'-'+quest.number" :value="quest.answers.indexOf(answ)" type="checkbox">
 						<input v-else @change="enableBtn" class="input" :name="quest.number" type="radio" :id="'qust-'+quest.answers.indexOf(answ)+'-'+quest.number" :value="quest.answers.indexOf(answ)">
 						<p>{{ answ }}</p>
 					</label>

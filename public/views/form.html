@@ -4,15 +4,39 @@
         position: relative;
         box-shadow: 0 0 4px 0 gray;
         visibility: visible;
-        top: 20%;
+        top: 20px;
         margin: 0 auto;
         background-color: rgb(245, 245, 245);
+    }
+    li {
+        list-style-type: none;
     }
         .form_inner_header {
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+        .answers {
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .answ {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .answ::first-letter {
+            text-transform: uppercase;
+        }
+        .green {
+            color: rgb(104, 175, 87);
+        }
+        .form_inner_body li {
+            margin-bottom: 15px;
+        }
+        .form_inner_body .title {
+            font-size: 1.2em
         }
         .form_inner_close {
             width: 40px;

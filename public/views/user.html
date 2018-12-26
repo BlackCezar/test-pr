@@ -37,26 +37,70 @@
 				</div>
 				<div class="first_block_body">
 					<div class="row">
-						<h4 class="first_inf_title">
-							Количество правильных ответов:
-						</h4>
-						<p id="first_inf">{{ test1.trueAnswers }}</p>
-						<p id="second_inf">{{ test2.trueAnswers }}</p>
+						<h4 class="first_inf_title">Выберете тест</h4>
+						<p id="first_inf">
+							<select id="select" v-model="selectedTest">
+								<option v-for="test of tests" :value="test._id">{{ test.title }}</option>
+							</select>
+						</p>
 					</div>
-					<div class="row">
-						<h4 class="first_inf_title">
-							Процент правильных ответов:
-						</h4>
-						<p id="first_inf">{{ getProcent() }}</p>
-						<p id="second_inf">{{ getProcent(true) }}</p>
-					</div>
-					<div class="row">
-						<h4 class="first_inf_title">
-							Оценка:
-						</h4>
-						<p id="first_inf">{{ test1.ball }}</p>
-						<p id="second_inf">{{ test2.ball }}</p>
-					</div>
+					<template v-if="usrTests.length > 0">
+							<template v-for="test of usrTests" v-if="test.test == selectedTest && test.try == 1">
+								<div class="row">
+									<h4 class="first_inf_title">
+										Количество правильных ответов:
+									</h4>
+									<p v-if="test.try == 1" id="first_inf">{{ test.trueAnswers }}</p>
+									<p v-else id="first_inf">0</p>
+									<p v-if="test2.trueAnswers" id="second_inf">{{ test2.trueAnswers }}</p>
+									<p v-else id="second_inf">0</p>
+								</div>
+								<div class="row">
+										<h4 class="first_inf_title">
+											Процент правильных ответов:
+										</h4>
+										<p v-if="test.try == 1" id="first_inf">{{ test.procents.toFixed(2) }}</p>
+										<p v-else id="first_inf">0.00</p>
+										<p v-if="test2.procents" id="first_inf">{{ test2.procents.toFixed(2) }}</p>
+										<p v-else id="first_inf">0.00</p>
+								</div>
+								<div class="row">
+									<h4 class="first_inf_title">
+										Оценка:
+									</h4>
+									<p v-if="test.try == 1" id="first_inf">{{ test.ball }}</p>
+									<p v-else id="first_inf">0</p>
+									<p v-if="test2.ball" id="second_inf">{{ test2.ball }}</p>
+									<p v-else id="second_inf">0</p>
+
+								</div>
+								
+							</template>
+					</template>
+					<template v-else>
+							<div class="row">
+								<h4 class="first_inf_title">
+										Количество правильных ответов:
+								</h4>
+								<p  id="first_inf">0</p>
+								<p  id="second_inf">0</p>
+							</div>
+							<div class="row">
+								<h4 class="first_inf_title">
+									Процент правильных ответов:
+								</h4>
+								<p id="first_inf">0</p>
+								<p id="second_inf">0</p>
+							</div>
+							<div class="row">
+								<h4 class="first_inf_title">
+									Оценка:
+								</h4>
+								<p id="first_inf">0</p>
+								<p id="second_inf">0</p>
+							</div>
+					</template>
+					
 				</div>
 			</div>
 			
@@ -64,7 +108,7 @@
 				<h3 class="title_test_2">
 					Нажмите для прохождения тестирования
 				</h3>
-				<a href="/test" v-if="tests == 0 && group.acc1 || tests == 1 && group.acc2" >
+				<a :href="'/test/' + selectedTest" class="golink"  v-if="tests == 0 && group.acc1 || tests == 1 && group.acc2" >
 					<button  id="form_button"  >Начать</button>
 				</a>
 				<p class="error" v-else> Извините, доступ к тесту временно ограничен </p>

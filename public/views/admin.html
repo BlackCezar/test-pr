@@ -16,13 +16,13 @@
 	<main >
 		<section class="manager">
 			<div class="section">
-				<h2 class="section-title">Добавить учебное заведение</h2>
+				<h2 class="section-title">Добавить отделение</h2>
 				<div class="section-body">
 					<input type="text" name="name" placeholder="Название" id="createVuzInp">
 					<button id="createVuzBtn" type="button"  @click="createVuz" name="button">Создать</button>
 					<img class="loader" src="../assets/imgs/spinner.gif">
 				</div>
-				<h2 class="section-label">Добавленные учебные заведения:</h2>
+				<h2 class="section-label">Добавленные отделение:</h2>
 				<ul class="section-list">
 						<template v-for="vuz of vuzs">
 								<li class="section-example"><a v-bind:href="'#' + vuz.name">{{vuz.name}}</a><button v-bind:data-id='vuz._id' :key="vuz._id" v-on:click="removeVuz" class="delayVuz">Удалить</button></li>
@@ -56,7 +56,7 @@
 						<label>Выберите, что вы хотите сравнить:</label>
 						<select id="compareType" v-on:change="changeSelect">
 							<option value="gr">Группу</option>
-							<option value="vuz">Учебное заведение</option>
+							<option value="vuz">Отделение</option>
 						</select>
 						<label>Выберите группы:</label>
 						<div class="selects compare-one" >
@@ -75,7 +75,7 @@
 							</select>
 						</div>
 						
-						<button class="compare" >Сравнить</button>
+						<button class="compare" @click="compare($event)">Сравнить</button>
 					</div>
 					
 				</div>
@@ -84,8 +84,9 @@
 					<button class="createTest" @click="createForm">Создать тест</button>
 					<ul class="section-list tests">
 						<template v-for="test of tests">
-							<li class="" v-bind:data-_id="test._id" ><span>{{ test.title }}</span>
-								<button @click="viewTest">Посмотреть</button><button @click="removeTest">Удалить</button>
+							<li class="" v-bind:data-_id="test._id" >
+								<span>{{ test.title }}</span>
+								<button @click="viewTest($event)">Посмотреть</button><button @click="removeTest">Удалить</button>
 							</li>
 						</template>
 					</ul>
@@ -110,7 +111,7 @@
 								<template v-for="gr of groups" v-if="gr.vuz == vuz.name">
 										<div class="vuz-group">
 												<div class="vuz-group-title"><a v-bind:href="'/group:' + gr._id" title="Подробнее о группе">{{ gr.name }}</a></div>
-												<div class="vuz-group-test"><select v-model="selectedTest"> <option v-for="test of tests" :value="test._id">{{ test.title }}</option> </select></div>
+												<div class="vuz-group-test"><select @change="cangeSel($event)" :class="gr._id"> <option v-for="test of tests" :value="test._id">{{ test.title }}</option> </select></div>
 												<div class="vuz-group-students-length">{{ gr.students.length }}</div>
 												<div class="vuz-group-ball">{{ getMidPercent(gr) }}</div>
 												<div class="vuz-group-ball">{{ getMidPercent(gr, 2) }}</div>
@@ -133,7 +134,7 @@
 	<footer>	
 		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
 	</footer>
-	<script src="../assets/js/vue.min.js"></script>
+	<script src="../assets/js/vue.js"></script>
 	<script src="../assets/js/admin.js"></script>
 </body>
 </html>

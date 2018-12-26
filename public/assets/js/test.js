@@ -1,3 +1,4 @@
+let pageId = window.location.pathname.slice(6);
 let mainn = new Vue({
     el: '.form',
     data: {
@@ -9,12 +10,21 @@ let mainn = new Vue({
         },
         save: true,
         showAnsw: false,
-        criteries: "Оценка: \n 16-18 правильных ответов - 5 \n 12-15 правильных ответов - 4 \n 9-11 правильных ответов - 3 \n 0-8 правильных ответов - 2"
+        criteries: ""
     },
     created: function () {
-        getAjax('/forms/LWSEj4ZPGavgXIck').then(test => {
+        
+        getAjax('/forms/' + pageId).then(test => {
+            for (quest of test.queastions) {
+                quest.number = Number(quest.number);
+            }
             this.test = test;
             console.log(test);
+            this.criteries = `
+             Больше ${Math.round(this.test.queastions.length / 100 * 85)} - 5 
+             Больше ${Math.round(this.test.queastions.length / 100 * 70)} - 4 
+             Больше ${Math.round(this.test.queastions.length / 100 * 50)} - 3 
+            `
             document.querySelector('.loader').style.visibility = 'hidden';
         });
     },
@@ -24,25 +34,31 @@ let mainn = new Vue({
         },
         saveTest: function(ev) {
             let vue = this;
-            if (vue.save) {
-                console.log('save tasting')
-                json = {};
-                json.trueAnswers = this.userTest.trueAnswers;
-                json.ball = this.userTest.ball;
-                json.answers = this.userTest.answers;
-                json.test = this.test._id;
-                let xhr = new XMLHttpRequest();
-                xhr.open('POST', '/forms/LWSEj4ZPGavgXIck', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify(json));
-                xhr.onload = () => {
-                    vue.save = false
-                    console.log(xhr.responseText);
-                }
-            } 
+            if (this.save) {
+                this.$nextTick(function() {
+                    console.log('save tasting')
+                    json = {};
+                    json.trueAnswers = this.userTest.trueAnswers;
+                    json.ball = this.userTest.ball;
+                    json.answers = this.userTest.answers;
+                    json.test = this.test._id;
+                    json.procents = Math.round(this.userTest.trueAnswers / this.test.queastions.length * 100) || 0
+                    console.log(json)
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/forms/' + pageId, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    
+                        xhr.send(JSON.stringify(json));
+                        xhr.onload = () => {
+                            this.save = false
+                            console.log(xhr.responseText);
+                        }
+                    })
+                } 
+                
         },
         nextSlide: function(ev) {
-            if (ev.target.dataset.number == 18) {
+            if (ev.target.dataset.number == this.test.queastions.length) {
                 this.saveTest(ev);
                 this.save = false;
             } 
@@ -51,16 +67,26 @@ let mainn = new Vue({
                 if (input.checked) {
                     let i = thisEl.dataset.number - 1;
                     this.userTest.answers[i] = input.value;
-                    if (this.test.queastions[i].trueAnsw == input.value) {this.userTest.trueAnswers++}
-                    if (this.userTest.trueAnswers > 8) {
-                        this.userTest.ball = 3    
-                    } 
-                    if (this.userTest.trueAnswers > 11) {
-                        this.userTest.ball = 4    
-                    } 
-                    if (this.userTest.trueAnswers > 15) {
-                        this.userTest.ball = 5    
-                    } 
+                    let trueAnswers = 1;
+                    if (this.save) {
+                        for (trueAnsw of this.test.queastions[i].trueAnsw) {
+                            if (this.test.queastions[i].trueAnsw.length > 1) {
+                                if (trueAnsw == input.value) trueAnswers++
+                            } else if (trueAnsw == input.value) this.userTest.trueAnswers++
+                        }
+                        console.log(trueAnswers, this.test.queastions[i].trueAnsw.length)
+
+                        if (this.test.queastions[i].trueAnsw.length > 1 && trueAnswers == this.test.queastions[i].trueAnsw.length) this.userTest.trueAnswers++;
+                        if (this.userTest.trueAnswers >= Math.round(this.test.queastions.length / 100 * 50)) {
+                            this.userTest.ball = 3    
+                        } 
+                        if (this.userTest.trueAnswers >= Math.round(this.test.queastions.length / 100 * 70)) {
+                            this.userTest.ball = 4    
+                        } 
+                        if (this.userTest.trueAnswers >= Math.round(this.test.queastions.length / 100 * 85)) {
+                            this.userTest.ball = 5    
+                        } 
+                    }
                 }
             }
             thisEl.classList.remove('show');
@@ -76,11 +102,14 @@ let mainn = new Vue({
             this.showAnsw = true;
 
             for (inp of document.querySelectorAll('input')) {
-                if (inp.checked) {
-                    let i = mainn.test.queastions[inp.parentElement.parentElement.dataset.number - 1].trueAnsw;
-                    if (inp.value == i) {
-                        inp.parentElement.style.color = '#6c926c' 
-                    } else inp.parentElement.style.color = '#d83232';
+                if (inp.checked) inp.nextElementSibling.style.color = '#d83232';
+
+                let i = mainn.test.queastions[inp.parentElement.parentElement.dataset.number - 1].trueAnsw;
+                for (let trueAnsw of i) {
+                    if (inp.value === trueAnsw) {
+                        console.log('s')
+                        inp.nextElementSibling.style.color = '#6c926c' 
+                    } 
                 }
                 inp.disabled = true;
             }
@@ -102,8 +131,8 @@ window.onkeydown = ev => {
     if (document.querySelector('.show').className != 'slide lastSlide show') {
         evv.target = btn;
         if (ev.code == 'Enter') {
-            // if (!btn.disabled) mainn.nextSlide(evv)
-            mainn.nextSlide(evv)
+            if (!btn.disabled) mainn.nextSlide(evv)
+            // mainn.nextSlide(evv)
         }
     }
 }

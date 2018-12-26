@@ -17,28 +17,39 @@
 		<h2 class="group-title"></h2>
 		<div class="group-body">
 			<div class="access">
-				<div>Доступ к 1 попытке <span v-if="group.acc1" class="spanOne">разрешен</span><span v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptOneTest">Переключить доступ</button></div>
-				<div>Доступ к 2 попытке <span class="spanTwo" v-if="group.acc2">разрешен</span><span v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptTwoTest">Переключить доступ</button></div>
-				<div><select v-model="selectedTest"><option v-for="test of tests" :value="test._id" >{{ test.title }}</option></select></div>
+				<div>Доступ к 1 попытке <span v-if="group.acc1" class="spanOne">разрешен</span><span class="spanOne" v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptOneTest">Переключить доступ</button></div>
+				<div>Доступ к 2 попытке <span class="spanTwo" v-if="group.acc2">разрешен</span><span class="spanTwo" v-else>запрещен</span><button v-bind:data-id="group._id" class="acceptTwoTest">Переключить доступ</button></div>
+				<div><select v-model="st.selectedTest">
+					<option v-for="test of tests" :value="test._id" >{{ test.title }}</option>
+					</select>
+				</div>
 			</div>
 			<div class="group-headers">
 				<div class="group-header">Имя студента</div>
 				<div class="group-header">Кол-во правильных ответов за 1</div>
-				<div class="group-header">Кол-во правильных ответов за 2</div>
 				<div class="group-header">Балл первого прохождения</div>
-				<div class="group-header">Балл второго прохождения</div>
 				<div class="group-header">Процент правильных ответов за 1</div>
+				<div class="group-header">Кол-во правильных ответов за 2</div>
+				<div class="group-header">Балл второго прохождения</div>
 				<div class="group-header">Процент правильных ответов за 2</div>
 			</div>
 			<div class="group-list">
 				<div class="student" v-for="student of students">
 					<div class="student-title"><a v-bind:href="'/student:' + student._id" title="Подробнее о студенте">{{student.fio}}</a></div>
-					<div class="student-balls">{{ getInfOfSt(student._id).trueAnswers || 0 }}</div>
-					<div class="student-balls2">{{ getInfOfSt(student._id, 1).trueAnswers || 0 }}</div>
-					<div class="student-ball">{{ getInfOfSt(student._id).ball || 0 }}</div>
-					<div class="student-ball2">{{ getInfOfSt(student._id, 1).ball || 0 }}</div>
-					<div class="student-percent">{{ getInfOfSt(student._id).percent || 0 }}</div>
-					<div class="student-percent2">{{ getInfOfSt(student._id, 1).percent || 0 }}</div>
+					<template v-for="user of usr" v-if="student._id == user[0]">
+							<div class="student-balls">{{ (user[1]) ? user[1].trueAnswers : 0 }}</div>
+							<div class="student-ball">{{ (user[1]) ? user[1].ball : 0 }}</div>
+							<div class="student-percent">{{ (user[1]) ? user[1].percent : 0 }}</div>
+							<div class="student-balls2">{{ (user[2]) ? user[2].trueAnswers : 0 }}</div>
+							<div class="student-ball2">{{ (user[2]) ? user[2].ball : 0 }}</div>
+							<div class="student-percent2">{{ (user[2]) ? user[2].percent : 0 }}</div>
+					</template>
+					<!-- <temaplte v-else>
+							<div class="student-balls2"></div>
+							<div class="student-ball2"></div>
+							<div class="student-percent2"></div>
+					</temaplte> -->
+					
 				</div>
 				
 			</div>
@@ -48,25 +59,25 @@
 					<div class="group_statick">
 						<section>
 							<span>Кол-во 5:</span>
-							<span class="five">{{ five }}</span>
+							<span class="five"></span>
 						</section>
 						<section>
 							<span>Кол-во 4:</span>
-							<span class="fore">{{ fore }}</span>
+							<span class="fore"></span>
 						</section>
 						<section>
 							<span>Кол-во 3:</span>
-							<span class="free">{{ three }}</span>
+							<span class="free"></span>
 						</section>
 						<section>
 							<span>Средний балл группы:</span>
-							<span class="res_bal">{{ middleBall }}</span>
+							<span class="res_bal"></span>
 						</section>
 						<section>
 							<span>Верность ответов:</span>
-							<span class="res_percent">{{ middlePercent }}</span>
+							<span class="res_percent"></span>
 						</section>
-						<div class="verict">Группа плохо подготовлена</div>
+						<div class="verict"></div>
 					</div>
 				</div>
 				<div class="wrapper_col">
@@ -74,25 +85,25 @@
 					<div class="group_statick">
 						<section>
 							<span>Кол-во 5:</span>
-							<span class="five2">{{ five2 }}</span>
+							<span class="five2"></span>
 						</section>
 						<section>
 							<span>Кол-во 4:</span>
-							<span class="fore2">{{ fore2 }}</span>
+							<span class="fore2"></span>
 						</section>
 						<section>
 							<span>Кол-во 3:</span>
-							<span class="free2">{{ three2 }}</span>
+							<span class="free2"></span>
 						</section>
 						<section>
 							<span>Средний балл группы:</span>
-							<span class="res_bal2">{{ middleBall2 }}</span>
+							<span class="res_bal2"></span>
 						</section>
 						<section>
 							<span>Верность ответов:</span>
-							<span class="res_percent">{{ middlePercent2 }}</span>
+							<span class="res_percent2"></span>
 						</section>
-						<div class="verict">Группа плохо подготовлена</div>
+						<div class="verict verict2"></div>
 					</div>
 				</div>
 			</div>
@@ -105,63 +116,30 @@
 	<footer>	
 		<span>Powered by Vylkov Dmitriy and Doctor Maxin</span>
 	</footer>
-	<script src="../assets/js/vue.min.js"></script>
+	<script src="../assets/js/vue.js"></script>
 	<script src="../assets/js/about_gr.js"></script>
 	<script type="text/javascript">
-		// let balls = document.querySelectorAll('.student-ball'),
-		// 		ballSum = 0
-		// for (let ball of balls) {
-		// 	ballSum += Number(ball.innerText);
-		// }
-		// let balls2 = document.querySelectorAll('.student-ball2'),
-		// 		ballSum2 = 0
-		// for (let ball of balls2) {
-		// 	ballSum2 += Number(ball.innerText);
-		// }
-		// document.querySelector('.res_bal').innerText = ballSum / balls.length || 0;
-		// document.querySelector('.res_bal2').innerText = ballSum2 / balls2.length || 0;
-
-		// insertStaticsBalls();
-		// insertStaticsBalls(2);
-		// function insertStaticsBalls(number) {
-		// 	if (!number) {
-		// 		number = '';
-		// 	}
-		// 	let iterator1 = 0, iterator2= 0, iterator3 = 0;
-		// 	for (bal of document.querySelectorAll('.student-ball' + number)) {
-		// 		if (bal.innerText == 3) {
-		// 			iterator1++;
-		// 		} else if (bal.innerText == 4) {
-		// 			iterator2++;
-		// 		} else if (bal.innerText == 5) {
-		// 			iterator3++;
-		// 		}
-		// 	}
-		// 	document.querySelector(`.five${number}`).innerText = iterator3;
-		// 	document.querySelector(`.fore${number}`).innerText = iterator2;
-		// 	document.querySelector(`.free${number}`).innerText = iterator1;
-		// }
 		document.querySelector('.acceptOneTest').onclick = function() {
-			let xhr = new XMLHttpRequest();
-			xhr.open('POST', `/changeAccess:${this.dataset.id}`, true);
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.send(`access=one`);
-			xhr.onload = function() {
-				if (document.querySelector('.spanOne').innerText == 'разрешен') {
-					document.querySelector('.spanOne').innerText = 'запрещен';
-				} else  document.querySelector('.spanOne').innerText = 'разрешен';
-			}
+			postAjax(`/changeAccess:${this.dataset.id}`, `access=one`)
+			.then(result => {
+				if (result.status == 200) {
+					if (document.querySelector('.spanOne').innerText == 'разрешен') {
+						document.querySelector('.spanOne').innerText = 'запрещен';
+					} else  document.querySelector('.spanOne').innerText = 'разрешен';
+				} else console.log(result);
+				
+			})
 		}
 		document.querySelector('.acceptTwoTest').onclick = function() {
 			let xhr = new XMLHttpRequest();
-			xhr.open('POST', `/changeAccess:${this.dataset.id}`, true);
-			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.send(`access=two`);
-			xhr.onload = function() {
-				if (document.querySelector('.spanTwo').innerText == 'разрешен') {
-					document.querySelector('.spanTwo').innerText = 'запрещен';
-				} else  document.querySelector('.spanTwo').innerText = 'разрешен';
-			}
+			postAjax(`/changeAccess:${this.dataset.id}`, `access=two`)
+			.then(result => {
+				if (result.status == 200) {
+					if (document.querySelector('.spanTwo').innerText == 'разрешен') {
+						document.querySelector('.spanTwo').innerText = 'запрещен';
+					} else  document.querySelector('.spanTwo').innerText = 'разрешен';
+				}	else console.log(result);
+			})
 		}
 	</script>
 </body>
